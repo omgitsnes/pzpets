@@ -1,6 +1,5 @@
 package pt.ipleiria.estg.p2.projeto;
 
-public class Aco
-{
+public class SuportavelPorAgua {
 
 }
