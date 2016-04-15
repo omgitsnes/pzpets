@@ -13,10 +13,11 @@ public class Objetivo {
         this.pontuacao = pontuacao;
         this.suportesCongelados = suportesCongelados;
     }
-    /*
+    /**
      * Calcula o numero de estrelas a apresentar no PainelMovimentoEstrelas
      * de acordo com as Macas, Movimentos, e Pontuacao do jogo Atual e o Objetivo para o jogo
-     * 
+     * @param pontuacao Pontuacao atual do jogo
+     * TODO
      */
     public int calcularNumeroDeEstrelas()
     {

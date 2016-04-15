@@ -4,7 +4,10 @@ public class Posicao {
     private int linha;
     private int coluna;
     
-    /** Armazena uma posicao x e y
+    /** 
+     * Armazena uma posicao com uma linha e uma coluna
+     * @param linha Numero correspondente a linha
+     * @param coluna Numero correspondente a coluna
      * 
      */    
     public Posicao(int linha, int coluna)
