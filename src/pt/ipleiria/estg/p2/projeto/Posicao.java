@@ -1,14 +1,12 @@
 package pt.ipleiria.estg.p2.projeto;
 
 public class Posicao {
-
     private int linha;
     private int coluna;
     
     /** Armazena uma posicao x e y
      * 
-     */
-    
+     */    
     public Posicao(int linha, int coluna)
     {
         this.linha = linha;
