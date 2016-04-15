@@ -4,6 +4,14 @@ public class Maca
 {
 	//imagem
 	//suporte
-	// Vai poder cair, e cair(mover)
 
+	public void cair()
+	{
+		
+	}
+	
+	public void podeCair()
+	{
+		
+	}
 }

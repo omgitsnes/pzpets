@@ -3,12 +3,16 @@ package pt.ipleiria.estg.p2.projeto;
 public class Gelo
 {
 /* Verificar o Estado
- * Tem uma posicao
  * Animal
  * Poder
  * Maca
  * Inimigo
- */ 
+ */ private Posicao posicao;
+	
+	public Gelo(int linha, int coluna){
+		this.posicao.setLinha(linha);
+		this.posicao.setColuna(coluna);
+	}
 	
 	public void influenciar(){
 		
