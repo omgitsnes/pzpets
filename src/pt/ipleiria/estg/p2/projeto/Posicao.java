@@ -7,8 +7,8 @@ public class Posicao {
     /** 
      * Armazena uma posicao com uma linha e uma coluna
      * 
-     * @param linha Numero correspondente a linha
-     * @param coluna Numero correspondente a coluna
+     * @param linha Numero de linha
+     * @param coluna Numero de coluna
      * 
      */    
     public Posicao(int linha, int coluna)
