@@ -3,7 +3,7 @@ package pt.ipleiria.estg.p2.projeto;
 public class Posicao {
     private int linha;
     private int coluna;
-    
+
     /** 
      * Armazena uma posicao com uma linha e uma coluna
      * 
@@ -36,5 +36,5 @@ public class Posicao {
     {
         this.coluna = coluna;
     }
-    
+
 }

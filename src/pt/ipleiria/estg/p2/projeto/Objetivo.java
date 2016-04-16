@@ -5,7 +5,7 @@ public class Objetivo {
     private int numeroDeMovimentos; // Numero limite de Movimentos para alcancar o Objetivo
     private int pontuacao; // Pontuacao minima necessaria para alcancar o Objetivo
     private int suportesCongelados; // Numero maximo de suportes Congelados alcancar o Objetivo
-    
+
     public Objetivo(int numeroDeMacasParaApanhar, int numeroDeMovimentos, int pontuacao, int suportesCongelados)
     {
         this.numeroDeMacasParaApanhar = numeroDeMacasParaApanhar;
