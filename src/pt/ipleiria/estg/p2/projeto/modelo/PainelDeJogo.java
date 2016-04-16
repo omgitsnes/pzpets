@@ -2,7 +2,7 @@ package pt.ipleiria.estg.p2.projeto.modelo;
 
 public class PainelDeJogo {
     private PainelDeMacas painelDeMacas;
-    private PainelMovimentosEstrelas painelMovimentosEstrelas;
+    private PainelDeMovimentosEstrelas painelDeMovimentosEstrelas;
     private PainelDePontuacoes painelDePontuacoes;
     private PainelPrincipal painelPrincipal;
     private Objetivo objetivo;
@@ -15,12 +15,12 @@ public class PainelDeJogo {
         this.painelDeMacas = painelDeMacas;
     }
 
-    public PainelMovimentosEstrelas getPainelMovimentoDeEstrelas() {
-        return painelMovimentosEstrelas;
+    public PainelDeMovimentosEstrelas getPainelMovimentoDeEstrelas() {
+        return painelDeMovimentosEstrelas;
     }
 
-    public void setPainelMovimentoDeEstrelas(PainelMovimentosEstrelas painelMovimentosDeEstrelas) {
-        this.painelMovimentosEstrelas = painelMovimentosDeEstrelas;
+    public void setPainelMovimentoDeEstrelas(PainelDeMovimentosEstrelas painelDeMovimentosEstrelas) {
+        this.painelDeMovimentosEstrelas = painelDeMovimentosEstrelas;
     }
 
     public PainelDePontuacoes getPainelDePontuacoes() {

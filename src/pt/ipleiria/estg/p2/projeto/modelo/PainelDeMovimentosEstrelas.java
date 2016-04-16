@@ -1,6 +1,6 @@
 package pt.ipleiria.estg.p2.projeto.modelo;
 
-public class PainelMovimentosEstrelas {
+public class PainelDeMovimentosEstrelas {
 	//Grelha
 	//Imagem
 	
