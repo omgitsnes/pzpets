@@ -17,12 +17,21 @@ public class Objetivo {
      * Calcula o numero de estrelas a apresentar no PainelMovimentoEstrelas
      * de acordo com as Macas, Movimentos, e Pontuacao do jogo Atual e o Objetivo para o jogo
      * 
-     * @param pontuacao Pontuacao atual do jogo
+     * @param pontuacaoAtual Pontuacao atual do jogo
+     * @param numeroDeMacasPorApanhar Numero de macas por apanhar
      * TODO
      */
-    public int calcularNumeroDeEstrelas()
+    public int calcularNumeroDeEstrelas(int pontuacaoAtual, int numeroDeMacasPorApanhar)
     {
-        //TODO
+        if (numeroDeMacasParaApanhar <= (numeroDeMacasParaApanhar - numeroDeMacasPorApanhar)) {
+            return 3;
+        }
+        if ((numeroDeMacasParaApanhar / 1.5) <= (numeroDeMacasParaApanhar - numeroDeMacasPorApanhar)) {
+            return 2;
+        }
+        if ((numeroDeMacasParaApanhar / 3) <= (numeroDeMacasParaApanhar - numeroDeMacasPorApanhar)) {
+            return 1;
+        }
         return 0;
     }
 }
