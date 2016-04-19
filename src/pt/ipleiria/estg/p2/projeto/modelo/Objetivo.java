@@ -1,16 +1,17 @@
 package pt.ipleiria.estg.p2.projeto.modelo;
 
-public class Objetivo {
+public class Objetivo 
+{
     private int numeroDeMacasParaApanhar; // Numero de macas necessarias para alcancar o Objetivo 
     private int numeroDeMovimentos; // Numero limite de Movimentos para alcancar o Objetivo
-    private int pontuacao; // Pontuacao minima necessaria para alcancar o Objetivo
+    private int pontuacaoMinima; // Pontuacao minima necessaria para alcancar o Objetivo
     private int numeroDeSuportesCongelados; // Numero maximo de suportes Congelados alcancar o Objetivo
 
-    public Objetivo(int numeroDeMacasParaApanhar, int numeroDeMovimentos, int pontuacao, int numeroDesuportesCongelados)
+    public Objetivo(int numeroDeMacasParaApanhar, int numeroDeMovimentos, int pontuacaoMinima, int numeroDesuportesCongelados)
     {
         this.numeroDeMacasParaApanhar = numeroDeMacasParaApanhar;
         this.numeroDeMovimentos = numeroDeMovimentos;
-        this.pontuacao = pontuacao;
+        this.pontuacaoMinima = pontuacaoMinima;
         this.numeroDeSuportesCongelados = numeroDesuportesCongelados;
     }
 
@@ -25,13 +26,13 @@ public class Objetivo {
      */
     public int calcularNumeroDeEstrelas(int pontuacaoAtual, int numeroDeMacasPorApanhar)
     {
-        if ((numeroDeMacasParaApanhar <= (numeroDeMacasParaApanhar - numeroDeMacasPorApanhar)) && (pontuacao <= pontuacaoAtual)) {
+        if ((numeroDeMacasParaApanhar <= (numeroDeMacasParaApanhar - numeroDeMacasPorApanhar)) && (pontuacaoMinima <= pontuacaoAtual)) {
             return 3;
         }
-        if (((numeroDeMacasParaApanhar / 1.5) <= (numeroDeMacasParaApanhar - numeroDeMacasPorApanhar)) && ((pontuacao / 1.5) <= pontuacaoAtual)) {
+        if (((numeroDeMacasParaApanhar / 1.5) <= (numeroDeMacasParaApanhar - numeroDeMacasPorApanhar)) && ((pontuacaoMinima / 1.5) <= pontuacaoAtual)) {
             return 2;
         }
-        if (((numeroDeMacasParaApanhar / 3) <= (numeroDeMacasParaApanhar - numeroDeMacasPorApanhar)) && ((pontuacao / 3) <= pontuacaoAtual)) {
+        if (((numeroDeMacasParaApanhar / 3) <= (numeroDeMacasParaApanhar - numeroDeMacasPorApanhar)) && ((pontuacaoMinima / 3) <= pontuacaoAtual)) {
             return 1;
         }
         return 0;
@@ -45,5 +46,15 @@ public class Objetivo {
     public int getNumeroDeSuportesCongelados()
     {
         return numeroDeSuportesCongelados;
+    }
+
+    public int getNumeroDeMacasParaApanhar()
+    {
+        return numeroDeMacasParaApanhar;
+    }
+
+    public int getPontuacaoMinima()
+    {
+        return pontuacaoMinima;
     }
 }

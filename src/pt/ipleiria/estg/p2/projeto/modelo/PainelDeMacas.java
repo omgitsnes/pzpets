@@ -1,24 +1,28 @@
 package pt.ipleiria.estg.p2.projeto.modelo;
 
+import pt.ipleiria.estg.dei.gridpanel.GridPanel;
+import pt.ipleiria.estg.dei.gridpanel.SingleImageCellRepresentation;
 
-public class PainelDeMacas
+public class PainelDeMacas extends PainelComRepresentacao
 {
-	/*Grelha
-	Imagem*/
-	int numeroDeMacasPorApanhar;
-
-	public void painelMacas(int numeroDeMacasPorApanhar){
-		
-		
+	private int numeroDeMacasPorApanhar;
+	
+	/**
+	 * O Painel de Macas é representado por uma imagem, contem um gridPanel e o numero de macas
+	 * @param numeroDeMacasPorApanhar Inicialmente apresenta o numero de macas definido pelo objetivo
+	 */
+	public PainelDeMacas(GridPanel gridPanel, int numeroDeMacasPorApanhar)
+	{
+		super(gridPanel, new SingleImageCellRepresentation("/pt/ipleiria/estg/p2/projeto/imagens/paineis/macas.png"));
 		this.numeroDeMacasPorApanhar = numeroDeMacasPorApanhar;
 	}
-
 	
-	
-	public void diminuirMacasPorApanhar()
+	/**
+	 * Decrementa em 1 valor o numero de macas por apanhar 
+	 */
+	public void decrementarMacasPorApanhar()
 	{
-		/* decrementa o numero de macas no painel de macas*/
-		
+		this.numeroDeMacasPorApanhar--;
 	}
 
 }
