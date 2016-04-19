@@ -7,7 +7,7 @@ public class PainelDeMacas extends PainelComRepresentacao
 {
 	private int numeroDeMacasPorApanhar;
 	
-	/**
+    /**
 	 * O Painel de Macas é representado por uma imagem, contem um gridPanel e o numero de macas
 	 * @param numeroDeMacasPorApanhar Inicialmente apresenta o numero de macas definido pelo objetivo
 	 */
@@ -25,5 +25,9 @@ public class PainelDeMacas extends PainelComRepresentacao
 		this.numeroDeMacasPorApanhar--;
 	}
 
+	public String getNumeroDeMacasPorApanhar()
+	{
+	    return Integer.toString(numeroDeMacasPorApanhar);
+	}
 }
 

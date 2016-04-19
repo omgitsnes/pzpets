@@ -24,5 +24,10 @@ public class PainelDePontuacoes extends PainelComRepresentacao
     {
         this.pontuacaoAtual += diferenca;
     }
+    
+    public String getPontuacaoAtual()
+    {
+        return Integer.toString(pontuacaoAtual);
+    }
 
 }

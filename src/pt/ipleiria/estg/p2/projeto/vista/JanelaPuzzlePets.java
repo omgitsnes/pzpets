@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import pt.ipleiria.estg.dei.gridpanel.JBackgroundPanel;
 import pt.ipleiria.estg.dei.gridpanel.SingleImageCellRepresentation;
+import pt.ipleiria.estg.dei.gridpanel.TextCellRepresentation;
 import pt.ipleiria.estg.p2.projeto.modelo.Objetivo;
 import pt.ipleiria.estg.p2.projeto.modelo.PainelDeMacas;
 import pt.ipleiria.estg.p2.projeto.modelo.PainelDeMovimentosEstrelas;
@@ -72,6 +73,7 @@ public class JanelaPuzzlePets extends JFrame
         backgroundPanel.add(panel, BorderLayout.NORTH);
 
         GridPanel gridPanelPainelDeMacas = new GridPanel();
+        gridPanelPainelDeMacas.setToolTipText("Este \u00E9 o numero de ma\u00E7as que ainda tens de fazer chegar aos cestos");
         gridPanelPainelDeMacas.setColumnSize(100);
         panel.add(gridPanelPainelDeMacas);
         gridPanelPainelDeMacas.setPanelBackground("");
@@ -79,6 +81,7 @@ public class JanelaPuzzlePets extends JFrame
         gridPanelPainelDeMacas.setNumberOfColumns(1);
 
         GridPanel gridPanelPainelDeMovimentosEstrelas = new GridPanel();
+        gridPanelPainelDeMovimentosEstrelas.setToolTipText("Movimentos Disponiveis");
         gridPanelPainelDeMovimentosEstrelas.setColumnSize(75);
         panel.add(gridPanelPainelDeMovimentosEstrelas);
         gridPanelPainelDeMovimentosEstrelas.setPanelBackground("");
@@ -86,6 +89,7 @@ public class JanelaPuzzlePets extends JFrame
         gridPanelPainelDeMovimentosEstrelas.setNumberOfColumns(1);
 
         GridPanel gridPanelPainelDePontuacoes = new GridPanel();
+        gridPanelPainelDePontuacoes.setToolTipText("Pontua\u00E7\u00E3o");
         gridPanelPainelDePontuacoes.setColumnSize(100);
         panel.add(gridPanelPainelDePontuacoes);
         gridPanelPainelDePontuacoes.setPanelBackground("");
@@ -98,19 +102,29 @@ public class JanelaPuzzlePets extends JFrame
         gridPanelPainelPrincipal.setNumberOfRows(8);
         gridPanelPainelPrincipal.setNumberOfColumns(8);
 
+        //Definir objetivo
+        objetivo = new Objetivo(100, 150, 5000, 0);
+        
         painelDeMacas = new PainelDeMacas(gridPanelPainelDeMacas, 20);
-        painelDeMovimentosEstrelas = new PainelDeMovimentosEstrelas(gridPanelPainelDeMovimentosEstrelas, 20);
+        painelDeMovimentosEstrelas = new PainelDeMovimentosEstrelas(gridPanelPainelDeMovimentosEstrelas, objetivo.getNumeroDeMovimentos());
         painelDePontuacoes = new PainelDePontuacoes(gridPanelPainelDePontuacoes);
 
         painelDeMacas.getGridPanel().add(0, 0, painelDeMacas.getRepresentacao());
+        painelDeMacas.getGridPanel().add(0, 0, new TextCellRepresentation(Integer.toString(objetivo.getNumeroDeMacasParaApanhar())));
+        
         painelDeMovimentosEstrelas.getGridPanel().add(0, 0, painelDeMovimentosEstrelas.getRepresentacao());
+        painelDeMovimentosEstrelas.getGridPanel().add(0, 0, new TextCellRepresentation(Integer.toString(objetivo.getNumeroDeMovimentos())));
+ 
         painelDePontuacoes.getGridPanel().add(0, 0, painelDePontuacoes.getRepresentacao());
+        painelDePontuacoes.getGridPanel().add(0, 0, new TextCellRepresentation(painelDePontuacoes.getPontuacaoAtual()));
 
         CellRepresentation e = new SingleImageCellRepresentation("/pt/ipleiria/estg/p2/projeto/imagens/animais/panda.png");
-
+        CellRepresentation s = new SingleImageCellRepresentation("/pt/ipleiria/estg/p2/projeto/imagens/suportes/agua.png");
+        
         for (int i = 0; i < gridPanelPainelPrincipal.getNumberOfRows(); i++) {
             for (int j = 0; j < gridPanelPainelPrincipal.getNumberOfColumns(); j++) {
-                gridPanelPainelPrincipal.add(i, j, e);        
+                gridPanelPainelPrincipal.add(i, j, s);        
+                gridPanelPainelPrincipal.add(i, j, e);                
             }
         }
         gridPanelPainelPrincipal.repaint();
