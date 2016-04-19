@@ -10,15 +10,15 @@ public class PainelDeMovimentosEstrelas extends PainelComRepresentacao
     /**
      * O Painel é representado por 3 possiveis imagens, contem um gridPanel o numero de movimentos
      * e o numero de estrelas.
+     * O numero de estrelas inicia a 0
      * @param gridPanel
-     * @param numeroDeMovimentosDisponiveis
-     * @param numeroDeEstrelasGanhas
+     * @param numeroDeMovimentosDisponiveis inicialmente é igual ao objetivo
      */
-    public PainelDeMovimentosEstrelas(GridPanel gridPanel, int numeroDeMovimentosDisponiveis, int numeroDeEstrelasGanhas)
+    public PainelDeMovimentosEstrelas(GridPanel gridPanel, int numeroDeMovimentosDisponiveis)
     {
-        super(gridPanel, new SingleImageCellRepresentation("/pt/ipleiria/estg/p2/projeto/imagens/paineis/movimentos0Estrelas.pnp"));
+        super(gridPanel, new SingleImageCellRepresentation("/pt/ipleiria/estg/p2/projeto/imagens/paineis/movimentos0Estrelas.png"));
         this.numeroDeMovimentosDisponiveis = numeroDeMovimentosDisponiveis;
-        this.numeroDeEstrelasGanhas = numeroDeEstrelasGanhas;
+        this.numeroDeEstrelasGanhas = 0;
     }
 
     /**
