@@ -16,7 +16,7 @@ public class Objetivo {
 
     /**
      * Calcula o numero de estrelas a apresentar no PainelMovimentoEstrelas
-     * de acordo com as Macas, Movimentos, e Pontuacao do jogo Atual e o Objetivo para o jogo
+     * de acordo com as Macas, ?Movimentos?, e Pontuacao do jogo Atual e o Objetivo para o jogo
      * 
      * @param pontuacaoAtual Pontuacao atual do jogo
      * @param numeroDeMacasPorApanhar Numero de macas por apanhar
