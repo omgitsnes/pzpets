@@ -3,14 +3,14 @@ package pt.ipleiria.estg.p2.projeto.modelo;
 public class Objetivo 
 {
     private int numeroDeMacasParaApanhar; // Numero de macas necessarias para alcancar o Objetivo 
-    private int numeroDeMovimentos; // Numero limite de Movimentos para alcancar o Objetivo
+    private int numeroDeMovimentosMaximo; // Numero limite de Movimentos para alcancar o Objetivo
     private int pontuacaoMinima; // Pontuacao minima necessaria para alcancar o Objetivo
     private int numeroDeSuportesCongelados; // Numero maximo de suportes Congelados alcancar o Objetivo
 
     public Objetivo(int numeroDeMacasParaApanhar, int numeroDeMovimentos, int pontuacaoMinima, int numeroDesuportesCongelados)
     {
         this.numeroDeMacasParaApanhar = numeroDeMacasParaApanhar;
-        this.numeroDeMovimentos = numeroDeMovimentos;
+        this.numeroDeMovimentosMaximo = numeroDeMovimentos;
         this.pontuacaoMinima = pontuacaoMinima;
         this.numeroDeSuportesCongelados = numeroDesuportesCongelados;
     }
@@ -38,9 +38,9 @@ public class Objetivo
         return 0;
     }
 
-    public int getNumeroDeMovimentos()
+    public int getNumeroDeMovimentosMaximo()
     {
-        return numeroDeMovimentos;
+        return numeroDeMovimentosMaximo;
     }
 
     public int getNumeroDeSuportesCongelados()
