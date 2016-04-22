@@ -33,7 +33,7 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
 		for (int i = 0; i < gridPanel.getNumberOfRows(); i++) {
 			for (int j = 0; j < gridPanel.getNumberOfColumns(); j++) {
 				
-				if (gridPanel.getY() <= 1) {
+				if (gridPanel.getX() <= 1) {
 					suportes[i][j] = new SuporteAgua(new Posicao(i, j));
 					gridPanel.add(i, j, suportes[i][j].getRepresentacao());
 					switch(random.nextInt(4)){
