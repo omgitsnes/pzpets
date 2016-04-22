@@ -109,6 +109,9 @@ public class JanelaPuzzlePets extends JFrame
         painelDeMacas = new PainelDeMacas(gridPanelPainelDeMacas, 20);
         painelDeMovimentosEstrelas = new PainelDeMovimentosEstrelas(gridPanelPainelDeMovimentosEstrelas, objetivo.getNumeroDeMovimentosMaximo());
         painelDePontuacoes = new PainelDePontuacoes(gridPanelPainelDePontuacoes);
+		painelDeMovimentosEstrelas.getGridPanel().add(0, 0, painelDeMovimentosEstrelas.getRepresentacao());
+		painelDeMovimentosEstrelas.getGridPanel().add(0, 0,
+				new TextCellRepresentation(Integer.toString(objetivo.getNumeroDeMovimentosMaximo())));
 
         painelDeMacas.getGridPanel().add(0, 0, painelDeMacas.getRepresentacao());
         painelDeMacas.getGridPanel().add(0, 0, new TextCellRepresentation(Integer.toString(objetivo.getNumeroDeMacasParaApanhar())));
@@ -118,6 +121,8 @@ public class JanelaPuzzlePets extends JFrame
 
         painelDePontuacoes.getGridPanel().add(0, 0, painelDePontuacoes.getRepresentacao());
         painelDePontuacoes.getGridPanel().add(0, 0, new TextCellRepresentation(painelDePontuacoes.getPontuacaoAtual()));
+		painelDePontuacoes.getGridPanel().add(0, 0, painelDePontuacoes.getRepresentacao());
+		painelDePontuacoes.getGridPanel().add(0, 0, new TextCellRepresentation(painelDePontuacoes.getPontuacaoAtual()));
 
 
         // preencher painel principal
@@ -131,6 +136,9 @@ public class JanelaPuzzlePets extends JFrame
             }
         }
         gridPanelPainelPrincipal.repaint();
+		painelPrincipal = new PainelPrincipal(gridPanelPainelPrincipal);
+		
+		gridPanelPainelPrincipal.repaint();
 
         // threads
         thread = new Thread() {

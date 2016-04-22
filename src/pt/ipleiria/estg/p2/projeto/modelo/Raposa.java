@@ -1,10 +1,16 @@
 package pt.ipleiria.estg.p2.projeto.modelo;
 
-public class Raposa
+import pt.ipleiria.estg.dei.gridpanel.SingleImageCellRepresentation;
+
+public class Raposa extends PotencialMovimentoExtra
 {
 /* Imagem Raposa */
 	
 
+
+	public Raposa() {
+		super(new SingleImageCellRepresentation("/pt/ipleiria/estg/p2/projeto/imagens/animais/raposa.png"));
+	}
 
 	public void explodir(){
 		

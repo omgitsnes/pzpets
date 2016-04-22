@@ -1,14 +1,16 @@
 package pt.ipleiria.estg.p2.projeto.modelo;
 
-public class Suporte
-{   
-    
-private Posicao posicao;
+import pt.ipleiria.estg.dei.gridpanel.CellRepresentation;
+
+public class Suporte extends Representavel {
 	
-	public Suporte(int linha, int coluna)
-	{
-		this.posicao.setLinha(linha);
-		this.posicao.setColuna(coluna);
+	public Suporte(CellRepresentation representacao) {
+		super(representacao);
+
+		
 	}
-	
+
+
+
+
 }
