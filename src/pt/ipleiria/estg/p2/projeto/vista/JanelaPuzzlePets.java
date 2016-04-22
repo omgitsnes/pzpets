@@ -109,9 +109,6 @@ public class JanelaPuzzlePets extends JFrame
         painelDeMacas = new PainelDeMacas(gridPanelPainelDeMacas, 20);
         painelDeMovimentosEstrelas = new PainelDeMovimentosEstrelas(gridPanelPainelDeMovimentosEstrelas, objetivo.getNumeroDeMovimentosMaximo());
         painelDePontuacoes = new PainelDePontuacoes(gridPanelPainelDePontuacoes);
-		painelDeMovimentosEstrelas.getGridPanel().add(0, 0, painelDeMovimentosEstrelas.getRepresentacao());
-		painelDeMovimentosEstrelas.getGridPanel().add(0, 0,
-				new TextCellRepresentation(Integer.toString(objetivo.getNumeroDeMovimentosMaximo())));
 
         painelDeMacas.getGridPanel().add(0, 0, painelDeMacas.getRepresentacao());
         painelDeMacas.getGridPanel().add(0, 0, new TextCellRepresentation(Integer.toString(objetivo.getNumeroDeMacasParaApanhar())));
@@ -121,23 +118,8 @@ public class JanelaPuzzlePets extends JFrame
 
         painelDePontuacoes.getGridPanel().add(0, 0, painelDePontuacoes.getRepresentacao());
         painelDePontuacoes.getGridPanel().add(0, 0, new TextCellRepresentation(painelDePontuacoes.getPontuacaoAtual()));
-		painelDePontuacoes.getGridPanel().add(0, 0, painelDePontuacoes.getRepresentacao());
-		painelDePontuacoes.getGridPanel().add(0, 0, new TextCellRepresentation(painelDePontuacoes.getPontuacaoAtual()));
-
-
-        // preencher painel principal
-        CellRepresentation e = new SingleImageCellRepresentation("/pt/ipleiria/estg/p2/projeto/imagens/animais/panda.png");
-        CellRepresentation s = new SingleImageCellRepresentation("/pt/ipleiria/estg/p2/projeto/imagens/suportes/agua.png");
-
-        for (int i = 0; i < gridPanelPainelPrincipal.getNumberOfRows(); i++) {
-            for (int j = 0; j < gridPanelPainelPrincipal.getNumberOfColumns(); j++) {
-                gridPanelPainelPrincipal.add(i, j, s);        
-                gridPanelPainelPrincipal.add(i, j, e);                
-            }
-        }
-        gridPanelPainelPrincipal.repaint();
+        
 		painelPrincipal = new PainelPrincipal(gridPanelPainelPrincipal);
-		
 		gridPanelPainelPrincipal.repaint();
 
         // threads
@@ -147,7 +129,7 @@ public class JanelaPuzzlePets extends JFrame
                 while (true) {
                     try {
                         System.out.println("cai!");
-                        sleep(100);//TODO cadencia de queda painel principal
+                        sleep(1000);//TODO cadencia de queda painel principal
                     } catch (InterruptedException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
