@@ -33,8 +33,6 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
         this.suportaveis = new Suportavel[8][8];
         this.cadenciaDeQueda = 100;
         gerarNivel(gridPanel, suportes);
-        
-        
     }
 
     public int getNumeroDeMacasEmJogo()
