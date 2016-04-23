@@ -27,133 +27,10 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
     public PainelPrincipal(GridPanel gridPanel) 
     {
         super(gridPanel);
-
         suportes = new Suporte[8][8];
-        Random random = new Random();
 
-        for (int i = 0; i < gridPanel.getNumberOfRows(); i++) {
-            for (int j = 0; j < gridPanel.getNumberOfColumns(); j++) {
-
-                //Primeiras 2 linhas
-                if (i <= 1) {
-                    suportes[i][j] = new SuporteAgua(new Posicao(i, j));
-                    gridPanel.add(i, j, suportes[i][j].getRepresentacao());
-                    switch(random.nextInt(4)){
-                    case 0: Panda iPanda = new Panda(); 
-                    gridPanel.add(i, j, iPanda.getRepresentacao());
-                    break;
-                    case 1: Peixe iPeixe = new Peixe();
-                    gridPanel.add(i, j, iPeixe.getRepresentacao());
-                    break;
-                    case 2:Polvo iPolvo = new Polvo();
-                    gridPanel.add(i, j, iPolvo.getRepresentacao());
-                    break;
-                    case 3: Raposa iRaposa = new Raposa();
-                    gridPanel.add(i, j, iRaposa.getRepresentacao());
-                    break;
-                    case 4: Sapo iSapo = new Sapo();
-                    gridPanel.add(i, j, iSapo.getRepresentacao());
-                    break;
-                    }
-
-                }
-                // linhas 2 e 3 
-                if (i > 1 && i < 4) {
-                    if (j == 0 || j == 3 || j == 7) {
-                        suportes[i][j] = new SuporteAr(new Posicao(i, j));
-                        gridPanel.add(i, j,suportes[i][j].getRepresentacao());
-                        switch(random.nextInt(4)){
-                        case 0: Panda iPanda = new Panda(); 
-                        gridPanel.add(i, j, iPanda.getRepresentacao());
-                        break;
-                        case 1: Peixe iPeixe = new Peixe();
-                        gridPanel.add(i, j, iPeixe.getRepresentacao());
-                        break;
-                        case 2:Polvo iPolvo = new Polvo();
-                        gridPanel.add(i, j, iPolvo.getRepresentacao());
-                        break;
-                        case 3: Raposa iRaposa = new Raposa();
-                        gridPanel.add(i, j, iRaposa.getRepresentacao());
-                        break;
-                        case 4: Sapo iSapo = new Sapo();
-                        gridPanel.add(i, j, iSapo.getRepresentacao());
-                        break;
-                        }
-                    } else {
-                        suportes[i][j] = new SuporteGelo(new Posicao(i, j));
-                        gridPanel.add(i, j, suportes[i][j].getRepresentacao());
-                        switch(random.nextInt(4)){
-                        case 0: Panda iPanda = new Panda(); 
-                        gridPanel.add(i, j, iPanda.getRepresentacao());
-                        break;
-                        case 1: Peixe iPeixe = new Peixe();
-                        gridPanel.add(i, j, iPeixe.getRepresentacao());
-                        break;
-                        case 2:Polvo iPolvo = new Polvo();
-                        gridPanel.add(i, j, iPolvo.getRepresentacao());
-                        break;
-                        case 3: Raposa iRaposa = new Raposa();
-                        gridPanel.add(i, j, iRaposa.getRepresentacao());
-                        break;
-                        case 4: Sapo iSapo = new Sapo();
-                        gridPanel.add(i, j, iSapo.getRepresentacao());
-                        break;
-                        }
-                    }
-                }
-
-                if (i > 3) {
-                    if ((i == 4 && j == 0)
-                            || (i == 4 && j == 7)) {
-                        suportes[i][j] = new SuporteGelo(new Posicao(i, j));
-                        gridPanel.add(i, j, suportes[i][j].getRepresentacao());
-                        switch(random.nextInt(4)){
-                        case 0: Panda iPanda = new Panda(); 
-                        gridPanel.add(i, j, iPanda.getRepresentacao());
-                        break;
-                        case 1: Peixe iPeixe = new Peixe();
-                        gridPanel.add(i, j, iPeixe.getRepresentacao());
-                        break;
-                        case 2:Polvo iPolvo = new Polvo();
-                        gridPanel.add(i, j, iPolvo.getRepresentacao());
-                        break;
-                        case 3: Raposa iRaposa = new Raposa();
-                        gridPanel.add(i, j, iRaposa.getRepresentacao());
-                        break;
-                        case 4: Sapo iSapo = new Sapo();
-                        gridPanel.add(i, j, iSapo.getRepresentacao());
-                        break;
-                        }
-
-                    } else {
-                        suportes[i][j] = new SuporteAgua(new Posicao(i, j));
-                        gridPanel.add(i, j, suportes[i][j].getRepresentacao());
-                        switch(random.nextInt(4)){
-                        case 0: Panda iPanda = new Panda(); 
-                        gridPanel.add(i, j, iPanda.getRepresentacao());
-                        break;
-                        case 1: Peixe iPeixe = new Peixe();
-                        gridPanel.add(i, j, iPeixe.getRepresentacao());
-                        break;
-                        case 2:Polvo iPolvo = new Polvo();
-                        gridPanel.add(i, j, iPolvo.getRepresentacao());
-                        break;
-                        case 3: Raposa iRaposa = new Raposa();
-                        gridPanel.add(i, j, iRaposa.getRepresentacao());
-                        break;
-                        case 4: Sapo iSapo = new Sapo();
-                        gridPanel.add(i, j, iSapo.getRepresentacao());
-                        break;
-                        }
-                    }
-
-                }
-
-
-
-
-            }		
-        }
+        gerarNivel(gridPanel, suportes);
+        
     }
 
     public int getNumeroDeMacasEmJogo()
@@ -186,6 +63,66 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
 
     public void iterar() {
 
+    }
+    
+    private void gerarNivel(GridPanel gridPanel, Suporte[][] suportes)
+    {
+        for (int i = 0; i < gridPanel.getNumberOfRows(); i++) {
+            for (int j = 0; j < gridPanel.getNumberOfColumns(); j++) {
+
+                //Primeiras 2 linhas
+                if (i < 2) {
+                    suportes[i][j] = new SuporteAgua(new Posicao(i, j));
+                    gridPanel.add(i, j, suportes[i][j].getRepresentacao());
+                    adicionarAnimalAleatorio(gridPanel, i, j);
+                }
+                // linhas 2 e 3 
+                if (i > 1 && i < 4) {
+                    if (j == 0 || j == 3 || j == 7) {
+                        suportes[i][j] = new SuporteAr(new Posicao(i, j));
+                        gridPanel.add(i, j,suportes[i][j].getRepresentacao());
+                    } else {
+                        suportes[i][j] = new SuporteGelo(new Posicao(i, j));
+                        gridPanel.add(i, j, suportes[i][j].getRepresentacao());
+                        adicionarAnimalAleatorio(gridPanel, i, j);
+                    }
+                }
+                //todas asa outras
+                if (i > 3) {
+                    if ((i == 4 && j == 0)
+                            || (i == 4 && j == 7)) {
+                        suportes[i][j] = new SuporteAr(new Posicao(i, j));
+                        gridPanel.add(i, j, suportes[i][j].getRepresentacao());
+                    } else {
+                        suportes[i][j] = new SuporteAgua(new Posicao(i, j));
+                        gridPanel.add(i, j, suportes[i][j].getRepresentacao());
+                        adicionarAnimalAleatorio(gridPanel, i, j);
+                    }
+                }
+            }       
+        }
+    }
+    
+    private void adicionarAnimalAleatorio(GridPanel gridPanel, int linha, int coluna)
+    {
+        Random random = new Random();
+        switch (random.nextInt(4)) {
+            case 0: Panda iPanda = new Panda(); 
+                gridPanel.add(linha, coluna, iPanda.getRepresentacao());
+                break;
+            case 1: Peixe iPeixe = new Peixe();
+                gridPanel.add(linha, coluna, iPeixe.getRepresentacao());
+                break;
+            case 2:Polvo iPolvo = new Polvo();
+                gridPanel.add(linha, coluna, iPolvo.getRepresentacao());
+                break;
+            case 3: Raposa iRaposa = new Raposa();
+                gridPanel.add(linha, coluna, iRaposa.getRepresentacao());
+                break;
+            case 4: Sapo iSapo = new Sapo();
+                gridPanel.add(linha, coluna, iSapo.getRepresentacao());
+                break;
+        }
     }
 
 }

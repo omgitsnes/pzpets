@@ -10,6 +10,7 @@ public class PainelComRepresentacao extends Representavel
     /**
      * 
      * @param gridpanel
+     * @param representacao
      */
     public PainelComRepresentacao(GridPanel gridPanel, CellRepresentation representacao)
     {
