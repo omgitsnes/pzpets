@@ -20,6 +20,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.FlowLayout;
 import java.awt.CardLayout;
+import java.awt.Dimension;
 
 public class JanelaPuzzlePets extends JFrame
 {
@@ -118,9 +119,9 @@ public class JanelaPuzzlePets extends JFrame
 
         painelDePontuacoes.getGridPanel().add(0, 0, painelDePontuacoes.getRepresentacao());
         painelDePontuacoes.getGridPanel().add(0, 0, new TextCellRepresentation(painelDePontuacoes.getPontuacaoAtual()));
-        
-		painelPrincipal = new PainelPrincipal(gridPanelPainelPrincipal);
-		gridPanelPainelPrincipal.repaint();
+
+        painelPrincipal = new PainelPrincipal(gridPanelPainelPrincipal);
+
 
         // threads
         thread = new Thread() {
@@ -129,7 +130,7 @@ public class JanelaPuzzlePets extends JFrame
                 while (true) {
                     try {
                         System.out.println("cai!");
-                        sleep(1000);//TODO cadencia de queda painel principal
+                        sleep(painelPrincipal.getCadenciaDeQueda());
                     } catch (InterruptedException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
@@ -137,7 +138,7 @@ public class JanelaPuzzlePets extends JFrame
                 }
             }
         };
-        
+
         thread.start();
     }
 

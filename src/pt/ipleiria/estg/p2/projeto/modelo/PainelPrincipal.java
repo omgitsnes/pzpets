@@ -7,6 +7,7 @@ import pt.ipleiria.estg.dei.gridpanel.GridPanel;
 public class PainelPrincipal extends PainelNaoRepresentavel {
 
     private Suporte[][] suportes;
+    private int cadenciaDeQueda;
     // Grelha
     // Suportes
     // Numero De Macas em Jogo
@@ -27,8 +28,8 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
     public PainelPrincipal(GridPanel gridPanel) 
     {
         super(gridPanel);
-        suportes = new Suporte[8][8];
-
+        this.suportes = new Suporte[8][8];
+        this.cadenciaDeQueda = 100;
         gerarNivel(gridPanel, suportes);
         
     }
@@ -65,6 +66,11 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
 
     }
     
+    public int getCadenciaDeQueda()
+    {
+        return cadenciaDeQueda;
+    }
+
     private void gerarNivel(GridPanel gridPanel, Suporte[][] suportes)
     {
         for (int i = 0; i < gridPanel.getNumberOfRows(); i++) {
@@ -101,6 +107,7 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
                 }
             }       
         }
+        gridPanel.repaint();
     }
     
     private void adicionarAnimalAleatorio(GridPanel gridPanel, int linha, int coluna)
