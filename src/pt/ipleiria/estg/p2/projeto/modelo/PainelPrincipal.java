@@ -109,32 +109,26 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
         gridPanel.repaint();
     }
     
-    public void adicionarAnimalAleatorio(GridPanel gridPanel, int linha, int coluna)
-    {
-        //TODO temporario
-        Suportavel iPanda = new Panda(suportes[linha][coluna]); 
-        suportaveis[linha][coluna] = iPanda;
-        gridPanel.add(linha, coluna, iPanda.getRepresentacao());
-//        
-//        Random random = new Random();
-//        switch (random.nextInt(4)) {
-//            case 0: Suportavel iPanda = new Panda(suportes[linha][coluna]); 
-//                suportaveis[linha][coluna] = iPanda;
-//                gridPanel.add(linha, coluna, iPanda.getRepresentacao());
-//                break;
-//            case 1: Peixe iPeixe = new Peixe();
-//                gridPanel.add(linha, coluna, iPeixe.getRepresentacao());
-//                break;
-//            case 2:Polvo iPolvo = new Polvo();
-//                gridPanel.add(linha, coluna, iPolvo.getRepresentacao());
-//                break;
-//            case 3: Raposa iRaposa = new Raposa();
-//                gridPanel.add(linha, coluna, iRaposa.getRepresentacao());
-//                break;
-//            case 4: Sapo iSapo = new Sapo();
-//                gridPanel.add(linha, coluna, iSapo.getRepresentacao());
-//                break;
-//        }
+    public void adicionarAnimalAleatorio(int linha, int coluna)
+    {   
+        Random random = new Random();
+        switch (random.nextInt(4)) {
+            case 0: suportaveis[linha][coluna] = new Panda(suportes[linha][coluna]);
+                this.getGridPanel().add(linha, coluna, suportaveis[linha][coluna].getRepresentacao());
+                break;
+            case 1: suportaveis[linha][coluna] = new Peixe(suportes[linha][coluna]);
+                this.getGridPanel().add(linha, coluna, suportaveis[linha][coluna].getRepresentacao());
+                break;
+            case 2: suportaveis[linha][coluna] = new Polvo(suportes[linha][coluna]);
+                this.getGridPanel().add(linha, coluna, suportaveis[linha][coluna].getRepresentacao());
+                break;
+            case 3: suportaveis[linha][coluna] = new Raposa(suportes[linha][coluna]);
+                this.getGridPanel().add(linha, coluna, suportaveis[linha][coluna].getRepresentacao());
+                break;
+            case 4: suportaveis[linha][coluna] = new Sapo(suportes[linha][coluna]);
+                this.getGridPanel().add(linha, coluna, suportaveis[linha][coluna].getRepresentacao());
+                break;
+        }
     }
 
     public Suporte[][] getSuportes()
