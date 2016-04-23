@@ -132,9 +132,10 @@ public class JanelaPuzzlePets extends JFrame
                         System.out.println("cai!");
                         painelPrincipal.getGridPanel().repaint();
 //TODO
-//                        if (painelPrincipal.hasSuportavel(0, 0) == null) {
-//                            painelPrincipal.adicionarAnimalAleatorio(painelPrincipal.getGridPanel(), 0, 0);
-//                        }
+                        if (painelPrincipal.hasSuportavel(0, 0) == null) {
+                            painelPrincipal.adicionarAnimalAleatorio(0, 0);
+                        }
+                        
                         sleep(painelPrincipal.getCadenciaDeQueda());
                     } catch (InterruptedException e) {
                         // TODO Auto-generated catch block
