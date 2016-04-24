@@ -24,6 +24,11 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
         this.cadenciaDeQueda = 100;
         this.numeroDeMacasEmJogo = 0;
         gerarNivel(gridPanel, suportes);
+        
+        //TODO
+        suportaveis[0][0] = new Panda((SuporteComSuportado)suportes[0][0]);
+        this.getGridPanel().add(0, 0, suportaveis[0][0].getRepresentacao());
+        gridPanel.repaint();
     }
     
     public void alterarSuporte() {
@@ -106,12 +111,12 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
         }
         gridPanel.repaint();
     }
-    
+    //TODO fix metodo
     public void adicionarAnimalAleatorio(int linha, int coluna)
     {   
         Random random = new Random();
         switch (random.nextInt(4)) {
-            case 0: suportaveis[linha][coluna] = new Panda(suportes[linha][coluna]);
+            case 0: suportaveis[linha][coluna] = new Panda((SuporteComSuportado)suportes[linha][coluna]);
                 this.getGridPanel().add(linha, coluna, suportaveis[linha][coluna].getRepresentacao());
                 break;
             case 1: suportaveis[linha][coluna] = new Peixe(suportes[linha][coluna]);
@@ -129,7 +134,7 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
         }
     }
 
-    public SuporteComSuportado[][] getSuportes()
+    public Suporte[][] getSuportes()
     {
         return suportes;
     }
