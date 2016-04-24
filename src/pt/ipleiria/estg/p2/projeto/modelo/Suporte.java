@@ -2,27 +2,23 @@ package pt.ipleiria.estg.p2.projeto.modelo;
 
 import pt.ipleiria.estg.dei.gridpanel.CellRepresentation;
 
-public class Suporte extends Quadrados
+public class Suporte extends Representavel
 {
-    private Suportavel suportado;
+    private Posicao posicao;
 
     /**
      * 
      * @param representacao
      * @param posicao
      */
-    public Suporte(CellRepresentation representacao, Posicao posicao) 
+    public Suporte(CellRepresentation representacao, Posicao posicao)
     {
-        super(representacao, posicao);
-    }
-
-    public Suportavel getSuportado()
-    {
-        return this.suportado;
+        super(representacao);
+        this.posicao = posicao;
     }
     
-    public void setSuportado(Suportavel suportado)
+    public Posicao getPosicao()
     {
-        this.suportado = suportado;
+        return this.posicao;
     }
 }

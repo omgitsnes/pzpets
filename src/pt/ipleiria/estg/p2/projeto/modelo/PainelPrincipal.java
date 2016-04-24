@@ -129,7 +129,7 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
         }
     }
 
-    public Suporte[][] getSuportes()
+    public SuporteComSuportado[][] getSuportes()
     {
         return suportes;
     }

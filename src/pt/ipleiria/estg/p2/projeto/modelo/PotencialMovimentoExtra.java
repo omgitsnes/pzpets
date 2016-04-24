@@ -4,7 +4,7 @@ import pt.ipleiria.estg.dei.gridpanel.CellRepresentation;
 
 public class PotencialMovimentoExtra extends Suportavel {
 
-	public PotencialMovimentoExtra(CellRepresentation representacao, Suporte suporte) {
+	public PotencialMovimentoExtra(CellRepresentation representacao, SuporteComSuportado suporte) {
 		super(representacao, suporte);
 	}
 

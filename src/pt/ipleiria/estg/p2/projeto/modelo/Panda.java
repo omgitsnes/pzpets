@@ -6,7 +6,7 @@ public class Panda extends PotencialMovimentoExtra
 {
 /* Imagem Panda*/
 
-	public Panda(Suporte suporte) 
+	public Panda(SuporteComSuportado suporte) 
 	{
 		super(new SingleImageCellRepresentation("/pt/ipleiria/estg/p2/projeto/imagens/animais/panda.png"), suporte);		
 	}

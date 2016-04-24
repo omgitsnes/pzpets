@@ -2,7 +2,7 @@ package pt.ipleiria.estg.p2.projeto.modelo;
 
 import pt.ipleiria.estg.dei.gridpanel.SingleImageCellRepresentation;
 
-public class SuporteAr extends Quadrados
+public class SuporteAr extends Suporte
 {
     /**
      * 

@@ -2,7 +2,7 @@ package pt.ipleiria.estg.p2.projeto.modelo;
 
 import pt.ipleiria.estg.dei.gridpanel.SingleImageCellRepresentation;
 
-public class SuporteGelo extends Suporte
+public class SuporteGelo extends SuporteComSuportado
 {
     /**
      * 

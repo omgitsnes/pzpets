@@ -4,19 +4,19 @@ import pt.ipleiria.estg.dei.gridpanel.CellRepresentation;
 
 public class Suportavel extends Representavel
 {
-    private Suporte suporte;
+    private SuporteComSuportado suporte;
     
     /**
      * 
      * @param representacao
      * @param suporte
      */
-    public Suportavel(CellRepresentation representacao, Suporte suporte)
+    public Suportavel(CellRepresentation representacao, SuporteComSuportado suporte)
     {
         super(representacao);
     }
     
-    public Suporte getSuporte()
+    public SuporteComSuportado getSuporte()
     {
         return suporte;
     }
