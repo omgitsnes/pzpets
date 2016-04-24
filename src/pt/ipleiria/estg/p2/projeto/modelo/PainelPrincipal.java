@@ -7,16 +7,25 @@ import pt.ipleiria.estg.dei.gridpanel.GridPanel;
 public class PainelPrincipal extends PainelNaoRepresentavel {
 
     private Suporte[][] suportes;
+    private Suportavel[][] suportaveis;
     private int cadenciaDeQueda;
-    // Grelha
-    // Suportes
-    // Numero De Macas em Jogo
-    // Cadencia de Queda Da Maca
-    // Cadencia De Queda Do Animal
-    // Suporte Ar
-    // Suporte Gelo
-    // Suporte Agua
-
+    private int numeroDeMacasEmJogo;
+    private int numeroDeSuportesCongelados;
+    
+    /**
+     * O Painel Principal é con
+     * @param gridPanel
+     */
+    public PainelPrincipal(GridPanel gridPanel) 
+    {
+        super(gridPanel);
+        this.suportes = new Suporte[gridPanel.getNumberOfColumns()][gridPanel.getNumberOfRows()];
+        this.suportaveis = new Suportavel[gridPanel.getNumberOfColumns()][gridPanel.getNumberOfRows()];
+        this.cadenciaDeQueda = 100;
+        this.numeroDeMacasEmJogo = 0;
+        gerarNivel(gridPanel, suportes);
+    }
+    
     public void alterarSuporte() {
         /*
          * Quando houver alguma explosao e caso o suporte seja de gelo altera
@@ -25,14 +34,6 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
 
     }
 
-    public PainelPrincipal(GridPanel gridPanel) 
-    {
-        super(gridPanel);
-        this.suportes = new Suporte[8][8];
-        this.cadenciaDeQueda = 100;
-        gerarNivel(gridPanel, suportes);
-        
-    }
 
     public int getNumeroDeMacasEmJogo()
 
@@ -75,12 +76,10 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
     {
         for (int i = 0; i < gridPanel.getNumberOfRows(); i++) {
             for (int j = 0; j < gridPanel.getNumberOfColumns(); j++) {
-
                 //Primeiras 2 linhas
                 if (i < 2) {
                     suportes[i][j] = new SuporteAgua(new Posicao(i, j));
                     gridPanel.add(i, j, suportes[i][j].getRepresentacao());
-                    adicionarAnimalAleatorio(gridPanel, i, j);
                 }
                 // linhas 2 e 3 
                 if (i > 1 && i < 4) {
@@ -90,7 +89,6 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
                     } else {
                         suportes[i][j] = new SuporteGelo(new Posicao(i, j));
                         gridPanel.add(i, j, suportes[i][j].getRepresentacao());
-                        adicionarAnimalAleatorio(gridPanel, i, j);
                     }
                 }
                 //todas asa outras
@@ -102,7 +100,6 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
                     } else {
                         suportes[i][j] = new SuporteAgua(new Posicao(i, j));
                         gridPanel.add(i, j, suportes[i][j].getRepresentacao());
-                        adicionarAnimalAleatorio(gridPanel, i, j);
                     }
                 }
             }       
@@ -110,26 +107,39 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
         gridPanel.repaint();
     }
     
-    private void adicionarAnimalAleatorio(GridPanel gridPanel, int linha, int coluna)
-    {
+    public void adicionarAnimalAleatorio(int linha, int coluna)
+    {   
         Random random = new Random();
         switch (random.nextInt(4)) {
-            case 0: Panda iPanda = new Panda(); 
-                gridPanel.add(linha, coluna, iPanda.getRepresentacao());
+            case 0: suportaveis[linha][coluna] = new Panda(suportes[linha][coluna]);
+                this.getGridPanel().add(linha, coluna, suportaveis[linha][coluna].getRepresentacao());
                 break;
-            case 1: Peixe iPeixe = new Peixe();
-                gridPanel.add(linha, coluna, iPeixe.getRepresentacao());
+            case 1: suportaveis[linha][coluna] = new Peixe(suportes[linha][coluna]);
+                this.getGridPanel().add(linha, coluna, suportaveis[linha][coluna].getRepresentacao());
                 break;
-            case 2:Polvo iPolvo = new Polvo();
-                gridPanel.add(linha, coluna, iPolvo.getRepresentacao());
+            case 2: suportaveis[linha][coluna] = new Polvo(suportes[linha][coluna]);
+                this.getGridPanel().add(linha, coluna, suportaveis[linha][coluna].getRepresentacao());
                 break;
-            case 3: Raposa iRaposa = new Raposa();
-                gridPanel.add(linha, coluna, iRaposa.getRepresentacao());
+            case 3: suportaveis[linha][coluna] = new Raposa(suportes[linha][coluna]);
+                this.getGridPanel().add(linha, coluna, suportaveis[linha][coluna].getRepresentacao());
                 break;
-            case 4: Sapo iSapo = new Sapo();
-                gridPanel.add(linha, coluna, iSapo.getRepresentacao());
+            case 4: suportaveis[linha][coluna] = new Sapo(suportes[linha][coluna]);
+                this.getGridPanel().add(linha, coluna, suportaveis[linha][coluna].getRepresentacao());
                 break;
         }
+    }
+
+    public Suporte[][] getSuportes()
+    {
+        return suportes;
+    }
+
+    public Suportavel hasSuportavel(int linha, int coluna)
+    {
+        if (suportaveis[linha][coluna] != null) {
+            return suportaveis[linha][coluna];
+        }
+        return null;
     }
 
 }
