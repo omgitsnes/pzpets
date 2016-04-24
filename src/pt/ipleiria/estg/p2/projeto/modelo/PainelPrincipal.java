@@ -9,15 +9,23 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
     private Suporte[][] suportes;
     private Suportavel[][] suportaveis;
     private int cadenciaDeQueda;
-    // Grelha
-    // Suportes
-    // Numero De Macas em Jogo
-    // Cadencia de Queda Da Maca
-    // Cadencia De Queda Do Animal
-    // Suporte Ar
-    // Suporte Gelo
-    // Suporte Agua
-
+    private int numeroDeMacasEmJogo;
+    private int numeroDeSuportesCongelados;
+    
+    /**
+     * O Painel Principal é con
+     * @param gridPanel
+     */
+    public PainelPrincipal(GridPanel gridPanel) 
+    {
+        super(gridPanel);
+        this.suportes = new Suporte[gridPanel.getNumberOfColumns()][gridPanel.getNumberOfRows()];
+        this.suportaveis = new Suportavel[gridPanel.getNumberOfColumns()][gridPanel.getNumberOfRows()];
+        this.cadenciaDeQueda = 100;
+        this.numeroDeMacasEmJogo = 0;
+        gerarNivel(gridPanel, suportes);
+    }
+    
     public void alterarSuporte() {
         /*
          * Quando houver alguma explosao e caso o suporte seja de gelo altera
@@ -26,14 +34,6 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
 
     }
 
-    public PainelPrincipal(GridPanel gridPanel) 
-    {
-        super(gridPanel);
-        this.suportes = new Suporte[8][8];
-        this.suportaveis = new Suportavel[8][8];
-        this.cadenciaDeQueda = 100;
-        gerarNivel(gridPanel, suportes);
-    }
 
     public int getNumeroDeMacasEmJogo()
 

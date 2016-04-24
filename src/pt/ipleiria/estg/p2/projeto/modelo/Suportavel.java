@@ -6,6 +6,11 @@ public class Suportavel extends Representavel
 {
     private Suporte suporte;
     
+    /**
+     * 
+     * @param representacao
+     * @param suporte
+     */
     public Suportavel(CellRepresentation representacao, Suporte suporte)
     {
         super(representacao);
@@ -15,5 +20,4 @@ public class Suportavel extends Representavel
     {
         return suporte;
     }
-
 }
