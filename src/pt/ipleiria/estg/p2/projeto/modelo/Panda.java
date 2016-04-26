@@ -21,17 +21,29 @@ public class Panda extends PotencialMovimentoExtra
 		
 	}
 
-	public void cair()
+	public void cair(Suporte[][] suportes, Posicao posicao, int linha, int coluna)
 	{
-	
+	    //colocar no novo suporte
+	    ((SuporteComSuportado) suportes[posicao.getLinha()][posicao.getColuna()]).setSuportado(((SuporteComSuportado) suportes[linha][coluna]).getSuportado());
+
+	    //tirar do suporte antigo
+	    ((SuporteComSuportado) suportes[linha][coluna]).setSuportado(null);
 	}
-	public void podeCair(Suporte[][] suportes, int linha, int coluna)
+	
+	public Posicao podeCair(Suporte[][] suportes, int linha, int coluna)
 	{
-		if (((SuporteComSuportado) suportes[linha + 1][coluna]).getSuportado() == null) {
-		    System.out.println("pode cair!");
-		} else {
-		    System.out.println("nao pode cair!");
+		if (suportes[linha + 1][coluna].toString() != "SuporteAr" && ((SuporteComSuportado) suportes[linha + 1][coluna]).getSuportado() == null) {
+		    System.out.println("pode cair para baixo!");
+		    return new Posicao(linha + 1, coluna);
 		}
-		
+		if (suportes[linha + 1][Math.max(coluna, coluna - 1)].toString() != "SuporteAr" && ((SuporteComSuportado) suportes[linha + 1][Math.max(coluna, coluna - 1)]).getSuportado() == null) {
+		    System.out.println("pode cair para a esquerda!");
+            return new Posicao(linha + 1, Math.max(coluna, coluna - 1));
+		}
+		if (((SuporteComSuportado) suportes[linha + 1][Math.min(7, coluna + 1)]).getSuportado() == null && suportes[linha + 1][Math.min(7, coluna + 1)].toString() != "SuporteAr") { //TODO valor para a largura dinamico
+		    System.out.println("pode cair para a direita!");
+            return new Posicao(linha + 1, Math.min(7, coluna + 1));
+		}
+		return null;
 	}
 }

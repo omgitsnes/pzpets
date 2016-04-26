@@ -13,4 +13,10 @@ public class SuporteAr extends Suporte
     {
         super(new SingleImageCellRepresentation("/pt/ipleiria/estg/p2/projeto/imagens/suportes/Ar.png"), posicao);
     }
+
+    @Override
+    public String toString()
+    {
+        return "SuporteAr";
+    }
 }
