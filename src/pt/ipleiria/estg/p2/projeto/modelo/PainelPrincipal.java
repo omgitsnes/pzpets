@@ -26,16 +26,13 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
         gerarNivel(gridPanel, suportes);
         
         //Metodo para adicionar elementos aos suportes.
-        suportes[0][0] = new SuporteAgua(new Posicao(0, 0));
-        ((SuporteComSuportado) suportes[0][0]).setSuportado(new Panda((SuporteComSuportado) suportes[0][0]));// TODO Animal nao tem posicao
+
+        ((SuporteComSuportado) suportes[0][0]).setSuportado(new Panda((SuporteComSuportado) suportes[0][0]));// TODO Animal nao conhece posicao nem o suporte
         this.getGridPanel().add(0, 0, ((SuporteComSuportado) suportes[0][0]).getSuportado().getRepresentacao());
         gridPanel.repaint();
         
-        
-        System.out.println(suportes[1][0]);
-        System.out.println(suportes[2][0]);
-        System.out.println(suportes[3][0]);
-        
+        // verificar se existe um espaco livre
+        ((Panda) ((SuporteComSuportado) suportes[0][0]).getSuportado()).podeCair(suportes, 0, 0);
     }
     
     public void alterarSuporte() {

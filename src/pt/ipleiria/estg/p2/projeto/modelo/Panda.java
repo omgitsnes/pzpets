@@ -25,8 +25,13 @@ public class Panda extends PotencialMovimentoExtra
 	{
 	
 	}
-	public void podeCair()
+	public void podeCair(Suporte[][] suportes, int linha, int coluna)
 	{
+		if (((SuporteComSuportado) suportes[linha + 1][coluna]).getSuportado() == null) {
+		    System.out.println("pode cair!");
+		} else {
+		    System.out.println("nao pode cair!");
+		}
 		
 	}
 }
