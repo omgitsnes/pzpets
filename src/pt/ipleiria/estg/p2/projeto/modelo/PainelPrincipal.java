@@ -120,8 +120,8 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
     {   
         Random random = new Random();
         switch (random.nextInt(4)) {
-            case 0: suportaveis[linha][coluna] = new Panda((SuporteComSuportado)suportes[linha][coluna]);
-                this.getGridPanel().add(linha, coluna, suportaveis[linha][coluna].getRepresentacao());
+            case 0:  ((SuporteComSuportado) suportes[linha][coluna]).setSuportado(new Panda((SuporteComSuportado) suportes[linha][coluna]));// TODO Animal nao conhece posicao nem o suporte
+            this.getGridPanel().add(linha, coluna, ((SuporteComSuportado) suportes[linha][coluna]).getSuportado().getRepresentacao());
                 break;
             case 1: suportaveis[linha][coluna] = new Peixe(suportes[linha][coluna]);
                 this.getGridPanel().add(linha, coluna, suportaveis[linha][coluna].getRepresentacao());
