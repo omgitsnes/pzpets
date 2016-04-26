@@ -25,10 +25,17 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
         this.numeroDeMacasEmJogo = 0;
         gerarNivel(gridPanel, suportes);
         
-        //TODO
-        suportaveis[0][0] = new Panda((SuporteComSuportado)suportes[0][0]);
-        this.getGridPanel().add(0, 0, suportaveis[0][0].getRepresentacao());
+        //Metodo para adicionar elementos aos suportes.
+        suportes[0][0] = new SuporteAgua(new Posicao(0, 0));
+        ((SuporteComSuportado) suportes[0][0]).setSuportado(new Panda((SuporteComSuportado) suportes[0][0]));// TODO Animal nao tem posicao
+        this.getGridPanel().add(0, 0, ((SuporteComSuportado) suportes[0][0]).getSuportado().getRepresentacao());
         gridPanel.repaint();
+        
+        
+        System.out.println(suportes[1][0]);
+        System.out.println(suportes[2][0]);
+        System.out.println(suportes[3][0]);
+        
     }
     
     public void alterarSuporte() {
@@ -111,7 +118,7 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
         }
         gridPanel.repaint();
     }
-    //TODO fix metodo
+    //TODO fix metodo - linha/coluna trocados?
     public void adicionarAnimalAleatorio(int linha, int coluna)
     {   
         Random random = new Random();
@@ -138,13 +145,4 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
     {
         return suportes;
     }
-
-    public Suportavel hasSuportavel(int linha, int coluna)
-    {
-        if (suportaveis[linha][coluna] != null) {
-            return suportaveis[linha][coluna];
-        }
-        return null;
-    }
-
 }

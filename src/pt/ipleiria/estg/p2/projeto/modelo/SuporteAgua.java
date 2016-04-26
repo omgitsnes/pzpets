@@ -13,4 +13,10 @@ public class SuporteAgua extends SuporteComSuportado
     {
         super(new SingleImageCellRepresentation("/pt/ipleiria/estg/p2/projeto/imagens/suportes/Agua.png"), posicao);
     }
+
+    @Override
+    public String toString()
+    {
+        return "SuporteAgua";
+    }
 }

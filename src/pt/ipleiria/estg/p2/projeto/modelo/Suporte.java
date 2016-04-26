@@ -5,7 +5,7 @@ import pt.ipleiria.estg.dei.gridpanel.CellRepresentation;
 public class Suporte extends Representavel
 {
     private Posicao posicao;
-
+    
     /**
      * 
      * @param representacao
