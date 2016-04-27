@@ -11,7 +11,7 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
     private int cadenciaDeQueda;
     private int numeroDeMacasEmJogo;
     private int numeroDeSuportesCongelados;
-    
+
     /**
      * O Painel Principal é con
      * @param gridPanel
@@ -24,17 +24,17 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
         this.cadenciaDeQueda = 100;
         this.numeroDeMacasEmJogo = 0;
         gerarNivel(gridPanel, suportes);
-        
+
         //Metodo para adicionar elementos aos suportes.
 
         ((SuporteComSuportado) suportes[0][0]).setSuportado(new Panda((SuporteComSuportado) suportes[0][0]));// TODO Animal nao conhece posicao nem o suporte
         this.getGridPanel().add(0, 0, ((SuporteComSuportado) suportes[0][0]).getSuportado().getRepresentacao());
         gridPanel.repaint();
-        
-        
+
+
         // verificar se existe um espaco livre e trocar
     }
-    
+
     public void alterarSuporte() {
         /*
          * Quando houver alguma explosao e caso o suporte seja de gelo altera
@@ -66,29 +66,24 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
 
     }
 
-    public void iterar() {
-        for (int linha = 0; linha < this.getGridPanel().getNumberOfRows() - 1; linha ++) {
-            for (int coluna = 0; coluna < this.getGridPanel().getNumberOfColumns() - 1; coluna++) {
-                if (suportes[linha][coluna] != null){
-                    if (suportes[linha][coluna].toString() != "SuporteAr"){
-                        if(((SuporteComSuportado) suportes[linha][coluna]).getSuportado() != null) {
-                            Posicao posicaoACair = ((Panda) ((SuporteComSuportado) suportes[linha][coluna]).getSuportado()).podeCair(suportes, linha, coluna);
-                            if (posicaoACair != null) {
-                                ((Panda) ((SuporteComSuportado) suportes[linha][coluna]).getSuportado()).cair(suportes, posicaoACair, linha, coluna);
-                                //atualizar o gridpanel
-                                this.getGridPanel().remove(linha, coluna, ((SuporteComSuportado) suportes[posicaoACair.getLinha()][posicaoACair.getColuna()]).getSuportado().getRepresentacao());
-                                this.getGridPanel().add(posicaoACair.getLinha(), posicaoACair.getColuna(), ((SuporteComSuportado) suportes[posicaoACair.getLinha()][posicaoACair.getColuna()]).getSuportado().getRepresentacao());
-                                this.getGridPanel().repaint();
-                                break;
-                            }
-                            
-                        }
+    public void cair(int linha, int coluna) {
+
+        if (suportes[linha][coluna] != null){
+            if (suportes[linha][coluna].toString() != "SuporteAr"){
+                if(((SuporteComSuportado) suportes[linha][coluna]).getSuportado() != null) {
+                    Posicao posicaoACair = ((Panda) ((SuporteComSuportado) suportes[linha][coluna]).getSuportado()).podeCair(suportes, linha, coluna);
+                    if (posicaoACair != null) {
+                        ((Panda) ((SuporteComSuportado) suportes[linha][coluna]).getSuportado()).cair(suportes, posicaoACair, linha, coluna);
+                        //atualizar o gridpanel
+                        this.getGridPanel().remove(linha, coluna, ((SuporteComSuportado) suportes[posicaoACair.getLinha()][posicaoACair.getColuna()]).getSuportado().getRepresentacao());
+                        this.getGridPanel().add(posicaoACair.getLinha(), posicaoACair.getColuna(), ((SuporteComSuportado) suportes[posicaoACair.getLinha()][posicaoACair.getColuna()]).getSuportado().getRepresentacao());
+                        this.getGridPanel().repaint();
                     }
                 }
             }
         }
     }
-    
+
     public int getCadenciaDeQueda()
     {
         return cadenciaDeQueda;
@@ -133,22 +128,22 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
     {   
         Random random = new Random();
         switch (random.nextInt(4)) {
-            case 0:  ((SuporteComSuportado) suportes[linha][coluna]).setSuportado(new Panda((SuporteComSuportado) suportes[linha][coluna]));// TODO Animal nao conhece posicao nem o suporte
-                this.getGridPanel().add(linha, coluna, ((SuporteComSuportado) suportes[linha][coluna]).getSuportado().getRepresentacao());
-                break;
-            case 1:  ((SuporteComSuportado) suportes[linha][coluna]).setSuportado(new Panda((SuporteComSuportado) suportes[linha][coluna]));// TODO Animal nao conhece posicao nem o suporte
-                this.getGridPanel().add(linha, coluna, ((SuporteComSuportado) suportes[linha][coluna]).getSuportado().getRepresentacao());
-                break;
-            case 2:  ((SuporteComSuportado) suportes[linha][coluna]).setSuportado(new Panda((SuporteComSuportado) suportes[linha][coluna]));// TODO Animal nao conhece posicao nem o suporte
-                this.getGridPanel().add(linha, coluna, ((SuporteComSuportado) suportes[linha][coluna]).getSuportado().getRepresentacao());
-                break;
-            case 3:  ((SuporteComSuportado) suportes[linha][coluna]).setSuportado(new Panda((SuporteComSuportado) suportes[linha][coluna]));// TODO Animal nao conhece posicao nem o suporte
-                this.getGridPanel().add(linha, coluna, ((SuporteComSuportado) suportes[linha][coluna]).getSuportado().getRepresentacao());
-                break;
-            case 4:  ((SuporteComSuportado) suportes[linha][coluna]).setSuportado(new Panda((SuporteComSuportado) suportes[linha][coluna]));// TODO Animal nao conhece posicao nem o suporte
-                this.getGridPanel().add(linha, coluna, ((SuporteComSuportado) suportes[linha][coluna]).getSuportado().getRepresentacao());
-                break;
-            
+        case 0:  ((SuporteComSuportado) suportes[linha][coluna]).setSuportado(new Panda((SuporteComSuportado) suportes[linha][coluna]));// TODO Animal nao conhece posicao nem o suporte
+        this.getGridPanel().add(linha, coluna, ((SuporteComSuportado) suportes[linha][coluna]).getSuportado().getRepresentacao());
+        break;
+        case 1:  ((SuporteComSuportado) suportes[linha][coluna]).setSuportado(new Panda((SuporteComSuportado) suportes[linha][coluna]));// TODO Animal nao conhece posicao nem o suporte
+        this.getGridPanel().add(linha, coluna, ((SuporteComSuportado) suportes[linha][coluna]).getSuportado().getRepresentacao());
+        break;
+        case 2:  ((SuporteComSuportado) suportes[linha][coluna]).setSuportado(new Panda((SuporteComSuportado) suportes[linha][coluna]));// TODO Animal nao conhece posicao nem o suporte
+        this.getGridPanel().add(linha, coluna, ((SuporteComSuportado) suportes[linha][coluna]).getSuportado().getRepresentacao());
+        break;
+        case 3:  ((SuporteComSuportado) suportes[linha][coluna]).setSuportado(new Panda((SuporteComSuportado) suportes[linha][coluna]));// TODO Animal nao conhece posicao nem o suporte
+        this.getGridPanel().add(linha, coluna, ((SuporteComSuportado) suportes[linha][coluna]).getSuportado().getRepresentacao());
+        break;
+        case 4:  ((SuporteComSuportado) suportes[linha][coluna]).setSuportado(new Panda((SuporteComSuportado) suportes[linha][coluna]));// TODO Animal nao conhece posicao nem o suporte
+        this.getGridPanel().add(linha, coluna, ((SuporteComSuportado) suportes[linha][coluna]).getSuportado().getRepresentacao());
+        break;
+
         }
     }
 

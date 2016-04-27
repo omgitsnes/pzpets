@@ -40,7 +40,7 @@ public class Panda extends PotencialMovimentoExtra
 		    System.out.println("pode cair para a esquerda!");
             return new Posicao(linha + 1, Math.max(coluna, coluna - 1));
 		}
-		if (((SuporteComSuportado) suportes[linha + 1][Math.min(7, coluna + 1)]).getSuportado() == null && suportes[linha + 1][Math.min(7, coluna + 1)].toString() != "SuporteAr") { //TODO valor para a largura dinamico
+		if (suportes[linha + 1][Math.min(7, coluna + 1)].toString() != "SuporteAr" &&((SuporteComSuportado) suportes[linha + 1][Math.min(7, coluna + 1)]).getSuportado() == null) { //TODO valor para a largura dinamico
 		    System.out.println("pode cair para a direita!");
             return new Posicao(linha + 1, Math.min(7, coluna + 1));
 		}
