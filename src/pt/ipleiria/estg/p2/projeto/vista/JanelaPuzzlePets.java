@@ -19,6 +19,7 @@ import pt.ipleiria.estg.dei.gridpanel.GridPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.FlowLayout;
+import java.util.Random;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 
@@ -129,13 +130,15 @@ public class JanelaPuzzlePets extends JFrame
             {
                 while (true) {
                     try {
-                        for (int linha = 0; linha < painelPrincipal.getGridPanel().getNumberOfRows() - 1; linha ++) {
+                        Random r = new Random();
+                        for (int linha = 0; linha < painelPrincipal.getGridPanel().getNumberOfRows() - 1; linha++) {
                             for (int coluna = 0; coluna < painelPrincipal.getGridPanel().getNumberOfColumns() - 1; coluna++) {
-                                sleep(painelPrincipal.getCadenciaDeQueda());
                                 painelPrincipal.cair(linha, coluna);
                                 painelPrincipal.getGridPanel().repaint();
+                                sleep(painelPrincipal.getCadenciaDeQueda());
                             }
                         }
+                        painelPrincipal.adicionarAnimalAleatorio(0, r.nextInt(painelPrincipal.getGridPanel().getNumberOfColumns()));
                     } catch (InterruptedException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
