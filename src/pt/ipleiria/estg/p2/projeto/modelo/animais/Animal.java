@@ -39,7 +39,7 @@ public class Animal extends Suportavel
     public Posicao podeCair(Suporte[][] suportes, int linha, int coluna)
     {
         //TODO CAIR QUANDO ENCONTRA GRUPOS DE SUPORTE AR
-        if (suportes[linha + 1][coluna].toString() == "SuporteAr") {
+        if (suportes[linha + 1][coluna] instanceof SuporteAr) {
             podeCair(suportes, linha + 1, coluna);
         } else {
             if (!(suportes[linha + 1][Math.max(coluna, coluna - 1)] instanceof SuporteAr)) {
@@ -65,6 +65,11 @@ public class Animal extends Suportavel
         return null;
     }
 
+    public boolean isMovimentoExtra()
+    {
+        return movimentoExtra;
+    }
+
     /**
      * Devolve um valor true com uma probabilidade de 10%
      * 
@@ -73,10 +78,5 @@ public class Animal extends Suportavel
     {
         Random r = new Random();
         return r.nextInt(9) == 1 ? true : false;
-    }
-
-    public boolean isMovimentoExtra()
-    {
-        return movimentoExtra;
     }
 }
