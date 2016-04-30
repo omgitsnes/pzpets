@@ -66,45 +66,23 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
     public void trocarPosicoes() {
 
     }
-    
+
     /**
      * Percorre a matriz de suportes
      * Sempre que um suporte nao Ar, com suportavel que cai
      */
     public void cair(int linha, int coluna) 
     {
-
-                if (suportes[linha][coluna] instanceof SuporteComSuportado && ((SuporteComSuportado) suportes[linha][coluna]).getSuportado() != null) {
-                    Posicao a = ((Animal) ((SuporteComSuportado) suportes[linha][coluna]).getSuportado()).podeCair(suportes, linha, coluna);
-                    if (a != null) {
-                        ((Animal) ((SuporteComSuportado) suportes[linha][coluna]).getSuportado()).cair(suportes, a, linha, coluna);
-                        this.getGridPanel().remove(linha, coluna, ((SuporteComSuportado) suportes[a.getLinha()][a.getColuna()]).getSuportado().getRepresentacao());
-                        this.getGridPanel().add(a.getLinha(), a.getColuna(), ((SuporteComSuportado) suportes[a.getLinha()][a.getColuna()]).getSuportado().getRepresentacao());
-                        this.getGridPanel().repaint();
-                    }
-                }
-
-//TODO
-//
-//        if (suportes[linha][coluna] != null){
-//            if (suportes[linha][coluna].toString() != "SuporteAr"){
-//                if(((SuporteComSuportado) suportes[linha][coluna]).getSuportado() != null) {
-//                    Suportavel s = ((SuporteComSuportado) suportes[linha][coluna]).getSuportado();
-//
-//                    Posicao posicaoACair = ((Animal) s).podeCair(suportes, linha, coluna);
-//                    System.out.println(posicaoACair);
-//
-//                    if (posicaoACair != null) {
-//                        System.out.println("Posicao a cair: linha: " + posicaoACair.getLinha() + " Coluna: " + posicaoACair.getColuna());
-//                        ((Animal) ((SuporteComSuportado) suportes[linha][coluna]).getSuportado()).cair(suportes, posicaoACair, linha, coluna);
-//                        //atualizar o gridpanel
-//                        this.getGridPanel().remove(linha, coluna, ((SuporteComSuportado) suportes[posicaoACair.getLinha()][posicaoACair.getColuna()]).getSuportado().getRepresentacao());
-//                        this.getGridPanel().add(posicaoACair.getLinha(), posicaoACair.getColuna(), ((SuporteComSuportado) suportes[posicaoACair.getLinha()][posicaoACair.getColuna()]).getSuportado().getRepresentacao());
-//                        this.getGridPanel().repaint();
-//                    }
-//                }
-//            }
-//        }
+        //TODO ATUALIZAR O SUPORTE DO ANIMAL
+        if (suportes[linha][coluna] instanceof SuporteComSuportado && ((SuporteComSuportado) suportes[linha][coluna]).getSuportado() != null) {
+            Posicao a = ((Animal) ((SuporteComSuportado) suportes[linha][coluna]).getSuportado()).podeCair(suportes, linha, coluna);
+            if (a != null) {
+                ((Animal) ((SuporteComSuportado) suportes[linha][coluna]).getSuportado()).cair(suportes, a, linha, coluna);
+                this.getGridPanel().remove(linha, coluna, ((SuporteComSuportado) suportes[a.getLinha()][a.getColuna()]).getSuportado().getRepresentacao());
+                this.getGridPanel().add(a.getLinha(), a.getColuna(), ((SuporteComSuportado) suportes[a.getLinha()][a.getColuna()]).getSuportado().getRepresentacao());
+                this.getGridPanel().repaint();
+            }
+        }
     }
 
     public int getCadenciaDeQueda()
@@ -145,7 +123,7 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
         }
         getGridPanel().repaint();
     }
-    
+
     public void adicionarAnimalAleatorio(int linha, int coluna)
     {   
         Random random = new Random();
