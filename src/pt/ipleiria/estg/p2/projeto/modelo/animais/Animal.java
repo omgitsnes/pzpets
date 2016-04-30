@@ -3,13 +3,14 @@ package pt.ipleiria.estg.p2.projeto.modelo.animais;
 import java.util.Random;
 
 import pt.ipleiria.estg.dei.gridpanel.CellRepresentation;
+import pt.ipleiria.estg.p2.projeto.modelo.Movel;
 import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
 import pt.ipleiria.estg.p2.projeto.modelo.Suportavel;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.Suporte;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAr;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteComSuportado;
 
-public class Animal extends Suportavel 
+public class Animal extends Movel
 {
     private boolean movimentoExtra;
 
@@ -42,15 +43,15 @@ public class Animal extends Suportavel
         if (suportes[linha + 1][coluna] instanceof SuporteAr) {
             podeCair(suportes, linha + 1, coluna);
         } else {
-            if (!(suportes[linha + 1][Math.max(coluna, coluna - 1)] instanceof SuporteAr)) {
+            if (!(suportes[linha + 1][coluna] instanceof SuporteAr)) {
                 if (((SuporteComSuportado) suportes[linha + 1][coluna]).getSuportado() == null) {
                     System.out.println("pode cair para baixo!");
                     Posicao a = new Posicao(linha + 1, coluna);
                     return a;
                 }
             }
-            if (!(suportes[linha + 1][Math.max(coluna, coluna - 1)] instanceof SuporteAr)) {
-                if (((SuporteComSuportado) suportes[linha + 1][Math.max(coluna, coluna - 1)]).getSuportado() == null) {
+            if (!(suportes[linha + 1][Math.max(0, coluna - 1)] instanceof SuporteAr)) {
+                if (((SuporteComSuportado) suportes[linha + 1][Math.max(0, coluna - 1)]).getSuportado() == null) {
                     System.out.println("pode cair para a esquerda!");
                     return new Posicao(linha + 1, Math.max(0, coluna - 1));
                 }
