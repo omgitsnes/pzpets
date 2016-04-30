@@ -3,6 +3,7 @@ package pt.ipleiria.estg.p2.projeto.modelo.paineis;
 import java.util.Random;
 
 import pt.ipleiria.estg.dei.gridpanel.GridPanel;
+import pt.ipleiria.estg.p2.projeto.modelo.Maca;
 import pt.ipleiria.estg.p2.projeto.modelo.PainelNaoRepresentavel;
 import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
 import pt.ipleiria.estg.p2.projeto.modelo.Suportavel;
@@ -35,7 +36,7 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
         this.suportes = new Suporte[gridPanel.getNumberOfRows()][gridPanel.getNumberOfColumns()];
         this.cadenciaDeQueda = 100;
         this.numeroDeMacasEmJogo = 0; //Deve começar a 0 ou 1?
-        gerarNivel(gridPanel, suportes);
+        gerarNivel();
     }
 
     public int getNumeroDeMacasEmJogo()
@@ -83,37 +84,45 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
         }
     }
 
-    private void gerarNivel(GridPanel gridPanel, Suporte[][] suportes)
+    /**
+     * Instancia e adiciona a matriz de suportes os suportes de um nivel
+     * 
+     * 
+     * @param gridPanel
+     * @param suportes
+     */
+    private void gerarNivel()
     {
-        for (int i = 0; i < gridPanel.getNumberOfRows(); i++) {
-            for (int j = 0; j < gridPanel.getNumberOfColumns(); j++) {
+        for (int i = 0; i < getGridPanel().getNumberOfRows(); i++) {
+            for (int j = 0; j < getGridPanel().getNumberOfColumns(); j++) {
                 //Primeiras 2 linhas
                 if (i < 2) {
                     suportes[i][j] = new SuporteAgua(new Posicao(i, j));
-                    gridPanel.add(i, j, suportes[i][j].getRepresentacao());
+                    getGridPanel().add(i, j, suportes[i][j].getRepresentacao());
                 }
                 // linhas 2 e 3 
                 if (i > 1 && i < 4) {
                     if (j == 0 || j == 3 || j == 7) {
                         suportes[i][j] = new SuporteAr(new Posicao(i, j));
-                        gridPanel.add(i, j, suportes[i][j].getRepresentacao());
+                        getGridPanel().add(i, j, suportes[i][j].getRepresentacao());
                     } else {
                         suportes[i][j] = new SuporteGelo(new Posicao(i, j));
-                        gridPanel.add(i, j, suportes[i][j].getRepresentacao());
+                        getGridPanel().add(i, j, suportes[i][j].getRepresentacao());
                     }
                 }
                 //todas asa outras
                 if (i > 3) {
                     if ((i == 4 && j == 0) || (i == 4 && j == 7)) {
                         suportes[i][j] = new SuporteAr(new Posicao(i, j));
-                        gridPanel.add(i, j, suportes[i][j].getRepresentacao());
+                        getGridPanel().add(i, j, suportes[i][j].getRepresentacao());
                     } else {
                         suportes[i][j] = new SuporteAgua(new Posicao(i, j));
-                        gridPanel.add(i, j, suportes[i][j].getRepresentacao());
+                        getGridPanel().add(i, j, suportes[i][j].getRepresentacao());
                     }
                 }
             }       
         }
+        preencherNovoNivel();
         getGridPanel().repaint();
     }
 
@@ -121,7 +130,7 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
     {   
         if (((SuporteComSuportado) suportes[linha][coluna]).getSuportado() == null) {
             Random random = new Random();
-            switch (random.nextInt(4)) {
+            switch (random.nextInt(5)) {
                 case 0:  ((SuporteComSuportado) suportes[linha][coluna]).setSuportado(new Panda((SuporteComSuportado) suportes[linha][coluna]));
                 this.getGridPanel().add(linha, coluna, ((SuporteComSuportado) suportes[linha][coluna]).getSuportado().getRepresentacao());
                 break;
@@ -139,6 +148,21 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
                 break;
             }
             this.getGridPanel().repaint();
+        }
+    }
+    
+    /**
+     * Garante uma maca em uma coluna aleatoria da primeira linha.
+     * Preenche os Restantes suportes.
+     */
+    private void preencherNovoNivel()
+    {
+//TODO ADD 1 Maca na primeira linha 
+//        int r = new Random().nextInt(getGridPanel().getNumberOfColumns());
+//        suportes[0][r] = new Maca();
+//        getGridPanel().add(0, r., );
+        for (int coluna = 0; coluna < getGridPanel().getNumberOfColumns(); coluna++) {
+            adicionarAnimalAleatorio(0, coluna);                            
         }
     }
 }
