@@ -17,7 +17,8 @@ import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAr;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteComSuportado;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteGelo;
 
-public class PainelPrincipal extends PainelNaoRepresentavel {
+public class PainelPrincipal extends PainelNaoRepresentavel 
+{
 
     private Suporte[][] suportes;
     private int cadenciaDeQueda;
@@ -151,7 +152,7 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
 
     /**
      * Garante uma maca em uma coluna aleatoria da primeira linha.
-     * Preenche os Restantes suportes.
+     * Preenche os Restantes suportes com Inimigos e Animais
      */
     private void preencherNovoNivel()
     {

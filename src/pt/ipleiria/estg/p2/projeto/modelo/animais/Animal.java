@@ -29,9 +29,8 @@ public class Animal extends Movel
      */
     public Posicao podeCair(Suporte[][] suportes, int linha, int coluna)
     {
-        //TODO CAIR QUANDO ENCONTRA GRUPOS DE SUPORTE AR
         if (suportes[linha + 1][coluna] instanceof SuporteAr) {
-            podeCair(suportes, linha + 1, coluna);
+            return podeCair(suportes, linha + 1, coluna);
         } else {
             if (!(suportes[linha + 1][coluna] instanceof SuporteAr)) {
                 if (((SuporteComSuportado) suportes[linha + 1][coluna]).getSuportado() == null) {
