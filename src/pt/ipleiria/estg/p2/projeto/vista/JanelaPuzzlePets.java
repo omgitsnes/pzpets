@@ -7,22 +7,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import pt.ipleiria.estg.dei.gridpanel.JBackgroundPanel;
-import pt.ipleiria.estg.dei.gridpanel.SingleImageCellRepresentation;
 import pt.ipleiria.estg.dei.gridpanel.TextCellRepresentation;
 import pt.ipleiria.estg.p2.projeto.modelo.Objetivo;
 import pt.ipleiria.estg.p2.projeto.modelo.paineis.PainelDeMacas;
 import pt.ipleiria.estg.p2.projeto.modelo.paineis.PainelDeMovimentosEstrelas;
 import pt.ipleiria.estg.p2.projeto.modelo.paineis.PainelDePontuacoes;
 import pt.ipleiria.estg.p2.projeto.modelo.paineis.PainelPrincipal;
-import pt.ipleiria.estg.dei.gridpanel.CellRepresentation;
 import pt.ipleiria.estg.dei.gridpanel.GridPanel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import java.awt.FlowLayout;
-import java.util.Random;
-import java.awt.CardLayout;
-import java.awt.Dimension;
 
+@SuppressWarnings("serial")
 public class JanelaPuzzlePets extends JFrame
 {
     private JPanel contentPane;

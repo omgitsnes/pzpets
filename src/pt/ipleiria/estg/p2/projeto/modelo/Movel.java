@@ -1,6 +1,8 @@
 package pt.ipleiria.estg.p2.projeto.modelo;
 
 import pt.ipleiria.estg.dei.gridpanel.CellRepresentation;
+import pt.ipleiria.estg.p2.projeto.modelo.suportes.Suporte;
+import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAr;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteComSuportado;
 
 public class Movel extends Explosivo
@@ -11,5 +13,7 @@ public class Movel extends Explosivo
         super(representacao, suporte);
         // TODO Auto-generated constructor stub
     }
+    
+
 
 }

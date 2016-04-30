@@ -5,7 +5,6 @@ import java.util.Random;
 import pt.ipleiria.estg.dei.gridpanel.CellRepresentation;
 import pt.ipleiria.estg.p2.projeto.modelo.Movel;
 import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
-import pt.ipleiria.estg.p2.projeto.modelo.Suportavel;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.Suporte;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAr;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteComSuportado;
@@ -18,15 +17,6 @@ public class Animal extends Movel
     {
         super(representacao, suporte);
         this.movimentoExtra = randomMovimentoExtra();
-    }
-
-    public void cair(Suporte[][] suportes, Posicao posicao, int linha, int coluna)
-    {
-        //colocar no novo suporte
-        ((SuporteComSuportado) suportes[posicao.getLinha()][posicao.getColuna()]).setSuportado(((SuporteComSuportado) suportes[linha][coluna]).getSuportado());
-
-        //tirar do suporte antigo
-        ((SuporteComSuportado) suportes[linha][coluna]).setSuportado(null);
     }
 
     /**
@@ -65,7 +55,17 @@ public class Animal extends Movel
         }
         return null;
     }
+    
+    public void cair(Suporte[][] suportes, Posicao posicao, int linha, int coluna)
+    {
+        //deve este metodo ser na classe suporte?
+        //colocar no novo suporte
+        ((SuporteComSuportado) suportes[posicao.getLinha()][posicao.getColuna()]).setSuportado(((SuporteComSuportado) suportes[linha][coluna]).getSuportado());
 
+        //tirar do suporte antigo
+        ((SuporteComSuportado) suportes[linha][coluna]).setSuportado(null);
+    }
+    
     public boolean isMovimentoExtra()
     {
         return movimentoExtra;

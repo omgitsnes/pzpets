@@ -3,10 +3,8 @@ package pt.ipleiria.estg.p2.projeto.modelo.paineis;
 import java.util.Random;
 
 import pt.ipleiria.estg.dei.gridpanel.GridPanel;
-import pt.ipleiria.estg.p2.projeto.modelo.Maca;
 import pt.ipleiria.estg.p2.projeto.modelo.PainelNaoRepresentavel;
 import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
-import pt.ipleiria.estg.p2.projeto.modelo.Suportavel;
 import pt.ipleiria.estg.p2.projeto.modelo.animais.Animal;
 import pt.ipleiria.estg.p2.projeto.modelo.animais.Panda;
 import pt.ipleiria.estg.p2.projeto.modelo.animais.Peixe;
@@ -122,7 +120,7 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
                 }
             }       
         }
-        preencherNovoNivel();
+        preencherNovoNivel(); //TODO metodo preencher
         getGridPanel().repaint();
     }
 
@@ -150,19 +148,19 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
             this.getGridPanel().repaint();
         }
     }
-    
+
     /**
      * Garante uma maca em uma coluna aleatoria da primeira linha.
      * Preenche os Restantes suportes.
      */
     private void preencherNovoNivel()
     {
-//TODO ADD 1 Maca na primeira linha 
-//        int r = new Random().nextInt(getGridPanel().getNumberOfColumns());
-//        suportes[0][r] = new Maca();
-//        getGridPanel().add(0, r., );
-        for (int coluna = 0; coluna < getGridPanel().getNumberOfColumns(); coluna++) {
-            adicionarAnimalAleatorio(0, coluna);                            
-        }
+        //TODO ADD 1 Maca na primeira linha 
+        //        int r = new Random().nextInt(getGridPanel().getNumberOfColumns());
+        //        suportes[0][r] = new Maca();
+        //        getGridPanel().add(0, r., );
+        //        for (int coluna = 0; coluna < getGridPanel().getNumberOfColumns(); coluna++) {
+        //            adicionarAnimalAleatorio(0, coluna);                            
+        //        }
     }
 }
