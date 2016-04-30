@@ -36,8 +36,7 @@ public class Animal extends Movel
             if (!(suportes[linha + 1][coluna] instanceof SuporteAr)) {
                 if (((SuporteComSuportado) suportes[linha + 1][coluna]).getSuportado() == null) {
                     System.out.println("pode cair para baixo!");
-                    Posicao a = new Posicao(linha + 1, coluna);
-                    return a;
+                    return new Posicao(linha + 1, coluna);
                 }
             }
             if (!(suportes[linha + 1][Math.max(0, coluna - 1)] instanceof SuporteAr)) {
