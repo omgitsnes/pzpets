@@ -1,6 +1,8 @@
-package pt.ipleiria.estg.p2.projeto.modelo;
+package pt.ipleiria.estg.p2.projeto.modelo.suportes;
 
 import pt.ipleiria.estg.dei.gridpanel.CellRepresentation;
+import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
+import pt.ipleiria.estg.p2.projeto.modelo.Suportavel;
 
 public class SuporteComSuportado extends Suporte
 {

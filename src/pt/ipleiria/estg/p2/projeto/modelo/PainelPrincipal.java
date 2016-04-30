@@ -9,6 +9,11 @@ import pt.ipleiria.estg.p2.projeto.modelo.animais.Peixe;
 import pt.ipleiria.estg.p2.projeto.modelo.animais.Polvo;
 import pt.ipleiria.estg.p2.projeto.modelo.animais.Raposa;
 import pt.ipleiria.estg.p2.projeto.modelo.animais.Sapo;
+import pt.ipleiria.estg.p2.projeto.modelo.suportes.Suporte;
+import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAgua;
+import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAr;
+import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteComSuportado;
+import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteGelo;
 
 public class PainelPrincipal extends PainelNaoRepresentavel {
 

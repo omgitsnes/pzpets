@@ -1,6 +1,7 @@
 package pt.ipleiria.estg.p2.projeto.modelo;
 
 import pt.ipleiria.estg.dei.gridpanel.CellRepresentation;
+import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteComSuportado;
 
 public class Suportavel extends Representavel
 {

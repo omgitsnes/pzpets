@@ -1,6 +1,7 @@
-package pt.ipleiria.estg.p2.projeto.modelo;
+package pt.ipleiria.estg.p2.projeto.modelo.suportes;
 
 import pt.ipleiria.estg.dei.gridpanel.SingleImageCellRepresentation;
+import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
 
 public class SuporteAgua extends SuporteComSuportado 
 {

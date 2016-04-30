@@ -5,9 +5,9 @@ import java.util.Random;
 import pt.ipleiria.estg.dei.gridpanel.CellRepresentation;
 import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
 import pt.ipleiria.estg.p2.projeto.modelo.Suportavel;
-import pt.ipleiria.estg.p2.projeto.modelo.Suporte;
-import pt.ipleiria.estg.p2.projeto.modelo.SuporteAr;
-import pt.ipleiria.estg.p2.projeto.modelo.SuporteComSuportado;
+import pt.ipleiria.estg.p2.projeto.modelo.suportes.Suporte;
+import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAr;
+import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteComSuportado;
 
 public class Animal extends Suportavel 
 {
