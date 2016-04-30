@@ -20,8 +20,9 @@ public class Animal extends Movel
     }
 
     /**
-     * Procura nos suportes a SO S e SE se existe uma posicao livre
-     * no caso de encontrar um suporteAr a S verifica se a posicao abaixo esta vazia
+     * Procura nos suportes a Sul se existe uma posicao livre
+     * Se a posiscao estiver livre, devolve a posicao
+     * no caso de encontrar um suporteAr a S verifica se a posicao abaixo dessa esta vazia
      * @param suportes
      * @param linha
      * @param coluna
