@@ -1,4 +1,6 @@
-package pt.ipleiria.estg.p2.projeto.modelo;
+package pt.ipleiria.estg.p2.projeto.modelo.paineis;
+
+import pt.ipleiria.estg.p2.projeto.modelo.Objetivo;
 
 public class PainelDeJogo {
     private PainelDeMacas painelDeMacas;

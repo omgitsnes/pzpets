@@ -1,7 +1,8 @@
-package pt.ipleiria.estg.p2.projeto.modelo;
+package pt.ipleiria.estg.p2.projeto.modelo.paineis;
 
 import pt.ipleiria.estg.dei.gridpanel.GridPanel;
 import pt.ipleiria.estg.dei.gridpanel.SingleImageCellRepresentation;
+import pt.ipleiria.estg.p2.projeto.modelo.PainelComRepresentacao;
 
 public class PainelDeMovimentosEstrelas extends PainelComRepresentacao
 {
