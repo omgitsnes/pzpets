@@ -58,6 +58,35 @@ public class JanelaPuzzlePets extends JFrame
      */
     public JanelaPuzzlePets()
     {
+        initComponents();
+        // threads
+        thread = new Thread() {
+            public void run() 
+            {
+                while (true) {
+                    try {
+                        for (int linha = painelPrincipal.getGridPanel().getNumberOfRows() - 2; linha >= 0; linha--) {
+                            for (int coluna = painelPrincipal.getGridPanel().getNumberOfColumns() - 1; coluna >= 0; coluna--) {
+                                painelPrincipal.cair(linha, coluna);
+                                sleep(5);
+                            }
+                        }
+                        for (int coluna = 0; coluna < painelPrincipal.getGridPanel().getNumberOfColumns(); coluna++) {
+                            painelPrincipal.adicionarAnimalAleatorio(0, coluna);                            
+                        }
+                        sleep(painelPrincipal.getCadenciaDeQueda());
+                    } catch (InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+        thread.start();
+    }
+    
+    private void initComponents()
+    {
         setTitle("PuzzlePets");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 450, 500);
@@ -122,31 +151,6 @@ public class JanelaPuzzlePets extends JFrame
         painelDePontuacoes.getGridPanel().add(0, 0, new TextCellRepresentation(painelDePontuacoes.getPontuacaoAtual()));
 
         painelPrincipal = new PainelPrincipal(gridPanelPainelPrincipal);
-
-
-        // threads
-        thread = new Thread() {
-            public void run() 
-            {
-                while (true) {
-                    try {
-                        for (int linha = painelPrincipal.getGridPanel().getNumberOfRows() - 2; linha >= 0; linha--) {
-                            for (int coluna = painelPrincipal.getGridPanel().getNumberOfColumns() - 1; coluna >= 0; coluna--) {
-                                painelPrincipal.cair(linha, coluna);
-                                sleep(painelPrincipal.getCadenciaDeQueda());
-                            }
-                        }
-                        Random r = new Random();
-                        painelPrincipal.adicionarAnimalAleatorio(0, r.nextInt(painelPrincipal.getGridPanel().getNumberOfColumns() - 1));
-                    } catch (InterruptedException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                }
-            }
-        };
-
-        thread.start();
     }
 
 }
