@@ -76,7 +76,6 @@ public class Animal extends Movel
      */
     private boolean randomMovimentoExtra()
     {
-        Random r = new Random();
-        return r.nextInt(9) == 1 ? true : false;
+        return new Random().nextInt(10) == 1 ? true : false;
     }
 }
