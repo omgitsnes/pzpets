@@ -34,7 +34,7 @@ public class Animal extends Suportavel
      * @param suportes
      * @param linha
      * @param coluna
-     * @return
+     * @return Posicao novaPosiçao ou null caso nao tenha possibilidade de cair
      */
     public Posicao podeCair(Suporte[][] suportes, int linha, int coluna)
     {
