@@ -130,15 +130,15 @@ public class JanelaPuzzlePets extends JFrame
             {
                 while (true) {
                     try {
-                        Random r = new Random();
-                        for (int linha = 0; linha < painelPrincipal.getGridPanel().getNumberOfRows() - 1; linha++) {
-                            for (int coluna = 0; coluna < painelPrincipal.getGridPanel().getNumberOfColumns() - 1; coluna++) {
+                        for (int linha = painelPrincipal.getGridPanel().getNumberOfRows() - 2; linha >= 0; linha--) {
+                            for (int coluna = painelPrincipal.getGridPanel().getNumberOfColumns() - 1; coluna >= 0; coluna--) {
                                 painelPrincipal.cair(linha, coluna);
                                 painelPrincipal.getGridPanel().repaint();
                                 sleep(painelPrincipal.getCadenciaDeQueda());
                             }
                         }
-                        painelPrincipal.adicionarAnimalAleatorio(0, r.nextInt(painelPrincipal.getGridPanel().getNumberOfColumns()));
+                        Random r = new Random();
+                        painelPrincipal.adicionarAnimalAleatorio(0, r.nextInt(painelPrincipal.getGridPanel().getNumberOfColumns() - 1));
                     } catch (InterruptedException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
