@@ -36,35 +36,31 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
         gerarNivel(gridPanel, suportes);
     }
 
-    public void alterarSuporte() {
-        /*
-         * Quando houver alguma explosao e caso o suporte seja de gelo altera
-         * para agua
-         */
-
-    }
-
     public int getNumeroDeMacasEmJogo()
-
     {
-        /* devolve o numero de macas em jogo */
-        return 0;
+        return numeroDeMacasEmJogo;
     }
 
-    public void incrementarNumeroDeMacasEmJogo() {
-        /* Serve para que caiam macas caso nao exceda o maximo de duas */
+    public int getNumeroDeSuportesCongelados()
+    {
+        return numeroDeSuportesCongelados;
     }
 
-    public void decrementarNumeroDeMacasEmJogo() {
-        /* Quando a maca entra no cesto , decrementa o numero de macas */
+    public void incrementarNumeroDeMacasEmJogo() 
+    {
+        if (numeroDeMacasEmJogo < 2)
+            numeroDeMacasEmJogo++;
     }
 
-    public void trocar() {
-
+    public void decrementarNumeroDeMacasEmJogo() 
+    {
+        if (numeroDeMacasEmJogo > 0)
+            numeroDeMacasEmJogo--;
     }
 
-    public void trocarPosicoes() {
-
+    public int getCadenciaDeQueda()
+    {
+        return cadenciaDeQueda;
     }
 
     /**
@@ -75,19 +71,14 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
     {
         //TODO ATUALIZAR O SUPORTE DO ANIMAL
         if (suportes[linha][coluna] instanceof SuporteComSuportado && ((SuporteComSuportado) suportes[linha][coluna]).getSuportado() != null) {
-            Posicao a = ((Animal) ((SuporteComSuportado) suportes[linha][coluna]).getSuportado()).podeCair(suportes, linha, coluna);
-            if (a != null) {
-                ((Animal) ((SuporteComSuportado) suportes[linha][coluna]).getSuportado()).cair(suportes, a, linha, coluna);
-                this.getGridPanel().remove(linha, coluna, ((SuporteComSuportado) suportes[a.getLinha()][a.getColuna()]).getSuportado().getRepresentacao());
-                this.getGridPanel().add(a.getLinha(), a.getColuna(), ((SuporteComSuportado) suportes[a.getLinha()][a.getColuna()]).getSuportado().getRepresentacao());
+            Posicao novaPosicao = ((Animal) ((SuporteComSuportado) suportes[linha][coluna]).getSuportado()).podeCair(suportes, linha, coluna);
+            if (novaPosicao != null) {
+                ((Animal) ((SuporteComSuportado) suportes[linha][coluna]).getSuportado()).cair(suportes, novaPosicao, linha, coluna);
+                this.getGridPanel().remove(linha, coluna, ((SuporteComSuportado) suportes[novaPosicao.getLinha()][novaPosicao.getColuna()]).getSuportado().getRepresentacao());
+                this.getGridPanel().add(novaPosicao.getLinha(), novaPosicao.getColuna(), ((SuporteComSuportado) suportes[novaPosicao.getLinha()][novaPosicao.getColuna()]).getSuportado().getRepresentacao());
                 this.getGridPanel().repaint();
             }
         }
-    }
-
-    public int getCadenciaDeQueda()
-    {
-        return cadenciaDeQueda;
     }
 
     private void gerarNivel(GridPanel gridPanel, Suporte[][] suportes)
@@ -145,10 +136,5 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
         break;
         }
         this.getGridPanel().repaint();
-    }
-
-    public Suporte[][] getSuportes()
-    {
-        return suportes;
     }
 }

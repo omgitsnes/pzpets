@@ -42,18 +42,24 @@ public class Animal extends Suportavel
         if (suportes[linha + 1][coluna].toString() == "SuporteAr") {
             podeCair(suportes, linha + 1, coluna);
         } else {
-            if (!(suportes[linha + 1][Math.max(coluna, coluna - 1)] instanceof SuporteAr) && ((SuporteComSuportado) suportes[linha + 1][coluna]).getSuportado() == null) {
-                System.out.println("pode cair para baixo!");
-                Posicao a = new Posicao(linha + 1, coluna);
-                return a;
+            if (!(suportes[linha + 1][Math.max(coluna, coluna - 1)] instanceof SuporteAr)) {
+                if (((SuporteComSuportado) suportes[linha + 1][coluna]).getSuportado() == null) {
+                    System.out.println("pode cair para baixo!");
+                    Posicao a = new Posicao(linha + 1, coluna);
+                    return a;
+                }
             }
-            if (!(suportes[linha + 1][Math.max(coluna, coluna - 1)] instanceof SuporteAr) && ((SuporteComSuportado) suportes[linha + 1][Math.max(0, coluna - 1)]).getSuportado() == null) {
-                System.out.println("pode cair para a esquerda!");
-                return new Posicao(linha + 1, Math.max(0, coluna - 1));
+            if (!(suportes[linha + 1][Math.max(coluna, coluna - 1)] instanceof SuporteAr)) {
+                if (((SuporteComSuportado) suportes[linha + 1][Math.max(coluna, coluna - 1)]).getSuportado() == null) {
+                    System.out.println("pode cair para a esquerda!");
+                    return new Posicao(linha + 1, Math.max(0, coluna - 1));
+                }
             }
-            if (!(suportes[linha + 1][Math.max(coluna, coluna - 1)] instanceof SuporteAr) && ((SuporteComSuportado) suportes[linha + 1][Math.min(7, coluna + 1)]).getSuportado() == null) { //TODO valor para a largura dinamico
-                System.out.println("pode cair para a direita!");
-                return new Posicao(linha + 1, Math.min(7, coluna + 1));
+            if (!(suportes[linha + 1][Math.min(7, coluna + 1)] instanceof SuporteAr)) {
+                if (((SuporteComSuportado) suportes[linha + 1][Math.min(7, coluna + 1)]).getSuportado() == null) { //TODO valor para a largura dinamico
+                    System.out.println("pode cair para a direita!");
+                    return new Posicao(linha + 1, Math.min(7, coluna + 1));
+                }
             }
         }
         return null;

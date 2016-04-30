@@ -133,7 +133,6 @@ public class JanelaPuzzlePets extends JFrame
                         for (int linha = painelPrincipal.getGridPanel().getNumberOfRows() - 2; linha >= 0; linha--) {
                             for (int coluna = painelPrincipal.getGridPanel().getNumberOfColumns() - 1; coluna >= 0; coluna--) {
                                 painelPrincipal.cair(linha, coluna);
-                                painelPrincipal.getGridPanel().repaint();
                                 sleep(painelPrincipal.getCadenciaDeQueda());
                             }
                         }
