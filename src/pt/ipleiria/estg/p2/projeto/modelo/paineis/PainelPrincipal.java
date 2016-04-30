@@ -32,7 +32,7 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
     public PainelPrincipal(GridPanel gridPanel) 
     {
         super(gridPanel);
-        this.suportes = new Suporte[gridPanel.getNumberOfColumns()][gridPanel.getNumberOfRows()];
+        this.suportes = new Suporte[gridPanel.getNumberOfRows()][gridPanel.getNumberOfColumns()];
         this.cadenciaDeQueda = 100;
         this.numeroDeMacasEmJogo = 0; //Deve começar a 0 ou 1?
         gerarNivel(gridPanel, suportes);
