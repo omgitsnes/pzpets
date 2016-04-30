@@ -21,7 +21,6 @@ import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteGelo;
 public class PainelPrincipal extends PainelNaoRepresentavel {
 
     private Suporte[][] suportes;
-    private Suportavel[][] suportaveis;//TODO Delete
     private int cadenciaDeQueda;
     private int numeroDeMacasEmJogo;
     private int numeroDeSuportesCongelados;
@@ -34,8 +33,8 @@ public class PainelPrincipal extends PainelNaoRepresentavel {
     {
         super(gridPanel);
         this.suportes = new Suporte[gridPanel.getNumberOfColumns()][gridPanel.getNumberOfRows()];
-        this.cadenciaDeQueda = 10;
-        this.numeroDeMacasEmJogo = 0;
+        this.cadenciaDeQueda = 100;
+        this.numeroDeMacasEmJogo = 0; //Deve começar a 0 ou 1?
         gerarNivel(gridPanel, suportes);
     }
 
