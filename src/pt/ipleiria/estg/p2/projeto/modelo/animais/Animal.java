@@ -55,6 +55,13 @@ public class Animal extends Movel
         return null;
     }
     
+    /**
+     * Muda a posicao do Suportado para a nova posicao na matriz de suportes
+     * @param suportes
+     * @param posicao
+     * @param linha
+     * @param coluna
+     */
     public void cair(Suporte[][] suportes, Posicao posicao, int linha, int coluna)
     {
         //deve este metodo ser na classe suporte?

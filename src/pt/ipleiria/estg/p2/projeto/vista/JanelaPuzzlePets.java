@@ -77,7 +77,7 @@ public class JanelaPuzzlePets extends JFrame
         };
         thread.start();
     }
-    
+
     private void initComponents()
     {
         setTitle("PuzzlePets");
