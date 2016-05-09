@@ -3,6 +3,7 @@ package pt.ipleiria.estg.p2.projeto.modelo.paineis;
 import java.util.Random;
 
 import pt.ipleiria.estg.dei.gridpanel.GridPanel;
+import pt.ipleiria.estg.p2.projeto.modelo.Painel;
 import pt.ipleiria.estg.p2.projeto.modelo.PainelNaoRepresentavel;
 import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
 import pt.ipleiria.estg.p2.projeto.modelo.animais.Animal;
@@ -17,7 +18,7 @@ import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAr;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteComSuportado;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteGelo;
 
-public class PainelPrincipal extends PainelNaoRepresentavel 
+public class PainelPrincipal extends Painel 
 {
 
     private Suporte[][] suportes;

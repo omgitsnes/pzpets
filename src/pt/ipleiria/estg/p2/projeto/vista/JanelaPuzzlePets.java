@@ -1,7 +1,9 @@
 package pt.ipleiria.estg.p2.projeto.vista;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -135,7 +137,10 @@ public class JanelaPuzzlePets extends JFrame
         painelDePontuacoes = new PainelDePontuacoes(gridPanelPainelDePontuacoes);
 
         painelDeMacas.getGridPanel().add(0, 0, painelDeMacas.getRepresentacao());
-        painelDeMacas.getGridPanel().add(0, 0, new TextCellRepresentation(Integer.toString(objetivo.getNumeroDeMacasParaApanhar())));
+        TextCellRepresentation text = new TextCellRepresentation(Integer.toString(objetivo.getNumeroDeMacasParaApanhar()));
+        text.setTextFont(Font.decode("Arial-Bold-32"));
+        text.setTextColor(Color.BLUE);
+        painelDeMacas.getGridPanel().add(0, 0, text);
 
         painelDeMovimentosEstrelas.getGridPanel().add(0, 0, painelDeMovimentosEstrelas.getRepresentacao());
         painelDeMovimentosEstrelas.getGridPanel().add(0, 0, new TextCellRepresentation(Integer.toString(objetivo.getNumeroDeMovimentosMaximo())));
