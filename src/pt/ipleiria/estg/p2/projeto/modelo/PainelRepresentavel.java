@@ -17,6 +17,8 @@ public class PainelRepresentavel extends Painel
         this.representacao = representacao;
         this.indicacao = indicacao;
         this.valor = valor;
+        gridPanel.add(0, 0, this.getRepresentacao());
+        gridPanel.add(0, 0, this.getIndicacao());
     }
 
     public CellRepresentation getRepresentacao()
@@ -38,6 +40,4 @@ public class PainelRepresentavel extends Painel
     {
         return valor;
     }
-    
-    
 }

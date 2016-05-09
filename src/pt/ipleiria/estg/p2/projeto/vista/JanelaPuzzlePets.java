@@ -135,19 +135,6 @@ public class JanelaPuzzlePets extends JFrame
         painelDeMacas = new PainelDeMacas(gridPanelPainelDeMacas, 20);
         painelDeMovimentosEstrelas = new PainelDeMovimentosEstrelas(gridPanelPainelDeMovimentosEstrelas, objetivo.getNumeroDeMovimentosMaximo());
         painelDePontuacoes = new PainelDePontuacoes(gridPanelPainelDePontuacoes);
-
-        painelDeMacas.getGridPanel().add(0, 0, painelDeMacas.getRepresentacao());
-        TextCellRepresentation text = new TextCellRepresentation(Integer.toString(objetivo.getNumeroDeMacasParaApanhar()));
-        text.setTextFont(Font.decode("Arial-Bold-32"));
-        text.setTextColor(Color.BLUE);
-        painelDeMacas.getGridPanel().add(0, 0, text);
-
-        painelDeMovimentosEstrelas.getGridPanel().add(0, 0, painelDeMovimentosEstrelas.getRepresentacao());
-        painelDeMovimentosEstrelas.getGridPanel().add(0, 0, new TextCellRepresentation(Integer.toString(objetivo.getNumeroDeMovimentosMaximo())));
-
-        painelDePontuacoes.getGridPanel().add(0, 0, painelDePontuacoes.getRepresentacao());
-        painelDePontuacoes.getGridPanel().add(0, 0, new TextCellRepresentation(painelDePontuacoes.getPontuacaoAtual()));
-
         painelPrincipal = new PainelPrincipal(gridPanelPainelPrincipal);
     }
 

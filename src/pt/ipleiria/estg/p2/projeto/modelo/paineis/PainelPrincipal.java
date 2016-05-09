@@ -20,12 +20,11 @@ import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteGelo;
 
 public class PainelPrincipal extends Painel 
 {
-
     private Suporte[][] suportes;
-    private int cadenciaDeQueda;
     private int numeroDeMacasEmJogo;
     private int numeroDeSuportesCongelados;
 
+    private static final int cadenciaDeQueda = 100;
     /**
      * O Painel Principal é con
      * @param gridPanel
@@ -34,7 +33,6 @@ public class PainelPrincipal extends Painel
     {
         super(gridPanel);
         this.suportes = new Suporte[gridPanel.getNumberOfRows()][gridPanel.getNumberOfColumns()];
-        this.cadenciaDeQueda = 100;
         this.numeroDeMacasEmJogo = 0; //Deve começar a 0 ou 1?
         gerarNivel();
     }
