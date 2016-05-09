@@ -4,7 +4,6 @@ import java.util.Random;
 
 import pt.ipleiria.estg.dei.gridpanel.GridPanel;
 import pt.ipleiria.estg.p2.projeto.modelo.Painel;
-import pt.ipleiria.estg.p2.projeto.modelo.PainelNaoRepresentavel;
 import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
 import pt.ipleiria.estg.p2.projeto.modelo.animais.Animal;
 import pt.ipleiria.estg.p2.projeto.modelo.animais.Panda;

@@ -1,9 +1,6 @@
 package pt.ipleiria.estg.p2.projeto.modelo.paineis;
 
 import pt.ipleiria.estg.dei.gridpanel.GridPanel;
-import pt.ipleiria.estg.dei.gridpanel.SingleImageCellRepresentation;
-import pt.ipleiria.estg.dei.gridpanel.TextCellRepresentation;
-import pt.ipleiria.estg.p2.projeto.modelo.PainelRepresentavel;
 
 public class PainelDePontuacoes extends PainelRepresentavel
 {
@@ -17,8 +14,7 @@ public class PainelDePontuacoes extends PainelRepresentavel
     public PainelDePontuacoes(GridPanel gridPanel)
     {
         super(gridPanel,
-                new SingleImageCellRepresentation("/pt/ipleiria/estg/p2/projeto/imagens/paineis/pontuacao.png"),
-                new TextCellRepresentation(Integer.toString(0)),
+                "/pt/ipleiria/estg/p2/projeto/imagens/paineis/pontuacao.png",
                 0);
     }
 

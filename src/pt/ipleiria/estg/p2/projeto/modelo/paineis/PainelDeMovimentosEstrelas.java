@@ -1,24 +1,16 @@
 package pt.ipleiria.estg.p2.projeto.modelo.paineis;
 
 import pt.ipleiria.estg.dei.gridpanel.GridPanel;
-import pt.ipleiria.estg.dei.gridpanel.SingleImageCellRepresentation;
-import pt.ipleiria.estg.dei.gridpanel.TextCellRepresentation;
-import pt.ipleiria.estg.p2.projeto.modelo.PainelDecrementador;
 
 public class PainelDeMovimentosEstrelas extends PainelDecrementador
 {
     public PainelDeMovimentosEstrelas(GridPanel gridPanel, int valor)
     {
         super(gridPanel,
-                new SingleImageCellRepresentation("/pt/ipleiria/estg/p2/projeto/imagens/paineis/movimentos0Estrelas.png"),
-                new TextCellRepresentation(Integer.toString(valor)),
+                "/pt/ipleiria/estg/p2/projeto/imagens/paineis/movimentos0Estrelas.png",
                 valor);
     }
 
-    /**
-     * Incrementa em 1 valor o numero de movimentos disponiveis.
-     * Sempre que seja rebentado um animal com movimentos extras
-     */
     public void incrementarValor()
     {
         this.valor++;
