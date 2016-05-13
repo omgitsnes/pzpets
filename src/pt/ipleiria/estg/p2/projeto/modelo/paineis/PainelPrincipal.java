@@ -63,23 +63,23 @@ public class PainelPrincipal extends Painel
         return CADENCIA_DE_QUEDA;
     }
 
-    /**
-     * Percorre a matriz de suportes
-     * Sempre que um suporte nao Ar, com suportavel que cai
-     */
-    public void cair(int linha, int coluna) 
-    {
-        //TODO ATUALIZAR O SUPORTE DO ANIMAL
-        if (suportes[linha][coluna] instanceof SuporteComSuportado && ((SuporteComSuportado) suportes[linha][coluna]).getSuportado() != null) {
-            Posicao novaPosicao = ((Animal) ((SuporteComSuportado) suportes[linha][coluna]).getSuportado()).podeCair(suportes, linha, coluna);
-            if (novaPosicao != null) {
-                ((Animal) ((SuporteComSuportado) suportes[linha][coluna]).getSuportado()).cair(suportes, novaPosicao, linha, coluna);
-                this.getGridPanel().remove(linha, coluna, ((SuporteComSuportado) suportes[novaPosicao.getLinha()][novaPosicao.getColuna()]).getSuportado().getRepresentacao());
-                this.getGridPanel().add(novaPosicao.getLinha(), novaPosicao.getColuna(), ((SuporteComSuportado) suportes[novaPosicao.getLinha()][novaPosicao.getColuna()]).getSuportado().getRepresentacao());
-                this.getGridPanel().repaint();
-            }
-        }
-    }
+//    /**
+//     * Percorre a matriz de suportes
+//     * Sempre que um suporte nao Ar, com suportavel que cai
+//     */
+//    public void cair(int linha, int coluna) 
+//    {
+//        //TODO ATUALIZAR O SUPORTE DO ANIMAL
+//        if (suportes[linha][coluna] instanceof SuporteComSuportado && ((SuporteComSuportado) suportes[linha][coluna]).getSuportado() != null) {
+//            Posicao novaPosicao = ((Animal) ((SuporteComSuportado) suportes[linha][coluna]).getSuportado()).podeCair(suportes, linha, coluna);
+//            if (novaPosicao != null) {
+//                ((Animal) ((SuporteComSuportado) suportes[linha][coluna]).getSuportado()).cair(suportes, novaPosicao, linha, coluna);
+//                this.getGridPanel().remove(linha, coluna, ((SuporteComSuportado) suportes[novaPosicao.getLinha()][novaPosicao.getColuna()]).getSuportado().getRepresentacao());
+//                this.getGridPanel().add(novaPosicao.getLinha(), novaPosicao.getColuna(), ((SuporteComSuportado) suportes[novaPosicao.getLinha()][novaPosicao.getColuna()]).getSuportado().getRepresentacao());
+//                this.getGridPanel().repaint();
+//            }
+//        }
+//    }
 
     /**
      * Instancia e adiciona a matriz de suportes os suportes de um nivel
@@ -130,30 +130,30 @@ public class PainelPrincipal extends Painel
         getGridPanel().repaint();
     }
 
-    public void adicionarAnimalAleatorio(int linha, int coluna)
-    {   
-        if (((SuporteComSuportado) suportes[linha][coluna]).getSuportado() == null) {
-            Random random = new Random();
-            switch (random.nextInt(5)) {
-                case 0:  ((SuporteComSuportado) suportes[linha][coluna]).setSuportado(new Panda((SuporteComSuportado) suportes[linha][coluna]));
-                this.getGridPanel().add(linha, coluna, ((SuporteComSuportado) suportes[linha][coluna]).getSuportado().getRepresentacao());
-                break;
-                case 1:  ((SuporteComSuportado) suportes[linha][coluna]).setSuportado(new Peixe((SuporteComSuportado) suportes[linha][coluna]));
-                this.getGridPanel().add(linha, coluna, ((SuporteComSuportado) suportes[linha][coluna]).getSuportado().getRepresentacao());
-                break;
-                case 2:  ((SuporteComSuportado) suportes[linha][coluna]).setSuportado(new Polvo((SuporteComSuportado) suportes[linha][coluna]));
-                this.getGridPanel().add(linha, coluna, ((SuporteComSuportado) suportes[linha][coluna]).getSuportado().getRepresentacao());
-                break;
-                case 3:  ((SuporteComSuportado) suportes[linha][coluna]).setSuportado(new Raposa((SuporteComSuportado) suportes[linha][coluna]));
-                this.getGridPanel().add(linha, coluna, ((SuporteComSuportado) suportes[linha][coluna]).getSuportado().getRepresentacao());
-                break;
-                case 4:  ((SuporteComSuportado) suportes[linha][coluna]).setSuportado(new Sapo((SuporteComSuportado) suportes[linha][coluna]));
-                this.getGridPanel().add(linha, coluna, ((SuporteComSuportado) suportes[linha][coluna]).getSuportado().getRepresentacao());
-                break;
-            }
-            this.getGridPanel().repaint();
-        }
-    }
+//    public void adicionarAnimalAleatorio(int linha, int coluna)
+//    {   
+//        if (((SuporteComSuportado) suportes[linha][coluna]).getSuportado() == null) {
+//            Random random = new Random();
+//            switch (random.nextInt(5)) {
+//                case 0:  ((SuporteComSuportado) suportes[linha][coluna]).setSuportado(new Panda((SuporteComSuportado) suportes[linha][coluna]));
+//                this.getGridPanel().add(linha, coluna, ((SuporteComSuportado) suportes[linha][coluna]).getSuportado().getRepresentacao());
+//                break;
+//                case 1:  ((SuporteComSuportado) suportes[linha][coluna]).setSuportado(new Peixe((SuporteComSuportado) suportes[linha][coluna]));
+//                this.getGridPanel().add(linha, coluna, ((SuporteComSuportado) suportes[linha][coluna]).getSuportado().getRepresentacao());
+//                break;
+//                case 2:  ((SuporteComSuportado) suportes[linha][coluna]).setSuportado(new Polvo((SuporteComSuportado) suportes[linha][coluna]));
+//                this.getGridPanel().add(linha, coluna, ((SuporteComSuportado) suportes[linha][coluna]).getSuportado().getRepresentacao());
+//                break;
+//                case 3:  ((SuporteComSuportado) suportes[linha][coluna]).setSuportado(new Raposa((SuporteComSuportado) suportes[linha][coluna]));
+//                this.getGridPanel().add(linha, coluna, ((SuporteComSuportado) suportes[linha][coluna]).getSuportado().getRepresentacao());
+//                break;
+//                case 4:  ((SuporteComSuportado) suportes[linha][coluna]).setSuportado(new Sapo((SuporteComSuportado) suportes[linha][coluna]));
+//                this.getGridPanel().add(linha, coluna, ((SuporteComSuportado) suportes[linha][coluna]).getSuportado().getRepresentacao());
+//                break;
+//            }
+//            this.getGridPanel().repaint();
+//        }
+//    }
 
     /**
      * Garante uma maca em uma coluna aleatoria da primeira linha.

@@ -132,7 +132,7 @@ public class JanelaPuzzlePets extends JFrame
         //Definir objetivo
         objetivo = new Objetivo(100, 150, 5000, 0);
         // criar paineis
-        painelDeMacas = new PainelDeMacas(gridPanelPainelDeMacas, 20);
+        painelDeMacas = new PainelDeMacas(gridPanelPainelDeMacas, objetivo.getNumeroDeMacasParaApanhar());
         painelDeMovimentosEstrelas = new PainelDeMovimentosEstrelas(gridPanelPainelDeMovimentosEstrelas, objetivo.getNumeroDeMovimentosMaximo());
         painelDePontuacoes = new PainelDePontuacoes(gridPanelPainelDePontuacoes);
         painelPrincipal = new PainelPrincipal(gridPanelPainelPrincipal);
