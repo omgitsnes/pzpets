@@ -1,26 +1,15 @@
 package pt.ipleiria.estg.p2.projeto.modelo.suportes;
 
 import pt.ipleiria.estg.dei.gridpanel.CellRepresentation;
-import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
-import pt.ipleiria.estg.p2.projeto.modelo.Representavel;
+import pt.ipleiria.estg.dei.gridpanel.SingleImageCellRepresentation;
 
-public class Suporte extends Representavel
+public class Suporte
 {
-    private Posicao posicao;
-    
-    /**
-     * 
-     * @param representacao
-     * @param posicao
-     */
-    public Suporte(CellRepresentation representacao, Posicao posicao)
+    private CellRepresentation representacao;
+
+    public Suporte(String representacao)
     {
-        super(representacao);
-        this.posicao = posicao;
-    }
-    
-    public Posicao getPosicao()
-    {
-        return this.posicao;
-    }
+        super();
+        this.representacao = new SingleImageCellRepresentation(representacao);
+    }   
 }
