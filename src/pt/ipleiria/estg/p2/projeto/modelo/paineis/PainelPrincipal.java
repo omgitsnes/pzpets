@@ -3,6 +3,7 @@ package pt.ipleiria.estg.p2.projeto.modelo.paineis;
 import java.util.Random;
 
 import pt.ipleiria.estg.dei.gridpanel.GridPanel;
+import pt.ipleiria.estg.p2.projeto.modelo.Cesto;
 import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
 import pt.ipleiria.estg.p2.projeto.modelo.animais.Animal;
 import pt.ipleiria.estg.p2.projeto.modelo.animais.Panda;
@@ -115,6 +116,13 @@ public class PainelPrincipal extends Painel
                         suportes[i][j] = new SuporteAgua(new Posicao(i, j));
                         getGridPanel().add(i, j, suportes[i][j].getRepresentacao());
                     }
+                }
+                //TODO ceseto no ultimo suporte agua
+                if (i == 7) {
+                    suportes[i][j] = new SuporteAgua(new Posicao(i, j));
+                    getGridPanel().add(i, j, suportes[i][j].getRepresentacao());
+                    ((SuporteComSuportado) suportes[i][j]).setSuportado(new Cesto((SuporteComSuportado) suportes[i][j]));
+                    this.getGridPanel().add(i, j, ((SuporteComSuportado) suportes[i][j]).getSuportado().getRepresentacao());
                 }
             }       
         }

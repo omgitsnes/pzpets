@@ -12,6 +12,8 @@ import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteComSuportado;
 public class Animal extends Movel
 {
     private boolean movimentoExtra;
+    private Suporte suporte;
+    
 
     public Animal(CellRepresentation representacao, SuporteComSuportado suporte) 
     {
