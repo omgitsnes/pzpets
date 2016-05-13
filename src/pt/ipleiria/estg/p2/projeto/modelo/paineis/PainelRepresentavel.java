@@ -22,9 +22,9 @@ public class PainelRepresentavel extends Painel
     
     public void atualizarIndicacao()
     {
+        this.getGridPanel().add(0, 0, this.representacao);
         this.indicacao = new TextCellRepresentation(Integer.toString(this.valor));
         this.getGridPanel().add(0, 0, this.indicacao);
-        this.getGridPanel().add(0, 0, this.representacao);
     }
 
     public int getValor()
