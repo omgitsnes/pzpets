@@ -1,6 +1,7 @@
 package pt.ipleiria.estg.p2.projeto.modelo.paineis;
 
 import pt.ipleiria.estg.dei.gridpanel.GridPanel;
+import pt.ipleiria.estg.dei.gridpanel.SingleImageCellRepresentation;
 
 public class Painel
 {
@@ -15,5 +16,19 @@ public class Painel
     public GridPanel getGridPanel()
     {
         return gridPanel;
+    }
+    
+    public void adicionarAoGridPanel(int linha, int coluna, SingleImageCellRepresentation representacao)
+    {
+        gridPanel.add(linha, coluna, representacao);
+    }
+    
+    public int getNumeroDeLinhas()
+    {
+        return gridPanel.getNumberOfRows();
+    }
+    public int getNumeroDeColunas()
+    {
+        return gridPanel.getNumberOfColumns();
     }
 }

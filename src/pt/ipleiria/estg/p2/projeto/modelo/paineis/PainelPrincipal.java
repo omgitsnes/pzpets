@@ -1,20 +1,10 @@
 package pt.ipleiria.estg.p2.projeto.modelo.paineis;
 
-import java.util.Random;
-
 import pt.ipleiria.estg.dei.gridpanel.GridPanel;
-import pt.ipleiria.estg.p2.projeto.modelo.Cesto;
 import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
-import pt.ipleiria.estg.p2.projeto.modelo.animais.Animal;
-import pt.ipleiria.estg.p2.projeto.modelo.animais.Panda;
-import pt.ipleiria.estg.p2.projeto.modelo.animais.Peixe;
-import pt.ipleiria.estg.p2.projeto.modelo.animais.Polvo;
-import pt.ipleiria.estg.p2.projeto.modelo.animais.Raposa;
-import pt.ipleiria.estg.p2.projeto.modelo.animais.Sapo;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.Suporte;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAgua;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAr;
-import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteComSuportado;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteGelo;
 
 public class PainelPrincipal extends Painel 
@@ -90,39 +80,47 @@ public class PainelPrincipal extends Painel
      */
     private void gerarNivel()
     {
-        for (int i = 0; i < getGridPanel().getNumberOfRows(); i++) {
-            for (int j = 0; j < getGridPanel().getNumberOfColumns(); j++) {
+        for (int i = 0; i < getNumeroDeLinhas(); i++) {
+            for (int j = 0; j < getNumeroDeColunas(); j++) {
                 //Primeiras 2 linhas
+                
                 if (i < 2) {
-                    suportes[i][j] = new SuporteAgua(new Posicao(i, j));
-                    getGridPanel().add(i, j, suportes[i][j].getRepresentacao());
-                }
+                    Suporte s = new SuporteAgua(new Posicao(i, j));
+                    suportes[i][j] = s;
+                    adicionarAoGridPanel(i, j, s.getRepresentacao());
+                }//TODO adicionadAoGridPanel
                 // linhas 2 e 3 
                 if (i > 1 && i < 4) {
                     if (j == 0 || j == 3 || j == 7) {
-                        suportes[i][j] = new SuporteAr(new Posicao(i, j));
-                        getGridPanel().add(i, j, suportes[i][j].getRepresentacao());
+                        Suporte s = new SuporteAr(new Posicao(i, j));
+                        suportes[i][j] = s;
+                        adicionarAoGridPanel(i, j, s.getRepresentacao());
                     } else {
-                        suportes[i][j] = new SuporteGelo(new Posicao(i, j));
-                        getGridPanel().add(i, j, suportes[i][j].getRepresentacao());
+                        Suporte s = new SuporteGelo(new Posicao(i, j));
+                        suportes[i][j] = s;
+                        adicionarAoGridPanel(i, j, s.getRepresentacao());
                     }
                 }
                 //todas asa outras
                 if (i > 3) {
                     if ((i == 4 && j == 0) || (i == 4 && j == 7)) {
-                        suportes[i][j] = new SuporteAr(new Posicao(i, j));
-                        getGridPanel().add(i, j, suportes[i][j].getRepresentacao());
+                        Suporte s = new SuporteAr(new Posicao(i, j));
+                        suportes[i][j] = s;
+                        adicionarAoGridPanel(i, j, s.getRepresentacao());
                     } else {
-                        suportes[i][j] = new SuporteAgua(new Posicao(i, j));
-                        getGridPanel().add(i, j, suportes[i][j].getRepresentacao());
+                        Suporte s = new SuporteAgua(new Posicao(i, j));
+                        suportes[i][j] = s;
+                        adicionarAoGridPanel(i, j, s.getRepresentacao());
                     }
                 }
-                //TODO ceseto no ultimo suporte agua
                 if (i == 7) {
-                    suportes[i][j] = new SuporteAgua(new Posicao(i, j));
-                    getGridPanel().add(i, j, suportes[i][j].getRepresentacao());
-                    ((SuporteComSuportado) suportes[i][j]).setSuportado(new Cesto((SuporteComSuportado) suportes[i][j]));
-                    this.getGridPanel().add(i, j, ((SuporteComSuportado) suportes[i][j]).getSuportado().getRepresentacao());
+                    Suporte s = new SuporteAgua(new Posicao(i, j));
+                    suportes[i][j] = s;
+                    adicionarAoGridPanel(i, j, s.getRepresentacao());
+                    //TODO
+//                    Cesto c = new Cesto
+//                    ((SuporteComSuportado) suportes[i][j]).setSuportado(new Cesto((SuporteComSuportado) suportes[i][j]));
+//                    this.getGridPanel().add(i, j, ((SuporteComSuportado) suportes[i][j]).getSuportado().getRepresentacao());
                 }
             }       
         }
