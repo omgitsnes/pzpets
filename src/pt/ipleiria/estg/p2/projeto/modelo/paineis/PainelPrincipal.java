@@ -14,6 +14,7 @@ public class PainelPrincipal extends Painel
     private int numeroDeSuportesCongelados;
 
     private static final int CADENCIA_DE_QUEDA = 100;
+    
     /**
      * O Painel Principal é con
      * @param gridPanel
@@ -21,7 +22,7 @@ public class PainelPrincipal extends Painel
     public PainelPrincipal(GridPanel gridPanel) 
     {
         super(gridPanel);
-        this.suportes = new Suporte[gridPanel.getNumberOfRows()][gridPanel.getNumberOfColumns()];
+        this.suportes = new Suporte[getNumeroDeLinhas()][getNumeroDeColunas()];
         this.numeroDeMacasEmJogo = 0; //Deve começar a 0 ou 1?
         gerarNivel();
     }
@@ -83,12 +84,11 @@ public class PainelPrincipal extends Painel
         for (int i = 0; i < getNumeroDeLinhas(); i++) {
             for (int j = 0; j < getNumeroDeColunas(); j++) {
                 //Primeiras 2 linhas
-                
                 if (i < 2) {
                     Suporte s = new SuporteAgua(new Posicao(i, j));
                     suportes[i][j] = s;
                     adicionarAoGridPanel(i, j, s.getRepresentacao());
-                }//TODO adicionadAoGridPanel
+                }
                 // linhas 2 e 3 
                 if (i > 1 && i < 4) {
                     if (j == 0 || j == 3 || j == 7) {
@@ -101,7 +101,7 @@ public class PainelPrincipal extends Painel
                         adicionarAoGridPanel(i, j, s.getRepresentacao());
                     }
                 }
-                //todas asa outras
+                //todas as outras
                 if (i > 3) {
                     if ((i == 4 && j == 0) || (i == 4 && j == 7)) {
                         Suporte s = new SuporteAr(new Posicao(i, j));
@@ -124,8 +124,7 @@ public class PainelPrincipal extends Painel
                 }
             }       
         }
-        preencherNovoNivel(); //TODO metodo preencher
-        getGridPanel().repaint();
+        atualizarGridPanel();
     }
 
 //    public void adicionarAnimalAleatorio(int linha, int coluna)

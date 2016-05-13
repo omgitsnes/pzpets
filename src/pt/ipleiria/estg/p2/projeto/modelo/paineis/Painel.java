@@ -23,6 +23,11 @@ public class Painel
         gridPanel.add(linha, coluna, representacao);
     }
     
+    public void atualizarGridPanel()
+    {
+        gridPanel.repaint();
+    }
+    
     public int getNumeroDeLinhas()
     {
         return gridPanel.getNumberOfRows();
