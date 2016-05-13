@@ -3,7 +3,6 @@ package pt.ipleiria.estg.p2.projeto.modelo.paineis;
 import java.util.Random;
 
 import pt.ipleiria.estg.dei.gridpanel.GridPanel;
-import pt.ipleiria.estg.p2.projeto.modelo.Painel;
 import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
 import pt.ipleiria.estg.p2.projeto.modelo.animais.Animal;
 import pt.ipleiria.estg.p2.projeto.modelo.animais.Panda;
@@ -23,7 +22,7 @@ public class PainelPrincipal extends Painel
     private int numeroDeMacasEmJogo;
     private int numeroDeSuportesCongelados;
 
-    private static final int cadenciaDeQueda = 100;
+    private static final int CADENCIA_DE_QUEDA = 100;
     /**
      * O Painel Principal é con
      * @param gridPanel
@@ -60,7 +59,7 @@ public class PainelPrincipal extends Painel
 
     public int getCadenciaDeQueda()
     {
-        return cadenciaDeQueda;
+        return CADENCIA_DE_QUEDA;
     }
 
     /**

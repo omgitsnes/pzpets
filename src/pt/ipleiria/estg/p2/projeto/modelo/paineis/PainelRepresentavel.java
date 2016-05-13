@@ -4,7 +4,6 @@ import pt.ipleiria.estg.dei.gridpanel.CellRepresentation;
 import pt.ipleiria.estg.dei.gridpanel.GridPanel;
 import pt.ipleiria.estg.dei.gridpanel.SingleImageCellRepresentation;
 import pt.ipleiria.estg.dei.gridpanel.TextCellRepresentation;
-import pt.ipleiria.estg.p2.projeto.modelo.Painel;
 
 public class PainelRepresentavel extends Painel
 {
