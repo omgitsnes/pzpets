@@ -20,7 +20,7 @@ public class Painel
     
     public void adicionarAoGridPanel(int linha, int coluna, SingleImageCellRepresentation representacao)
     {
-        gridPanel.add(linha, coluna, representacao);
+        gridPanel.add(linha, coluna, representacao); //TODO put vs add?
     }
     
     public void atualizarGridPanel()

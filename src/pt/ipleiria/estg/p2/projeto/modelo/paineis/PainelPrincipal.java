@@ -86,7 +86,7 @@ public class PainelPrincipal extends Painel
                 //Primeiras 2 linhas
                 if (i < 2) {
                     Suporte s = new SuporteAgua(new Posicao(i, j));
-                    suportes[i][j] = s;
+                    suportes[i][j] = s; //TODO metodo colocar();
                     adicionarAoGridPanel(i, j, s.getRepresentacao());
                 }
                 // linhas 2 e 3 
