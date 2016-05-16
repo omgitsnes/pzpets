@@ -9,6 +9,7 @@ import pt.ipleiria.estg.dei.gridpanel.GridPanel;
 import pt.ipleiria.estg.dei.gridpanel.OverlayCellRepresentation;
 import pt.ipleiria.estg.dei.gridpanel.SingleImageCellRepresentation;
 import pt.ipleiria.estg.dei.gridpanel.TextCellRepresentation;
+import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
 
 public class PainelRepresentavel extends Painel
 {
@@ -21,7 +22,7 @@ public class PainelRepresentavel extends Painel
     {
         super(gridPanel);
         this.representacao = new SingleImageCellRepresentation(representacao);
-        adicionarAoGridPanel(0, 0, this.representacao);
+        adicionarAoGridPanel(new Posicao(0, 0), this.representacao);
         this.valor = valor;
         atualizarIndicacao();
         format();

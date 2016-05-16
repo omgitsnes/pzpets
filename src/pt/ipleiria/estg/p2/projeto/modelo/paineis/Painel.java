@@ -1,7 +1,8 @@
 package pt.ipleiria.estg.p2.projeto.modelo.paineis;
 
+import pt.ipleiria.estg.dei.gridpanel.CellRepresentation;
 import pt.ipleiria.estg.dei.gridpanel.GridPanel;
-import pt.ipleiria.estg.dei.gridpanel.SingleImageCellRepresentation;
+import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
 
 public class Painel
 {
@@ -18,9 +19,9 @@ public class Painel
         return gridPanel;
     }
     
-    public void adicionarAoGridPanel(int linha, int coluna, SingleImageCellRepresentation representacao)
+    public void adicionarAoGridPanel(Posicao posicao, CellRepresentation representacao)
     {
-        gridPanel.add(linha, coluna, representacao); //TODO put vs add?
+        gridPanel.put(posicao.getLinha(), posicao.getColuna(), representacao);
     }
     
     public void atualizarGridPanel()

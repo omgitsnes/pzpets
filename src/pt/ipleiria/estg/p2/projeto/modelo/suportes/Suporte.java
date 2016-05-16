@@ -1,12 +1,13 @@
 package pt.ipleiria.estg.p2.projeto.modelo.suportes;
 
+import pt.ipleiria.estg.dei.gridpanel.CellRepresentation;
 import pt.ipleiria.estg.dei.gridpanel.SingleImageCellRepresentation;
 import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
 import pt.ipleiria.estg.p2.projeto.modelo.paineis.PainelPrincipal;
 
 public class Suporte
 {
-    private SingleImageCellRepresentation representacao;
+    private CellRepresentation representacao;
     private Posicao posicao;
     private PainelPrincipal painelPrincipal;
 
@@ -18,7 +19,7 @@ public class Suporte
         this.posicao = posicao;
     }
 
-    public SingleImageCellRepresentation getRepresentacao()
+    public CellRepresentation getRepresentacao()
     {
         return representacao;
     }
