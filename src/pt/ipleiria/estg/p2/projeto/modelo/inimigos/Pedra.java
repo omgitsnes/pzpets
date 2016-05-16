@@ -1,19 +1,15 @@
 package pt.ipleiria.estg.p2.projeto.modelo.inimigos;
 
-import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
+import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteSuportador;
 
-public class Pedra
+public class Pedra extends InimigoExplosivo
 {
-	//imagem
-		//Suporte
-		private Posicao posicao;
-		public Pedra(int linha, int coluna){
-			this.posicao.setLinha(linha);
-			this.posicao.setColuna(coluna);
-		}
-		
-		public void explodir(){
-			
-		}
-		
-	}
+
+    public Pedra(String representacao, SuporteSuportador<TSuportavel> suporte, int valor)
+    {
+        super("/pt/ipleiria/estg/p2/projeto/imagens/inimigos/pedra.png", 
+                suporte, 
+                50);
+    }
+
+}

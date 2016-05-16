@@ -2,7 +2,7 @@ package pt.ipleiria.estg.p2.projeto.modelo.suportes;
 
 import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
 
-public class SuporteGelo extends SuporteInfluenciado<TSuportavelPorGelo>
+public class SuporteGelo extends SuporteSuportador<TSuportavelPorGelo>
 {
     public SuporteGelo(Posicao posicao)
     {

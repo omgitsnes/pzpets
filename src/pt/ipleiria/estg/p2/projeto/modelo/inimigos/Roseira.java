@@ -1,25 +1,38 @@
 package pt.ipleiria.estg.p2.projeto.modelo.inimigos;
 
-import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
+import java.util.LinkedList;
 
-public class Roseira
+import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteSuportador;
+
+public class Roseira extends Inimigo
 {
- //Imagem
-	//Suporte
-	private int tempoProximoEspinho;
-	private Posicao posicao;
-	
-	public Roseira(int linha, int coluna){
-		this.posicao.setLinha(linha);
-		this.posicao.setColuna(coluna);
-	}
-	
-	public int getTempoProximoEspinho()
-	{
-		return tempoProximoEspinho;
-	}
-	
-	public void gerarProximoEspinho(){
-		
-	}
+    private int temporizador;
+    private LinkedList<Espinho> espinhos;
+    
+    public Roseira(String representacao, SuporteSuportador<TSuportavel> suporte)
+    {
+        super("/pt/ipleiria/estg/p2/projeto/imagens/inimigos/roseira.png", 
+                suporte);
+    }
+
+    public int getTemporizador()
+    {
+        return temporizador;
+    }
+
+    public void setTemporizador(int temporizador)
+    {
+        this.temporizador = temporizador;
+    }
+
+    public LinkedList<Espinho> getEspinhos()
+    {
+        return espinhos;
+    }
+
+    public void setEspinhos(LinkedList<Espinho> espinhos)
+    {
+        this.espinhos = espinhos;
+    }
+
 }

@@ -6,6 +6,6 @@ public class SuporteAr extends Suporte
 {
     public SuporteAr(Posicao posicao)
     {
-        super("/pt/ipleiria/estg/p2/projeto/imagens/suportes/ar.png", posicao);
+        super(null, "/pt/ipleiria/estg/p2/projeto/imagens/suportes/ar.png", posicao);
     }
 }

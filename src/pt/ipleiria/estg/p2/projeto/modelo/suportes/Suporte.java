@@ -2,15 +2,18 @@ package pt.ipleiria.estg.p2.projeto.modelo.suportes;
 
 import pt.ipleiria.estg.dei.gridpanel.SingleImageCellRepresentation;
 import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
+import pt.ipleiria.estg.p2.projeto.modelo.paineis.PainelPrincipal;
 
 public class Suporte
 {
     private SingleImageCellRepresentation representacao;
     private Posicao posicao;
+    private PainelPrincipal painelPrincipal;
 
-    public Suporte(String representacao, Posicao posicao)
+    public Suporte(PainelPrincipal painelPrincipal, String representacao, Posicao posicao)
     {
         super();
+        this.painelPrincipal = painelPrincipal;
         this.representacao = new SingleImageCellRepresentation(representacao);
         this.posicao = posicao;
     }
@@ -23,5 +26,10 @@ public class Suporte
     public Posicao getPosicao()
     {
         return posicao;
+    }
+
+    public PainelPrincipal getPainelPrincipal()
+    {
+        return painelPrincipal;
     }
 }

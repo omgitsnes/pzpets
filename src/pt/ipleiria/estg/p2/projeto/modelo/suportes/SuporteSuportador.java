@@ -2,7 +2,7 @@ package pt.ipleiria.estg.p2.projeto.modelo.suportes;
 
 import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
 
-public class SuporteInfluenciado<TSuportavel> extends Suporte
+public class SuporteSuportador<TSuportavel> extends Suporte
 {
     private TSuportavel suportado;
     
@@ -11,9 +11,9 @@ public class SuporteInfluenciado<TSuportavel> extends Suporte
      * @param representacao
      * @param posicao
      */
-    public SuporteInfluenciado(String representacao, Posicao posicao)
+    public SuporteSuportador(String representacao, Posicao posicao)
     {
-        super(representacao, posicao);
+        super(null, representacao, posicao);
     }
 
     public void setSuportado(TSuportavel suportado)
