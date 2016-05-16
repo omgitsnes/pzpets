@@ -6,12 +6,14 @@ import pt.ipleiria.estg.p2.projeto.modelo.suportes.Suporte;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAgua;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAr;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteGelo;
+import pt.ipleiria.estg.p2.projeto.vista.JanelaPuzzlePets;
 
 public class PainelPrincipal extends Painel 
 {
     private Suporte[][] suportes;
     private int numeroDeMacasEmJogo;
     private int numeroDeSuportesCongelados;
+    private JanelaPuzzlePets jogo;
 
     private static final int CADENCIA_DE_QUEDA = 100;
 
