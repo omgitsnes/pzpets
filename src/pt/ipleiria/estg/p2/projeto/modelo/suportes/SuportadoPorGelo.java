@@ -5,9 +5,11 @@ import pt.ipleiria.estg.p2.projeto.modelo.Suportado;
 public class SuportadoPorGelo extends Suportado<SuporteSuportador>
 {
 
-    public SuportadoPorGelo(SuporteSuportador suporte)
+    public SuportadoPorGelo(String representacao, SuporteSuportador suporte)
     {
-        super(suporte);
+        super(representacao, suporte);
     }
+
+
 
 }

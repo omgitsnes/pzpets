@@ -27,6 +27,9 @@ public class PainelPrincipal extends Painel
         this.suportes = new Suporte[getNumeroDeLinhas()][getNumeroDeColunas()];
         this.numeroDeMacasEmJogo = 0; //Deve começar a 0 ou 1?
         gerarNivel();
+        
+        Maca m = new Maca()
+        
     }
 
     public int getNumeroDeMacasEmJogo()
@@ -93,7 +96,7 @@ public class PainelPrincipal extends Painel
                 // linhas 2 e 3 
                 if (i > 1 && i < 4) {
                     if (j == 0 || j == 3 || j == 7) {
-                        Suporte s = new SuporteAr(new Posicao(i, j));
+                        Suporte s = new SuporteAr(this, new Posicao(i, j));
                         colocar(s);
                     } else {
                         Suporte s = new SuporteGelo(this, new Posicao(i, j));
@@ -103,7 +106,7 @@ public class PainelPrincipal extends Painel
                 //todas as outras
                 if (i > 3) {
                     if ((i == 4 && j == 0) || (i == 4 && j == 7)) {
-                        Suporte s = new SuporteAr(new Posicao(i, j));
+                        Suporte s = new SuporteAr(this, new Posicao(i, j));
                         colocar(s);                     
                     } else {
                         Suporte s = new SuporteAgua(this, new Posicao(i, j));
