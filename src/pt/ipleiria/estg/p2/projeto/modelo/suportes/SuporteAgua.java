@@ -1,11 +1,14 @@
 package pt.ipleiria.estg.p2.projeto.modelo.suportes;
 
 import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
+import pt.ipleiria.estg.p2.projeto.modelo.paineis.PainelPrincipal;
 
-public class SuporteAgua extends SuporteSuportador<TSuportavelPorAgua>
+public class SuporteAgua extends SuporteSuportador
 {
-    public SuporteAgua(Posicao posicao)
+    public SuporteAgua(PainelPrincipal painelPrincipal, Posicao posicao)
     {
-        super("/pt/ipleiria/estg/p2/projeto/imagens/suportes/agua.png", posicao);
+        super(painelPrincipal, 
+                "/pt/ipleiria/estg/p2/projeto/imagens/suportes/agua.png", 
+                posicao);
     }
 }

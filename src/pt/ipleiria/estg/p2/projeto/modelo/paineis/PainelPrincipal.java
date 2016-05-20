@@ -87,7 +87,7 @@ public class PainelPrincipal extends Painel
             for (int j = 0; j < getNumeroDeColunas(); j++) {
                 //Primeiras 2 linhas
                 if (i < 2) {
-                    Suporte s = new SuporteAgua(new Posicao(i, j));
+                    Suporte s = new SuporteAgua(this, new Posicao(i, j));
                     colocar(s);
                 }
                 // linhas 2 e 3 
@@ -96,7 +96,7 @@ public class PainelPrincipal extends Painel
                         Suporte s = new SuporteAr(new Posicao(i, j));
                         colocar(s);
                     } else {
-                        Suporte s = new SuporteGelo(new Posicao(i, j));
+                        Suporte s = new SuporteGelo(this, new Posicao(i, j));
                         colocar(s);
                     }
                 }
@@ -106,12 +106,12 @@ public class PainelPrincipal extends Painel
                         Suporte s = new SuporteAr(new Posicao(i, j));
                         colocar(s);                     
                     } else {
-                        Suporte s = new SuporteAgua(new Posicao(i, j));
+                        Suporte s = new SuporteAgua(this, new Posicao(i, j));
                         colocar(s);
                     }
                 }
                 if (i == 7) {
-                    Suporte s = new SuporteAgua(new Posicao(i, j));
+                    Suporte s = new SuporteAgua(this, new Posicao(i, j));
                     colocar(s);
                     //TODO cestos
                 }

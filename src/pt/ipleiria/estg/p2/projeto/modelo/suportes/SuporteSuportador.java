@@ -1,23 +1,32 @@
 package pt.ipleiria.estg.p2.projeto.modelo.suportes;
 
 import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
+import pt.ipleiria.estg.p2.projeto.modelo.Suportado;
+import pt.ipleiria.estg.p2.projeto.modelo.paineis.PainelPrincipal;
 
-public class SuporteSuportador<TSuportavel> extends Suporte
+public class SuporteSuportador<TSuportado> extends Suporte
 {
-    private TSuportavel suportado;
+    private TSuportado suportado;
     
     /**
      * 
+     * @param painelPrincipal TODO
      * @param representacao
      * @param posicao
      */
-    public SuporteSuportador(String representacao, Posicao posicao)
+    public SuporteSuportador(PainelPrincipal painelPrincipal, String representacao, Posicao posicao)
     {
-        super(null, representacao, posicao);
+        super(painelPrincipal, representacao, posicao);
     }
 
-    public void setSuportado(TSuportavel suportado)
+    public TSuportado getSuportado()
+    {
+        return suportado;
+    }
+    
+    public void colocar(TSuportado suportado)
     {
         this.suportado = suportado;
+        
     }
 }

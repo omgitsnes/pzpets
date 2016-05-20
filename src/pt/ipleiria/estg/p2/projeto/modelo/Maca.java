@@ -1,17 +1,8 @@
 package pt.ipleiria.estg.p2.projeto.modelo;
 
-public class Maca 
-{
-	//imagem
-	//suporte
+import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuportadoPorGelo;
 
-	public void cair()
-	{
-		
-	}
-	
-	public void podeCair()
-	{
-		
-	}
+public class Maca extends SuportadoPorGelo
+{
+
 }
