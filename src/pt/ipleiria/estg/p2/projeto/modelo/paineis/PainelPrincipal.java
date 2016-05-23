@@ -1,11 +1,14 @@
 package pt.ipleiria.estg.p2.projeto.modelo.paineis;
 
 import pt.ipleiria.estg.dei.gridpanel.GridPanel;
+import pt.ipleiria.estg.p2.projeto.modelo.Cesto;
+import pt.ipleiria.estg.p2.projeto.modelo.Maca;
 import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.Suporte;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAgua;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAr;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteGelo;
+import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteSuportador;
 import pt.ipleiria.estg.p2.projeto.vista.JanelaPuzzlePets;
 
 public class PainelPrincipal extends Painel 
@@ -28,8 +31,10 @@ public class PainelPrincipal extends Painel
         this.numeroDeMacasEmJogo = 0; //Deve começar a 0 ou 1?
         gerarNivel();
         
-        Maca m = new Maca()
-        
+        Maca maca = new Maca((SuporteSuportador)suportes[0][2]);
+        ((SuporteSuportador)suportes[0][2]).colocar(maca);
+        Cesto cesto = new Cesto((SuporteAgua)suportes[7][2]);
+        ((SuporteAgua)suportes[7][2]).colocar(cesto);
     }
 
     public int getNumeroDeMacasEmJogo()
@@ -128,7 +133,7 @@ public class PainelPrincipal extends Painel
         // adicionar a matriz de suportes
         suportes[suporte.getPosicao().getLinha()][suporte.getPosicao().getColuna()] = suporte;
         // adicionar ao gridpanel
-        adicionarAoGridPanel(suporte.getPosicao(), suporte.getRepresentacao());
+        atualizarImagem(suporte);
     }
 
     //    public void adicionarAnimalAleatorio(int linha, int coluna)
@@ -170,4 +175,18 @@ public class PainelPrincipal extends Painel
         //            adicionarAnimalAleatorio(0, coluna);                            
         //        }
     }
+
+	public void iterar(long tempo) {
+		for (int i =getNumeroDeLinhas()-1; i>=0; i--) {
+            for (int j = 0; j < getNumeroDeColunas(); j++) {
+            	if (suportes[i][j] instanceof SuporteSuportador)
+            		((SuporteSuportador)suportes[i][j]).iterar(tempo);
+            }
+		}
+	}
+
+	public void atualizarImagem(Suporte suporte) {
+		adicionarAoGridPanel(suporte.getPosicao(), suporte.getRepresentacao());
+		
+	}
 }

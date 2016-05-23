@@ -19,7 +19,7 @@ public class Painel
         return gridPanel;
     }
     
-    public void adicionarAoGridPanel(Posicao posicao, CellRepresentation representacao)
+    protected void adicionarAoGridPanel(Posicao posicao, CellRepresentation representacao)
     {
         gridPanel.put(posicao.getLinha(), posicao.getColuna(), representacao);
     }
