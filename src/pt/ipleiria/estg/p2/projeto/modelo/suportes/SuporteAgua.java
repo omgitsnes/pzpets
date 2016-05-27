@@ -12,4 +12,5 @@ public class SuporteAgua extends SuporteSuportador<Suportado>
                 "/pt/ipleiria/estg/p2/projeto/imagens/suportes/agua.png", 
                 posicao);
     }
+    
 }

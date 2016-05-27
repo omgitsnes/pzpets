@@ -112,7 +112,7 @@ public class JanelaPuzzlePets extends JFrame {
 				while (true) {
 					try {
 						try {
-						    sleep(100);
+						    sleep(1000);
 							SwingUtilities.invokeAndWait(iterar);
 						} catch (InvocationTargetException e) {
 							// TODO Auto-generated catch block

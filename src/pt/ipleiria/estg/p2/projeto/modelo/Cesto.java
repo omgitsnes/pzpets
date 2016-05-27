@@ -24,4 +24,13 @@ public class Cesto extends Suportado<SuporteAgua> implements Iteravel
     public void iterar(long tempo){
     	System.out.println("estou no cesto");
     }
+
+	public boolean aceita(Suportado suportado) {
+		if(suportado instanceof Maca)
+			return true;
+		//iniciar temporizador
+		
+		return false;
+		
+	}
 }

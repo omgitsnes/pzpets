@@ -3,6 +3,7 @@ package pt.ipleiria.estg.p2.projeto.modelo.suportes;
 import pt.ipleiria.estg.dei.gridpanel.CellRepresentation;
 import pt.ipleiria.estg.dei.gridpanel.OverlayCellRepresentation;
 import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
+import pt.ipleiria.estg.p2.projeto.modelo.Sentido;
 import pt.ipleiria.estg.p2.projeto.modelo.Suportado;
 import pt.ipleiria.estg.p2.projeto.modelo.paineis.PainelPrincipal;
 
@@ -34,9 +35,12 @@ public class SuporteSuportador<TSuportado extends Suportado> extends Suporte
     }
 
     
-    public void podeCair(TSuportado suportado) 
+    public boolean podeCair(Sentido sentido) 
     {
-        suportado.getSuporte().podeCair();
+        if(getPainelPrincipal().podeCairSuportado(suportado, posicao, Sentido.S)){
+        	return true;
+        }
+        return false;
     }
 
 	public void iterar(long tempo) {
@@ -55,5 +59,14 @@ public class SuporteSuportador<TSuportado extends Suportado> extends Suporte
 	public boolean podeReceber()
 	{
 	    return this.suportado == null;
+	}
+
+	public void setSuportado(TSuportado suportado) {
+		this.suportado = suportado;
+	}
+
+	public void fazMeCair(Sentido s) {
+		getPainelPrincipal().fazMeCair(suportado, posicao, s);
+		suportado = null;
 	}
 }

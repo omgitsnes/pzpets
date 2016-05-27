@@ -4,6 +4,7 @@ import pt.ipleiria.estg.dei.gridpanel.GridPanel;
 import pt.ipleiria.estg.p2.projeto.modelo.Cesto;
 import pt.ipleiria.estg.p2.projeto.modelo.Maca;
 import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
+import pt.ipleiria.estg.p2.projeto.modelo.Sentido;
 import pt.ipleiria.estg.p2.projeto.modelo.Suportado;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.Suporte;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAgua;
@@ -226,4 +227,50 @@ public class PainelPrincipal extends Painel
 	    }
 	}
 
+	public boolean podeCairSuportado(Suportado suportado, Posicao posicao, Sentido s) {
+		switch (s) {
+		case S:
+			if(suportes[posicao.getLinha() + 1][posicao.getColuna()].aceitas(suportado, posicao, s) == true){
+				return true;
+			}
+			
+			break;
+		
+		case SO:
+			if(suportes[posicao.getLinha() + 1][Math.max(0, posicao.getColuna() - 1)].aceitas(suportado, posicao, s)){
+				return true;
+			}
+			break;
+		
+		case SE:
+			if(suportes[posicao.getLinha() + 1][Math.min(7, posicao.getColuna() + 1)].aceitas(suportado, posicao, s)){
+				return true;
+			}
+			break;
+
+		}
+		
+		return false;
+		
+	}
+
+	public void fazMeCair(Suportado suportado, Posicao posicao, Sentido s) {
+		switch (s) {
+		case S:
+			suportes[posicao.getLinha() + 1][posicao.getColuna()].tomaLa(suportado, posicao, s);
+			break;
+		
+		case SO:
+			suportes[posicao.getLinha() + 1][Math.max(0, posicao.getColuna() - 1)].tomaLa(suportado, posicao, s);
+			break;
+		
+		case SE:
+			suportes[posicao.getLinha() + 1][Math.min(7, posicao.getColuna() + 1)].tomaLa(suportado, posicao, s);
+			
+			break;
+
+		}
+	}
+
 }
+
