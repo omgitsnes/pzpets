@@ -29,10 +29,10 @@ public class SuporteSuportador<TSuportado extends Suportado> extends Suporte
     public void colocar(TSuportado suportado)
     {
         this.suportado = suportado;
-        suportado.setSuporte(this);
-        getPainelPrincipal().atualizarImagem(this);
         
+        getPainelPrincipal().atualizarImagem(this); 
     }
+
     
     public void podeCair(TSuportado suportado) 
     {

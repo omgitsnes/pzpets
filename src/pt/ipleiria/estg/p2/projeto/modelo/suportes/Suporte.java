@@ -43,4 +43,9 @@ public class Suporte
 	public boolean estadoDoCesto() {
 		return false;
 	}
+
+    public void setRepresentacao(CellRepresentation representacao)
+    {
+        this.representacao = representacao;
+    }
 }

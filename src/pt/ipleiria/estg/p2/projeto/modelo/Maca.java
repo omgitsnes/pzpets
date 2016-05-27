@@ -8,8 +8,7 @@ import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteSuportador;
 
 public class Maca extends SuportadoPorGelo implements Iteravel
 {
-	private Suporte suporte;
-
+    
     public Maca(SuporteSuportador suporte)
     {
         super("/pt/ipleiria/estg/p2/projeto/imagens/objetivos/maca.png",
@@ -19,6 +18,6 @@ public class Maca extends SuportadoPorGelo implements Iteravel
 	@Override
 	public void iterar(long tempo) {
 		System.out.println("Se calhar devia cair");
-		suporte.podeCair(this);
+		((SuporteSuportador)getSuporte()).podeCair(this);
 	}
 }

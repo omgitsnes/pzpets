@@ -44,7 +44,7 @@ public class PainelPrincipal extends Painel
 
     private void colocarMacaNivel1() {
     	System.out.println("tou ca dentro");
-    	Maca maca = new Maca((SuporteSuportador)suportes[1][2]);
+    	Maca maca = new Maca((SuporteSuportador)suportes[0][2]);
         ((SuporteSuportador)suportes[0][2]).colocar(maca);
         Maca macaNumero2 = new Maca((SuporteSuportador)suportes[1][5]);
         ((SuporteSuportador)suportes[1][5]).colocar(macaNumero2);
@@ -209,7 +209,9 @@ public class PainelPrincipal extends Painel
 	    
 	    if (!(suportes[posicao.getLinha() + 1][posicao.getColuna()] instanceof SuporteAr)) {
 	        if (((SuporteSuportador) suportes[posicao.getLinha() + 1][posicao.getColuna()]).podeReceber()) {
-	            ((SuporteSuportador) suportes[posicao.getLinha() + 1][posicao.getColuna()]).colocar(((SuporteSuportador) suportes[posicao.getLinha() + 1][posicao.getColuna()]).getSuportado());
+	            ((SuporteSuportador) suportes[posicao.getLinha() + 1][posicao.getColuna()]).colocar(((SuporteSuportador) suportes[posicao.getLinha()][posicao.getColuna()]).getSuportado());
+	            ((SuporteSuportador) suportes[posicao.getLinha()][posicao.getColuna()]).colocar(null);
+	            
 	        }
 	    }
         if (!(suportes[posicao.getLinha() + 1][Math.max(0, posicao.getColuna() - 1)] instanceof SuporteAr)) {
