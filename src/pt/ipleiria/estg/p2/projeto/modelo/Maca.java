@@ -19,15 +19,6 @@ public class Maca extends SuportadoPorGelo implements Iteravel
 	@Override
 	public void iterar(long tempo) {
 		System.out.println("Se calhar devia cair");
+		suporte.podeCair(this);
 	}
-	
-	public void possoCair()
-	{
-		suporte.aMacaPodeCair();
-	}
-    
-   
-
-
-
 }

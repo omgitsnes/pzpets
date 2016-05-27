@@ -29,8 +29,14 @@ public class SuporteSuportador<TSuportado extends Suportado> extends Suporte
     public void colocar(TSuportado suportado)
     {
         this.suportado = suportado;
+        suportado.setSuporte(this);
         getPainelPrincipal().atualizarImagem(this);
         
+    }
+    
+    public void podeCair(TSuportado suportado) 
+    {
+        suportado.getSuporte().podeCair();
     }
 
 	public void iterar(long tempo) {
@@ -44,5 +50,10 @@ public class SuporteSuportador<TSuportado extends Suportado> extends Suporte
 		  return super.getRepresentacao();
 		
 		return new OverlayCellRepresentation(super.getRepresentacao(), suportado.getRepresentacao());
+	}
+	
+	public boolean podeReceber()
+	{
+	    return this.suportado == null;
 	}
 }

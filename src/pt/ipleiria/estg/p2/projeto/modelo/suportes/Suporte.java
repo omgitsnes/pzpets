@@ -35,9 +35,10 @@ public class Suporte
         return painelPrincipal;
     }
 
-	public void aMacaPodeCair() {
-		//painelPrincipal.podeCair();
-	}
+    public void podeCair() 
+    {
+        painelPrincipal.fazerCair(posicao);
+    }
 
 	public boolean estadoDoCesto() {
 		return false;

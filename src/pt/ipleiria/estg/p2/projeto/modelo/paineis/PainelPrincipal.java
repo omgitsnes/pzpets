@@ -4,6 +4,7 @@ import pt.ipleiria.estg.dei.gridpanel.GridPanel;
 import pt.ipleiria.estg.p2.projeto.modelo.Cesto;
 import pt.ipleiria.estg.p2.projeto.modelo.Maca;
 import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
+import pt.ipleiria.estg.p2.projeto.modelo.Suportado;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.Suporte;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAgua;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAr;
@@ -143,19 +144,17 @@ public class PainelPrincipal extends Painel
     }
     
     public void colocarCesto()
-    {for (int j = 0; j < getNumeroDeColunas(); j++)
-    	 {
-             {for (int i =getNumeroDeLinhas()-1; i>0; i--)
-            	if (suportes[i][j] instanceof SuporteAgua){
-            	Cesto cesto = new Cesto((SuporteAgua)suportes[i][j]);
-                ((SuporteAgua)suportes[i][j]).colocar(cesto);
-            	System.out.println("entrei");
-            	break;
+    {
+        for (int j = 0; j < getNumeroDeColunas(); j++) {
+             for (int i = getNumeroDeLinhas()-1; i>0; i--) {
+            	if (suportes[i][j] instanceof SuporteAgua) {
+                	Cesto cesto = new Cesto((SuporteAgua)suportes[i][j]);
+                    ((SuporteAgua)suportes[i][j]).colocar(cesto);
+                	System.out.println("entrei");
+                	break;
             	}
             }
     	}
-            
-            
     }
 
     public void colocar(Suporte suporte)
@@ -206,8 +205,23 @@ public class PainelPrincipal extends Painel
 		
 	}
 
-	public void podeCair(int linha, int coluna) {
-			
+	public void fazerCair(Posicao posicao) {
+	    
+	    if (!(suportes[posicao.getLinha() + 1][posicao.getColuna()] instanceof SuporteAr)) {
+	        if (((SuporteSuportador) suportes[posicao.getLinha() + 1][posicao.getColuna()]).podeReceber()) {
+	            ((SuporteSuportador) suportes[posicao.getLinha() + 1][posicao.getColuna()]).colocar(((SuporteSuportador) suportes[posicao.getLinha() + 1][posicao.getColuna()]).getSuportado());
+	        }
+	    }
+        if (!(suportes[posicao.getLinha() + 1][Math.max(0, posicao.getColuna() - 1)] instanceof SuporteAr)) {
+            if (((SuporteSuportador) suportes[posicao.getLinha() + 1][Math.max(0, posicao.getColuna() - 1)]).podeReceber()) {
+                ((SuporteSuportador) suportes[posicao.getLinha() + 1][Math.max(0, posicao.getColuna() - 1)]).colocar(((SuporteSuportador) suportes[posicao.getLinha() + 1][Math.max(0, posicao.getColuna() - 1)]).getSuportado());
+            }
+        }
+        if (!(suportes[posicao.getLinha() + 1][Math.min(7, posicao.getColuna() + 1)] instanceof SuporteAr)) {
+            if (((SuporteSuportador) suportes[posicao.getLinha() + 1][Math.min(7, posicao.getColuna() + 1)]).podeReceber()) {
+                ((SuporteSuportador) suportes[posicao.getLinha() + 1][Math.min(7, posicao.getColuna() + 1)]).colocar(((SuporteSuportador) suportes[posicao.getLinha() + 1][Math.min(7, posicao.getColuna() + 1)]).getSuportado());
+            }
+	    }
 	}
 
 }
