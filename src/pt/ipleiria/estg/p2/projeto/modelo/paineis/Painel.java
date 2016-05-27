@@ -6,7 +6,7 @@ import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
 
 public class Painel
 {
-    private GridPanel gridPanel;
+    protected GridPanel gridPanel;
 
     public Painel(GridPanel gridPanel)
     {

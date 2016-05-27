@@ -17,11 +17,18 @@ public class PainelPrincipal extends Painel
     private int numeroDeMacasEmJogo;
     private int numeroDeSuportesCongelados;
     private JanelaPuzzlePets jogo;
+	static final Posicao[] POSSIVEIS = {new Posicao(1,0),new Posicao(0,1), new Posicao(0,-1), new Posicao(-1,0)};
+	private Posicao posicaoOrigem;
+	
+//	private Animal animalOrigem;
+//	private Animal animalDestino;
+	
+	private Suporte suporteOrigem;
+	private Suporte suporteDestino;
 
     private static final int CADENCIA_DE_QUEDA = 100;
 
     /**
-     * O Painel Principal é con
      * @param gridPanel
      */
     public PainelPrincipal(GridPanel gridPanel) 
@@ -30,14 +37,20 @@ public class PainelPrincipal extends Painel
         this.suportes = new Suporte[getNumeroDeLinhas()][getNumeroDeColunas()];
         this.numeroDeMacasEmJogo = 0; //Deve começar a 0 ou 1?
         gerarNivel();
-        
-        Maca maca = new Maca((SuporteSuportador)suportes[0][2]);
-        ((SuporteSuportador)suportes[0][2]).colocar(maca);
-        Cesto cesto = new Cesto((SuporteAgua)suportes[7][2]);
-        ((SuporteAgua)suportes[7][2]).colocar(cesto);
+        colocarCesto();
+        colocarMacaNivel1();
     }
 
-    public int getNumeroDeMacasEmJogo()
+    private void colocarMacaNivel1() {
+    	System.out.println("tou ca dentro");
+    	Maca maca = new Maca((SuporteSuportador)suportes[1][2]);
+        ((SuporteSuportador)suportes[0][2]).colocar(maca);
+        Maca macaNumero2 = new Maca((SuporteSuportador)suportes[1][5]);
+        ((SuporteSuportador)suportes[1][5]).colocar(macaNumero2);
+        System.out.println("ainda ca tou!");
+    }
+
+	public int getNumeroDeMacasEmJogo()
     {
         return numeroDeMacasEmJogo;
     }
@@ -63,32 +76,33 @@ public class PainelPrincipal extends Painel
     {
         return CADENCIA_DE_QUEDA;
     }
+    
+    private Suporte getSuporte(Posicao posicao) {
+		return suportes[posicao.getLinha()][posicao.getColuna()];
+	}
+    
+    public boolean isPosicaoValida(Posicao posicao) {
+		return posicao.getLinha() >= 0 && posicao.getLinha() < suportes.length && 
+				posicao.getColuna() >= 0 && posicao.getColuna() < suportes[0].length;
+	}
+    
+    public boolean proximaPosicao(Posicao posicaoOrigem, Posicao posicaoDestino){
+		for(int i=0; i < POSSIVEIS.length; i++){
+			if(posicaoDestino.getLinha() == POSSIVEIS[i].getLinha()+posicaoOrigem.getLinha() &&
+					posicaoDestino.getColuna() == POSSIVEIS[i].getColuna()+posicaoOrigem.getColuna()){
+				return true;
+			}
+		}
+		return false;
+	}
+    
+    public void atualizarSuporte(Posicao posicao) {
+		gridPanel.clear(posicao.getLinha(), posicao.getColuna());
+		gridPanel.add(posicao.getLinha(), posicao.getColuna(), 
+				suportes[posicao.getLinha()][posicao.getColuna()].getRepresentacao());
+		gridPanel.repaint();
+	}
 
-    //    /**
-    //     * Percorre a matriz de suportes
-    //     * Sempre que um suporte nao Ar, com suportavel que cai
-    //     */
-    //    public void cair(int linha, int coluna) 
-    //    {
-    //        //TODO ATUALIZAR O SUPORTE DO ANIMAL
-    //        if (suportes[linha][coluna] instanceof SuporteComSuportado && ((SuporteComSuportado) suportes[linha][coluna]).getSuportado() != null) {
-    //            Posicao novaPosicao = ((Animal) ((SuporteComSuportado) suportes[linha][coluna]).getSuportado()).podeCair(suportes, linha, coluna);
-    //            if (novaPosicao != null) {
-    //                ((Animal) ((SuporteComSuportado) suportes[linha][coluna]).getSuportado()).cair(suportes, novaPosicao, linha, coluna);
-    //                this.getGridPanel().remove(linha, coluna, ((SuporteComSuportado) suportes[novaPosicao.getLinha()][novaPosicao.getColuna()]).getSuportado().getRepresentacao());
-    //                this.getGridPanel().add(novaPosicao.getLinha(), novaPosicao.getColuna(), ((SuporteComSuportado) suportes[novaPosicao.getLinha()][novaPosicao.getColuna()]).getSuportado().getRepresentacao());
-    //                this.getGridPanel().repaint();
-    //            }
-    //        }
-    //    }
-
-    /**
-     * Instancia e adiciona a matriz de suportes os suportes de um nivel
-     * 
-     * 
-     * @param gridPanel
-     * @param suportes
-     */
     private void gerarNivel()
     {
         for (int i = 0; i < getNumeroDeLinhas(); i++) {
@@ -127,12 +141,28 @@ public class PainelPrincipal extends Painel
         }
         atualizarGridPanel();
     }
+    
+    public void colocarCesto()
+    {for (int j = 0; j < getNumeroDeColunas(); j++)
+    	 {
+             {for (int i =getNumeroDeLinhas()-1; i>0; i--)
+            	if (suportes[i][j] instanceof SuporteAgua){
+            	Cesto cesto = new Cesto((SuporteAgua)suportes[i][j]);
+                ((SuporteAgua)suportes[i][j]).colocar(cesto);
+            	System.out.println("entrei");
+            	break;
+            	}
+            }
+    	}
+            
+            
+    }
 
     public void colocar(Suporte suporte)
     {
         // adicionar a matriz de suportes
         suportes[suporte.getPosicao().getLinha()][suporte.getPosicao().getColuna()] = suporte;
-        // adicionar ao gridpanel
+        // atualiza a imagem
         atualizarImagem(suporte);
     }
 
@@ -161,20 +191,6 @@ public class PainelPrincipal extends Painel
     //        }
     //    }
 
-    /**
-     * Garante uma maca em uma coluna aleatoria da primeira linha.
-     * Preenche os Restantes suportes com Inimigos e Animais
-     */
-    private void preencherNovoNivel()
-    {
-        //TODO ADD 1 Maca na primeira linha 
-        //        int r = new Random().nextInt(getGridPanel().getNumberOfColumns());
-        //        suportes[0][r] = new Maca();
-        //        getGridPanel().add(0, r., );
-        //        for (int coluna = 0; coluna < getGridPanel().getNumberOfColumns(); coluna++) {
-        //            adicionarAnimalAleatorio(0, coluna);                            
-        //        }
-    }
 
 	public void iterar(long tempo) {
 		for (int i =getNumeroDeLinhas()-1; i>=0; i--) {
@@ -189,4 +205,9 @@ public class PainelPrincipal extends Painel
 		adicionarAoGridPanel(suporte.getPosicao(), suporte.getRepresentacao());
 		
 	}
+
+	public void podeCair(int linha, int coluna) {
+			
+	}
+
 }
