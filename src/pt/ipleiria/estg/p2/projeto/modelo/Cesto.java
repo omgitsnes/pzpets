@@ -26,11 +26,10 @@ public class Cesto extends Suportado<SuporteAgua> implements Iteravel
     }
 
 	public boolean aceitas(Suportado suportado) {
-		if(suportado instanceof Maca)
+		if(suportado instanceof Maca) {
+		    System.out.println(this + " Recebeu uma maca!");
 			return true;
-		//iniciar temporizador
-		
+		}
 		return false;
-		
 	}
 }

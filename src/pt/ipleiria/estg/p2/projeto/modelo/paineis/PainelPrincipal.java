@@ -205,26 +205,6 @@ public class PainelPrincipal extends Painel
         adicionarAoGridPanel(suporte.getPosicao(), suporte.getRepresentacao());
     }
 
-    public void fazerCair(Posicao posicao) {
-
-        if (!(suportes[posicao.getLinha() + 1][posicao.getColuna()] instanceof SuporteAr)) {
-            if (((SuporteSuportador) suportes[posicao.getLinha() + 1][posicao.getColuna()]).podeReceber()) {
-                ((SuporteSuportador) suportes[posicao.getLinha() + 1][posicao.getColuna()]).colocar(((SuporteSuportador) suportes[posicao.getLinha()][posicao.getColuna()]).getSuportado());
-                ((SuporteSuportador) suportes[posicao.getLinha()][posicao.getColuna()]).colocar(null);
-
-            }
-        }
-        if (!(suportes[posicao.getLinha() + 1][Math.max(0, posicao.getColuna() - 1)] instanceof SuporteAr)) {
-            if (((SuporteSuportador) suportes[posicao.getLinha() + 1][Math.max(0, posicao.getColuna() - 1)]).podeReceber()) {
-                ((SuporteSuportador) suportes[posicao.getLinha() + 1][Math.max(0, posicao.getColuna() - 1)]).colocar(((SuporteSuportador) suportes[posicao.getLinha() + 1][Math.max(0, posicao.getColuna() - 1)]).getSuportado());
-            }
-        }
-        if (!(suportes[posicao.getLinha() + 1][Math.min(7, posicao.getColuna() + 1)] instanceof SuporteAr)) {
-            if (((SuporteSuportador) suportes[posicao.getLinha() + 1][Math.min(7, posicao.getColuna() + 1)]).podeReceber()) {
-                ((SuporteSuportador) suportes[posicao.getLinha() + 1][Math.min(7, posicao.getColuna() + 1)]).colocar(((SuporteSuportador) suportes[posicao.getLinha() + 1][Math.min(7, posicao.getColuna() + 1)]).getSuportado());
-            }
-        }
-    }
 
     public void fazMeCair(Suportado suportado, Posicao posicao, Sentido s) {
         switch (s) {
