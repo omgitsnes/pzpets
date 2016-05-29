@@ -19,14 +19,14 @@ public class PainelPrincipal extends Painel
     private int numeroDeMacasEmJogo;
     private int numeroDeSuportesCongelados;
     private JanelaPuzzlePets jogo;
-	static final Posicao[] POSSIVEIS = {new Posicao(1,0),new Posicao(0,1), new Posicao(0,-1), new Posicao(-1,0)};
-	private Posicao posicaoOrigem;
-	
-//	private Animal animalOrigem;
-//	private Animal animalDestino;
-	
-	private Suporte suporteOrigem;
-	private Suporte suporteDestino;
+    static final Posicao[] POSSIVEIS = {new Posicao(1,0),new Posicao(0,1), new Posicao(0,-1), new Posicao(-1,0)};
+    private Posicao posicaoOrigem;
+
+    //	private Animal animalOrigem;
+    //	private Animal animalDestino;
+
+    private Suporte suporteOrigem;
+    private Suporte suporteDestino;
 
     private static final int CADENCIA_DE_QUEDA = 100;
 
@@ -44,15 +44,15 @@ public class PainelPrincipal extends Painel
     }
 
     private void colocarMacaNivel1() {
-    	System.out.println("tou ca dentro");
-    	Maca maca = new Maca((SuporteSuportador)suportes[0][2]);
+        System.out.println("tou ca dentro");
+        Maca maca = new Maca((SuporteSuportador)suportes[0][2]);
         ((SuporteSuportador)suportes[0][2]).colocar(maca);
         Maca macaNumero2 = new Maca((SuporteSuportador)suportes[1][5]);
         ((SuporteSuportador)suportes[1][5]).colocar(macaNumero2);
         System.out.println("ainda ca tou!");
     }
 
-	public int getNumeroDeMacasEmJogo()
+    public int getNumeroDeMacasEmJogo()
     {
         return numeroDeMacasEmJogo;
     }
@@ -78,32 +78,32 @@ public class PainelPrincipal extends Painel
     {
         return CADENCIA_DE_QUEDA;
     }
-    
+
     private Suporte getSuporte(Posicao posicao) {
-		return suportes[posicao.getLinha()][posicao.getColuna()];
-	}
-    
+        return suportes[posicao.getLinha()][posicao.getColuna()];
+    }
+
     public boolean isPosicaoValida(Posicao posicao) {
-		return posicao.getLinha() >= 0 && posicao.getLinha() < suportes.length && 
-				posicao.getColuna() >= 0 && posicao.getColuna() < suportes[0].length;
-	}
-    
+        return posicao.getLinha() >= 0 && posicao.getLinha() < suportes.length && 
+                posicao.getColuna() >= 0 && posicao.getColuna() < suportes[0].length;
+    }
+
     public boolean proximaPosicao(Posicao posicaoOrigem, Posicao posicaoDestino){
-		for(int i=0; i < POSSIVEIS.length; i++){
-			if(posicaoDestino.getLinha() == POSSIVEIS[i].getLinha()+posicaoOrigem.getLinha() &&
-					posicaoDestino.getColuna() == POSSIVEIS[i].getColuna()+posicaoOrigem.getColuna()){
-				return true;
-			}
-		}
-		return false;
-	}
-    
+        for(int i=0; i < POSSIVEIS.length; i++){
+            if(posicaoDestino.getLinha() == POSSIVEIS[i].getLinha()+posicaoOrigem.getLinha() &&
+                    posicaoDestino.getColuna() == POSSIVEIS[i].getColuna()+posicaoOrigem.getColuna()){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void atualizarSuporte(Posicao posicao) {
-		gridPanel.clear(posicao.getLinha(), posicao.getColuna());
-		gridPanel.add(posicao.getLinha(), posicao.getColuna(), 
-				suportes[posicao.getLinha()][posicao.getColuna()].getRepresentacao());
-		gridPanel.repaint();
-	}
+        gridPanel.clear(posicao.getLinha(), posicao.getColuna());
+        gridPanel.add(posicao.getLinha(), posicao.getColuna(), 
+                suportes[posicao.getLinha()][posicao.getColuna()].getRepresentacao());
+        gridPanel.repaint();
+    }
 
     private void gerarNivel()
     {
@@ -143,19 +143,19 @@ public class PainelPrincipal extends Painel
         }
         atualizarGridPanel();
     }
-    
+
     public void colocarCesto()
     {
         for (int j = 0; j < getNumeroDeColunas(); j++) {
-             for (int i = getNumeroDeLinhas()-1; i>0; i--) {
-            	if (suportes[i][j] instanceof SuporteAgua) {
-                	Cesto cesto = new Cesto((SuporteAgua)suportes[i][j]);
+            for (int i = getNumeroDeLinhas()-1; i>0; i--) {
+                if (suportes[i][j] instanceof SuporteAgua) {
+                    Cesto cesto = new Cesto((SuporteAgua)suportes[i][j]);
                     ((SuporteAgua)suportes[i][j]).colocar(cesto);
-                	System.out.println("entrei");
-                	break;
-            	}
+                    System.out.println("entrei");
+                    break;
+                }
             }
-    	}
+        }
     }
 
     public void colocar(Suporte suporte)
@@ -192,29 +192,28 @@ public class PainelPrincipal extends Painel
     //    }
 
 
-	public void iterar(long tempo) {
-		for (int i =getNumeroDeLinhas()-1; i>=0; i--) {
+    public void iterar(long tempo) {
+        for (int i =getNumeroDeLinhas()-1; i>=0; i--) {
             for (int j = 0; j < getNumeroDeColunas(); j++) {
-            	if (suportes[i][j] instanceof SuporteSuportador)
-            		((SuporteSuportador)suportes[i][j]).iterar(tempo);
+                if (suportes[i][j] instanceof SuporteSuportador)
+                    ((SuporteSuportador)suportes[i][j]).iterar(tempo);
             }
-		}
-	}
+        }
+    }
 
-	public void atualizarImagem(Suporte suporte) {
-		adicionarAoGridPanel(suporte.getPosicao(), suporte.getRepresentacao());
-		
-	}
+    public void atualizarImagem(Suporte suporte) {
+        adicionarAoGridPanel(suporte.getPosicao(), suporte.getRepresentacao());
+    }
 
-	public void fazerCair(Posicao posicao) {
-	    
-	    if (!(suportes[posicao.getLinha() + 1][posicao.getColuna()] instanceof SuporteAr)) {
-	        if (((SuporteSuportador) suportes[posicao.getLinha() + 1][posicao.getColuna()]).podeReceber()) {
-	            ((SuporteSuportador) suportes[posicao.getLinha() + 1][posicao.getColuna()]).colocar(((SuporteSuportador) suportes[posicao.getLinha()][posicao.getColuna()]).getSuportado());
-	            ((SuporteSuportador) suportes[posicao.getLinha()][posicao.getColuna()]).colocar(null);
-	            
-	        }
-	    }
+    public void fazerCair(Posicao posicao) {
+
+        if (!(suportes[posicao.getLinha() + 1][posicao.getColuna()] instanceof SuporteAr)) {
+            if (((SuporteSuportador) suportes[posicao.getLinha() + 1][posicao.getColuna()]).podeReceber()) {
+                ((SuporteSuportador) suportes[posicao.getLinha() + 1][posicao.getColuna()]).colocar(((SuporteSuportador) suportes[posicao.getLinha()][posicao.getColuna()]).getSuportado());
+                ((SuporteSuportador) suportes[posicao.getLinha()][posicao.getColuna()]).colocar(null);
+
+            }
+        }
         if (!(suportes[posicao.getLinha() + 1][Math.max(0, posicao.getColuna() - 1)] instanceof SuporteAr)) {
             if (((SuporteSuportador) suportes[posicao.getLinha() + 1][Math.max(0, posicao.getColuna() - 1)]).podeReceber()) {
                 ((SuporteSuportador) suportes[posicao.getLinha() + 1][Math.max(0, posicao.getColuna() - 1)]).colocar(((SuporteSuportador) suportes[posicao.getLinha() + 1][Math.max(0, posicao.getColuna() - 1)]).getSuportado());
@@ -224,53 +223,51 @@ public class PainelPrincipal extends Painel
             if (((SuporteSuportador) suportes[posicao.getLinha() + 1][Math.min(7, posicao.getColuna() + 1)]).podeReceber()) {
                 ((SuporteSuportador) suportes[posicao.getLinha() + 1][Math.min(7, posicao.getColuna() + 1)]).colocar(((SuporteSuportador) suportes[posicao.getLinha() + 1][Math.min(7, posicao.getColuna() + 1)]).getSuportado());
             }
-	    }
-	}
+        }
+    }
 
-	public boolean podeCairSuportado(Suportado suportado, Posicao posicao, Sentido s) {
-		switch (s) {
-		case S:
-			if(suportes[posicao.getLinha() + 1][posicao.getColuna()].aceitas(suportado, posicao, s) == true){
-				return true;
-			}
-			
-			break;
-		
-		case SO:
-			if(suportes[posicao.getLinha() + 1][Math.max(0, posicao.getColuna() - 1)].aceitas(suportado, posicao, s)){
-				return true;
-			}
-			break;
-		
-		case SE:
-			if(suportes[posicao.getLinha() + 1][Math.min(7, posicao.getColuna() + 1)].aceitas(suportado, posicao, s)){
-				return true;
-			}
-			break;
+    public void fazMeCair(Suportado suportado, Posicao posicao, Sentido s) {
+        switch (s) {
+        case S:
+            ((SuporteSuportador<Suportado>) suportes[posicao.getLinha()][posicao.getColuna()]).colocar(null);
+            atualizarImagem(suportes[posicao.getLinha()][posicao.getColuna()]);
+            suportes[posicao.getLinha() + 1][posicao.getColuna()].tomaLa(suportado, posicao, s);
+            suportado.setSuporte((SuporteSuportador) suportes[posicao.getLinha() + 1][posicao.getColuna()]);
+            break;
 
-		}
-		
-		return false;
-		
-	}
+        case SO:
+            suportes[posicao.getLinha() + 1][Math.max(0, posicao.getColuna() - 1)].tomaLa(suportado, posicao, s);
+            break;
 
-	public void fazMeCair(Suportado suportado, Posicao posicao, Sentido s) {
-		switch (s) {
-		case S:
-			suportes[posicao.getLinha() + 1][posicao.getColuna()].tomaLa(suportado, posicao, s);
-			break;
-		
-		case SO:
-			suportes[posicao.getLinha() + 1][Math.max(0, posicao.getColuna() - 1)].tomaLa(suportado, posicao, s);
-			break;
-		
-		case SE:
-			suportes[posicao.getLinha() + 1][Math.min(7, posicao.getColuna() + 1)].tomaLa(suportado, posicao, s);
-			
-			break;
+        case SE:
+            suportes[posicao.getLinha() + 1][Math.min(7, posicao.getColuna() + 1)].tomaLa(suportado, posicao, s);
 
-		}
-	}
+            break;
+
+        }
+    }
+
+    public boolean podeCair(Suportado suportado, Posicao posicao, Sentido sentido)
+    {
+        switch (sentido) {
+            case S:
+                if (suportes[posicao.getLinha() + 1][posicao.getColuna()].aceitas(suportado, posicao, sentido)) {
+                    return true;
+                }
+                break;
+            case SO:
+                if (suportes[posicao.getLinha() + 1][Math.max(0, posicao.getColuna() - 1)].aceitas(suportado, posicao, sentido)) {
+                    return true;
+                }
+                break;
+            case SE:
+                if (suportes[posicao.getLinha() + 1][Math.min(7, posicao.getColuna() + 1)].aceitas(suportado, posicao, sentido)) {
+                    return true;
+                }
+                break;
+        }
+        return false;
+    }
 
 }
 

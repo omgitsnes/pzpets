@@ -41,44 +41,29 @@ public class Suporte
         return painelPrincipal;
     }
 
-	public boolean estadoDoCesto() {
-		return false;
-	}
+    public boolean estadoDoCesto() {
+        return false;
+    }
 
     public void setRepresentacao(CellRepresentation representacao)
     {
         this.representacao = representacao;
     }
 
-	public boolean aceitas(Suportado suportado,Posicao posicao, Sentido s) {
-		if (this instanceof SuporteAr){
-			if(s == Sentido.S)
-				painelPrincipal.podeCairSuportado(suportado, posicao, s);
-		return false;
-			
-		}
-			
-		if (this instanceof SuporteAgua) {
-			if(((SuporteSuportador)this).getSuportado() == null){
-			return true;
-			}
-			else if (((SuporteSuportador)this).getSuportado() instanceof Cesto ) {
-				((Cesto)((SuporteSuportador)this).getSuportado()).aceita(suportado); 
-			}
-			
-		} 
-		if (this instanceof SuporteGelo)
-		{
-			if(((SuporteSuportador)this).getSuportado() == null){
-				return true;
-			}
-		}
-		return false;
-	}
+    public boolean aceitas(Suportado suportado, Posicao posicao, Sentido s) 
+    {
+        return false;
+    }
+    
+    public boolean podeCair(Sentido sentido)
+    {
+        if (sentido != Sentido.S) {
+            return false;
+        }
+        return true;
+    }
 
-	public void tomaLa(Suportado suportado, Posicao posicao, Sentido s) {
-		((SuporteSuportador)this).setSuportado(suportado);
-		getPainelPrincipal().atualizarImagem(this);
-	}
-
+    public void tomaLa(Suportado suportado, Posicao posicao, Sentido s) {
+        
+    }
 }
