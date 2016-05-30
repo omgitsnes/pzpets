@@ -200,18 +200,15 @@ public class PainelPrincipal extends Painel
     public void fazMeCair(Suportado suportado, Posicao posicao, Sentido sentido) {
         switch (sentido) {
         case S:
-            suportado.getSuporte().colocar(null);
-            atualizarImagem(suportes[suportado.getSuporte().getPosicao().getLinha()][suportado.getSuporte().getPosicao().getColuna()]);
-            suportes[posicao.getLinha() + 1][posicao.getColuna()].tomaLa(suportado, posicao, sentido);
+           suportes[posicao.getLinha() + 1][posicao.getColuna()].tomaLa(suportado, posicao, sentido);
             break;
 
         case SO:
-            suportes[posicao.getLinha() + 1][Math.max(0, posicao.getColuna() - 1)].tomaLa(suportado, posicao, sentido);
+            suportes[posicao.getLinha() + 1][posicao.getColuna() - 1].tomaLa(suportado, posicao, sentido);
             break;
 
         case SE:
-            suportes[posicao.getLinha() + 1][Math.min(7, posicao.getColuna() + 1)].tomaLa(suportado, posicao, sentido);
-
+            suportes[posicao.getLinha() + 1][posicao.getColuna() + 1].tomaLa(suportado, posicao, sentido);
             break;
 
         }
@@ -219,23 +216,11 @@ public class PainelPrincipal extends Painel
 
     public boolean podeCair(Suportado suportado, Posicao posicao, Sentido sentido)
     {
-        switch (sentido) {
-            case S:
-                if (suportes[posicao.getLinha() + 1][posicao.getColuna()].aceitas(suportado, posicao, sentido)) {
-                    return true;
-                }
-                break;
-            case SO:
-                if (suportes[posicao.getLinha() + 1][Math.max(0, posicao.getColuna() - 1)].aceitas(suportado, posicao, sentido)) {
-                    return true;
-                }
-                break;
-            case SE:
-                if (suportes[posicao.getLinha() + 1][Math.min(7, posicao.getColuna() + 1)].aceitas(suportado, posicao, sentido)) {
-                    return true;
-                }
-                break;
-        }
+    	Posicao novaPosicao=posicao.seguir(sentido);
+    	if (novaPosicao.isDentro(8, 8)){
+    		return suportes[novaPosicao.getLinha()][novaPosicao.getColuna()].aceitas(suportado, posicao, sentido);
+    	}
+    	
         return false;
     }
 

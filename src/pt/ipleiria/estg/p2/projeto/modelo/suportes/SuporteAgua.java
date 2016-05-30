@@ -27,4 +27,13 @@ public class SuporteAgua extends SuporteSuportador<Suportado>
         }
         return false;
     }
+    
+    @Override
+    public void tomaLa(Suportado suportado, Posicao posicao, Sentido s) {
+    	if (getSuportado() instanceof Cesto) {
+            ((Cesto)getSuportado()).tomaLa(suportado, posicao, s);
+    	}
+            else
+    	     super.tomaLa(suportado, posicao, s);
+    }
 }

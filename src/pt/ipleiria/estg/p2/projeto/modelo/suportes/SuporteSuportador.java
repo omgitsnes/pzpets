@@ -7,7 +7,7 @@ import pt.ipleiria.estg.p2.projeto.modelo.Sentido;
 import pt.ipleiria.estg.p2.projeto.modelo.Suportado;
 import pt.ipleiria.estg.p2.projeto.modelo.paineis.PainelPrincipal;
 
-public class SuporteSuportador<TSuportado extends Suportado> extends Suporte
+public abstract class SuporteSuportador<TSuportado extends Suportado> extends Suporte
 {
     private TSuportado suportado;
 
@@ -58,7 +58,10 @@ public class SuporteSuportador<TSuportado extends Suportado> extends Suporte
     }
 
     public void fazMeCair(Sentido s) {
-        getPainelPrincipal().fazMeCair(suportado, posicao, s);
+    	TSuportado sup=suportado;
+    	suportado=null;
+    	getPainelPrincipal().atualizarImagem(this);
+        getPainelPrincipal().fazMeCair(sup, posicao, s);
     }
 
     @Override

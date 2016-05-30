@@ -9,7 +9,9 @@ public class Suportado<TSuporte extends SuporteSuportador>
 {
    
 
-	private CellRepresentation representacao;
+	
+
+	protected CellRepresentation representacao;
     private TSuporte suporte;
 
     public Suportado(String representacao, TSuporte suporte)
@@ -23,6 +25,10 @@ public class Suportado<TSuporte extends SuporteSuportador>
     {
         return suporte;
     } 
+    
+    public void setRepresentacao(CellRepresentation representacao) {
+		this.representacao = representacao;
+	}
     
     public CellRepresentation getRepresentacao() {
 		return representacao;

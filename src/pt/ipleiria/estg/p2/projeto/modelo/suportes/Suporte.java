@@ -11,7 +11,7 @@ import pt.ipleiria.estg.p2.projeto.modelo.Sentido;
 import pt.ipleiria.estg.p2.projeto.modelo.Suportado;
 import pt.ipleiria.estg.p2.projeto.modelo.paineis.PainelPrincipal;
 
-public class Suporte
+public abstract class Suporte
 {
     private CellRepresentation representacao;
     protected Posicao posicao;
@@ -50,17 +50,14 @@ public class Suporte
         this.representacao = representacao;
     }
 
-    public boolean aceitas(Suportado suportado, Posicao posicao, Sentido s) 
-    {
-        return false;
-    }
+    public abstract boolean aceitas(Suportado suportado, Posicao posicao, Sentido s);
     
-    public boolean podeCair(Sentido sentido)
-    {
-        return false;
-    }
+    public abstract boolean podeCair(Sentido sentido);
 
-    public void tomaLa(Suportado suportado, Posicao posicao, Sentido s) {
-        
-    }
+    public abstract void tomaLa(Suportado suportado, Posicao posicao, Sentido s);
+
+	public void actualizarImagem() {
+		getPainelPrincipal().atualizarImagem(this);
+		
+	}
 }

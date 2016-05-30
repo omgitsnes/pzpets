@@ -22,14 +22,21 @@ public class Cesto extends Suportado<SuporteAgua> implements Iteravel
 	}
     
     public void iterar(long tempo){
-
+    	
     }
 
 	public boolean aceitas(Suportado suportado) {
 		if(suportado instanceof Maca) {
-		    System.out.println(this + " Recebeu uma maca!");
-			return true;
+		    System.out.println(this + " Aceito a Maca!");
+		    
+		    return true;
 		}
 		return false;
+	}
+
+	public void tomaLa(Suportado suportado, Posicao posicao, Sentido s) {
+		representacao = new SingleImageCellRepresentation("/pt/ipleiria/estg/p2/projeto/imagens/objetivos/cestoComMaca.png");
+		suporte.actualizarImagem();
+		
 	}
 }
