@@ -81,6 +81,4 @@ public abstract class SuporteSuportador<TSuportado extends Suportado> extends Su
         this.suportado.setSuporte(this);
         getPainelPrincipal().atualizarImagem(this);
     }
-    
-    
 }
