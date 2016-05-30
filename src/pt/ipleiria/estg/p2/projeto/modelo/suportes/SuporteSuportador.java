@@ -75,6 +75,7 @@ public class SuporteSuportador<TSuportado extends Suportado> extends Suporte
     public void tomaLa(Suportado suportado, Posicao posicao, Sentido s)
     {
         this.suportado = (TSuportado) suportado;
+        this.suportado.setSuporte(this);
         getPainelPrincipal().atualizarImagem(this);
     }
     

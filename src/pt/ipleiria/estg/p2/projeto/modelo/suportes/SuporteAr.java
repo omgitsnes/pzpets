@@ -14,13 +14,31 @@ public class SuporteAr extends Suporte
                 "/pt/ipleiria/estg/p2/projeto/imagens/suportes/ar.png",
                 posicao);
     }
-
+    
     @Override
     public boolean aceitas(Suportado suportado, Posicao posicao, Sentido sentido)
     {
         if (sentido == Sentido.S) {
-            getPainelPrincipal().podeCair(suportado, posicao, sentido);
+            System.out.println("Suporte de ar aceita que a maca passe");
+            getPainelPrincipal().podeCair(suportado, getPosicao(), sentido);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean podeCair(Sentido sentido)
+    {
+        if (sentido == Sentido.S) {
+            return true;
         }
         return false;
     }
+
+    @Override
+    public void tomaLa(Suportado suportado, Posicao posicao, Sentido s)
+    {
+        getPainelPrincipal().fazMeCair(suportado, getPosicao(), s);
+    }
+    
+    
 }

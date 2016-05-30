@@ -19,15 +19,12 @@ public class PainelPrincipal extends Painel
     private int numeroDeMacasEmJogo;
     private int numeroDeSuportesCongelados;
     private JanelaPuzzlePets jogo;
-    static final Posicao[] POSSIVEIS = {new Posicao(1,0),new Posicao(0,1), new Posicao(0,-1), new Posicao(-1,0)};
     private Posicao posicaoOrigem;
-
-    //	private Animal animalOrigem;
-    //	private Animal animalDestino;
-
     private Suporte suporteOrigem;
     private Suporte suporteDestino;
 
+    
+    static final Posicao[] POSSIVEIS = {new Posicao(1,0),new Posicao(0,1), new Posicao(0,-1), new Posicao(-1,0)};
     private static final int CADENCIA_DE_QUEDA = 100;
 
     /**
@@ -44,12 +41,8 @@ public class PainelPrincipal extends Painel
     }
 
     private void colocarMacaNivel1() {
-        System.out.println("tou ca dentro");
-        Maca maca = new Maca((SuporteSuportador)suportes[0][2]);
-        ((SuporteSuportador)suportes[0][2]).colocar(maca);
-        Maca macaNumero2 = new Maca((SuporteSuportador)suportes[1][5]);
-        ((SuporteSuportador)suportes[1][5]).colocar(macaNumero2);
-        System.out.println("ainda ca tou!");
+        Maca maca = new Maca((SuporteSuportador)suportes[0][0]);
+        ((SuporteSuportador)suportes[0][0]).colocar(maca);
     }
 
     public int getNumeroDeMacasEmJogo()
@@ -137,7 +130,6 @@ public class PainelPrincipal extends Painel
                 if (i == 7) {
                     Suporte s = new SuporteAgua(this, new Posicao(i, j));
                     colocar(s);
-                    //TODO cestos
                 }
             }       
         }
@@ -151,7 +143,6 @@ public class PainelPrincipal extends Painel
                 if (suportes[i][j] instanceof SuporteAgua) {
                     Cesto cesto = new Cesto((SuporteAgua)suportes[i][j]);
                     ((SuporteAgua)suportes[i][j]).colocar(cesto);
-                    System.out.println("entrei");
                     break;
                 }
             }
@@ -206,21 +197,20 @@ public class PainelPrincipal extends Painel
     }
 
 
-    public void fazMeCair(Suportado suportado, Posicao posicao, Sentido s) {
-        switch (s) {
+    public void fazMeCair(Suportado suportado, Posicao posicao, Sentido sentido) {
+        switch (sentido) {
         case S:
-            ((SuporteSuportador<Suportado>) suportes[posicao.getLinha()][posicao.getColuna()]).colocar(null);
-            atualizarImagem(suportes[posicao.getLinha()][posicao.getColuna()]);
-            suportes[posicao.getLinha() + 1][posicao.getColuna()].tomaLa(suportado, posicao, s);
-            suportado.setSuporte((SuporteSuportador) suportes[posicao.getLinha() + 1][posicao.getColuna()]);
+            suportado.getSuporte().colocar(null);
+            atualizarImagem(suportes[suportado.getSuporte().getPosicao().getLinha()][suportado.getSuporte().getPosicao().getColuna()]);
+            suportes[posicao.getLinha() + 1][posicao.getColuna()].tomaLa(suportado, posicao, sentido);
             break;
 
         case SO:
-            suportes[posicao.getLinha() + 1][Math.max(0, posicao.getColuna() - 1)].tomaLa(suportado, posicao, s);
+            suportes[posicao.getLinha() + 1][Math.max(0, posicao.getColuna() - 1)].tomaLa(suportado, posicao, sentido);
             break;
 
         case SE:
-            suportes[posicao.getLinha() + 1][Math.min(7, posicao.getColuna() + 1)].tomaLa(suportado, posicao, s);
+            suportes[posicao.getLinha() + 1][Math.min(7, posicao.getColuna() + 1)].tomaLa(suportado, posicao, sentido);
 
             break;
 

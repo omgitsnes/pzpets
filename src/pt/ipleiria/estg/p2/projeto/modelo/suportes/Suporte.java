@@ -57,10 +57,7 @@ public class Suporte
     
     public boolean podeCair(Sentido sentido)
     {
-        if (sentido != Sentido.S) {
-            return false;
-        }
-        return true;
+        return false;
     }
 
     public void tomaLa(Suportado suportado, Posicao posicao, Sentido s) {
