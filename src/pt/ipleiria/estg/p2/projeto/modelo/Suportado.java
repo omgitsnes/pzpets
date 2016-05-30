@@ -7,10 +7,6 @@ import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteSuportador;
 
 public class Suportado<TSuporte extends SuporteSuportador>
 {
-   
-
-	
-
 	protected CellRepresentation representacao;
     private TSuporte suporte;
 

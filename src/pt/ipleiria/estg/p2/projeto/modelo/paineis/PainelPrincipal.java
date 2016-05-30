@@ -1,11 +1,13 @@
 package pt.ipleiria.estg.p2.projeto.modelo.paineis;
 
 import pt.ipleiria.estg.dei.gridpanel.GridPanel;
+import pt.ipleiria.estg.p2.projeto.modelo.Animal;
 import pt.ipleiria.estg.p2.projeto.modelo.Cesto;
 import pt.ipleiria.estg.p2.projeto.modelo.Maca;
 import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
 import pt.ipleiria.estg.p2.projeto.modelo.Sentido;
 import pt.ipleiria.estg.p2.projeto.modelo.Suportado;
+import pt.ipleiria.estg.p2.projeto.modelo.TipoAnimal;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.Suporte;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAgua;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAr;
@@ -34,7 +36,7 @@ public class PainelPrincipal extends Painel
     {
         super(gridPanel);
         this.suportes = new Suporte[getNumeroDeLinhas()][getNumeroDeColunas()];
-        this.numeroDeMacasEmJogo = 0; //Deve começar a 0 ou 1?
+        this.numeroDeMacasEmJogo = 0; //Deve comeï¿½ar a 0 ou 1?
         gerarNivel();
         colocarCesto();
         colocarMacaNivel1();
@@ -43,6 +45,9 @@ public class PainelPrincipal extends Painel
     private void colocarMacaNivel1() {
         Maca maca = new Maca((SuporteSuportador)suportes[0][0]);
         ((SuporteSuportador)suportes[0][0]).colocar(maca);
+        
+        Animal a = new Animal(TipoAnimal.SAPO, (SuporteSuportador) suportes[0][1]);
+        ((SuporteSuportador) suportes[0][1]).colocar(a);
     }
 
     public int getNumeroDeMacasEmJogo()
@@ -157,32 +162,7 @@ public class PainelPrincipal extends Painel
         atualizarImagem(suporte);
     }
 
-    //    public void adicionarAnimalAleatorio(int linha, int coluna)
-    //    {   
-    //        if (((SuporteComSuportado) suportes[linha][coluna]).getSuportado() == null) {
-    //            Random random = new Random();
-    //            switch (random.nextInt(5)) {
-    //                case 0:  ((SuporteComSuportado) suportes[linha][coluna]).setSuportado(new Panda((SuporteComSuportado) suportes[linha][coluna]));
-    //                this.getGridPanel().add(linha, coluna, ((SuporteComSuportado) suportes[linha][coluna]).getSuportado().getRepresentacao());
-    //                break;
-    //                case 1:  ((SuporteComSuportado) suportes[linha][coluna]).setSuportado(new Peixe((SuporteComSuportado) suportes[linha][coluna]));
-    //                this.getGridPanel().add(linha, coluna, ((SuporteComSuportado) suportes[linha][coluna]).getSuportado().getRepresentacao());
-    //                break;
-    //                case 2:  ((SuporteComSuportado) suportes[linha][coluna]).setSuportado(new Polvo((SuporteComSuportado) suportes[linha][coluna]));
-    //                this.getGridPanel().add(linha, coluna, ((SuporteComSuportado) suportes[linha][coluna]).getSuportado().getRepresentacao());
-    //                break;
-    //                case 3:  ((SuporteComSuportado) suportes[linha][coluna]).setSuportado(new Raposa((SuporteComSuportado) suportes[linha][coluna]));
-    //                this.getGridPanel().add(linha, coluna, ((SuporteComSuportado) suportes[linha][coluna]).getSuportado().getRepresentacao());
-    //                break;
-    //                case 4:  ((SuporteComSuportado) suportes[linha][coluna]).setSuportado(new Sapo((SuporteComSuportado) suportes[linha][coluna]));
-    //                this.getGridPanel().add(linha, coluna, ((SuporteComSuportado) suportes[linha][coluna]).getSuportado().getRepresentacao());
-    //                break;
-    //            }
-    //            this.getGridPanel().repaint();
-    //        }
-    //    }
-
-
+    
     public void iterar(long tempo) {
         for (int i =getNumeroDeLinhas()-1; i>=0; i--) {
             for (int j = 0; j < getNumeroDeColunas(); j++) {
@@ -192,6 +172,7 @@ public class PainelPrincipal extends Painel
         }
     }
 
+    
     public void atualizarImagem(Suporte suporte) {
         adicionarAoGridPanel(suporte.getPosicao(), suporte.getRepresentacao());
     }

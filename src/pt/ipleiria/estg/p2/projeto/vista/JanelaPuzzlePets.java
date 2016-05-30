@@ -1,23 +1,14 @@
 package pt.ipleiria.estg.p2.projeto.vista;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.Font;
 import java.lang.reflect.InvocationTargetException;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
-import pt.ipleiria.estg.dei.gridpanel.JBackgroundPanel;
-import pt.ipleiria.estg.dei.gridpanel.TextCellRepresentation;
-import pt.ipleiria.estg.p2.projeto.modelo.Objetivo;
-import pt.ipleiria.estg.p2.projeto.modelo.paineis.PainelDeMacas;
-import pt.ipleiria.estg.p2.projeto.modelo.paineis.PainelDeMovimentosEstrelas;
-import pt.ipleiria.estg.p2.projeto.modelo.paineis.PainelDePontuacoes;
-import pt.ipleiria.estg.p2.projeto.modelo.paineis.PainelPrincipal;
 import pt.ipleiria.estg.dei.gridpanel.GridPanel;
+import pt.ipleiria.estg.dei.gridpanel.JBackgroundPanel;
 
 @SuppressWarnings("serial")
 public class JanelaPuzzlePets extends JFrame {
@@ -111,8 +102,8 @@ public class JanelaPuzzlePets extends JFrame {
 			public void run() {
 				while (true) {
 					try {
+                        sleep(1000);
 						try {
-						    sleep(1000);
 							SwingUtilities.invokeAndWait(iterar);
 						} catch (InvocationTargetException e) {
 							// TODO Auto-generated catch block
