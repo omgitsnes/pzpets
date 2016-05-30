@@ -8,18 +8,9 @@ import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAgua;
 
 public class Cesto extends Suportado<SuporteAgua> implements Iteravel
 {
-	/* suporte, imagem, estado(cheio ou nao (altera a imagem)), tempodeEstado*/
-	private Suporte suporte;
-	
     public Cesto(SuporteAgua suporte) {
         super("/pt/ipleiria/estg/p2/projeto/imagens/objetivos/cesto.png",suporte);
-       
     }
-	
-	public void verificarSeCestoTemMaca()
-	{
-		suporte.estadoDoCesto();
-	}
     
     public void iterar(long tempo){
     	
@@ -36,6 +27,5 @@ public class Cesto extends Suportado<SuporteAgua> implements Iteravel
 	public void tomaLa(Suportado suportado, Posicao posicao, Sentido s) {
 		representacao = new SingleImageCellRepresentation("/pt/ipleiria/estg/p2/projeto/imagens/objetivos/cestoComMaca.png");
 		getSuporte().actualizarImagem();
-		
 	}
 }
