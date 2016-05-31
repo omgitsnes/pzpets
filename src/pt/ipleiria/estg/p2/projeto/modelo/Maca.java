@@ -10,8 +10,7 @@ public class Maca extends SuportadoPorGelo implements Iteravel
     
     public Maca(SuporteSuportador suporte)
     {
-        super("/pt/ipleiria/estg/p2/projeto/imagens/objetivos/maca.png",
-                suporte);
+        super("/pt/ipleiria/estg/p2/projeto/imagens/objetivos/maca.png",suporte);
     }
 
 	@Override

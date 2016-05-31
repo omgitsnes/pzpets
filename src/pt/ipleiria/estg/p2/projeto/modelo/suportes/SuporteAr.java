@@ -19,7 +19,7 @@ public class SuporteAr extends Suporte
     public boolean aceitas(Suportado suportado, Posicao posicao, Sentido sentido)
     {
         if (sentido == Sentido.S) {
-            System.out.println("Suporte de ar aceita que a maca passe");
+            System.out.println("Suporte de ar aceita que passe");
             getPainelPrincipal().podeCair(suportado, getPosicao(), sentido);
         }
         return true;

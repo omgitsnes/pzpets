@@ -1,6 +1,9 @@
 package pt.ipleiria.estg.p2.projeto.modelo.paineis;
 
+import java.awt.event.MouseEvent;
+
 import pt.ipleiria.estg.dei.gridpanel.GridPanel;
+import pt.ipleiria.estg.dei.gridpanel.GridPanelEventHandler;
 import pt.ipleiria.estg.p2.projeto.modelo.Animal;
 import pt.ipleiria.estg.p2.projeto.modelo.Cesto;
 import pt.ipleiria.estg.p2.projeto.modelo.Maca;
@@ -15,13 +18,17 @@ import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteGelo;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteSuportador;
 import pt.ipleiria.estg.p2.projeto.vista.JanelaPuzzlePets;
 
-public class PainelPrincipal extends Painel 
+public class PainelPrincipal extends Painel implements GridPanelEventHandler
 {
     private Suporte[][] suportes;
     private int numeroDeMacasEmJogo;
     private int numeroDeSuportesCongelados;
     private JanelaPuzzlePets jogo;
     private Posicao posicaoOrigem;
+    private Animal animalOrigem;
+    private Animal animalDestino;
+   
+    private boolean aArrastar;
     private Suporte suporteOrigem;
     private Suporte suporteDestino;
 
@@ -37,6 +44,7 @@ public class PainelPrincipal extends Painel
         super(gridPanel);
         this.suportes = new Suporte[getNumeroDeLinhas()][getNumeroDeColunas()];
         this.numeroDeMacasEmJogo = 0; //Deve comeï¿½ar a 0 ou 1?
+        gridPanel.setEventHandler(this);
         gerarNivel();
         colocarCesto();
         colocarMacaNivel1();
@@ -46,8 +54,15 @@ public class PainelPrincipal extends Painel
         Maca maca = new Maca((SuporteSuportador)suportes[0][0]);
         ((SuporteSuportador)suportes[0][0]).colocar(maca);
         
-        Animal a = new Animal(TipoAnimal.SAPO, (SuporteSuportador) suportes[0][1]);
-        ((SuporteSuportador) suportes[0][1]).colocar(a);
+        Animal a = new Animal(TipoAnimal.SAPO, (SuporteSuportador) suportes[6][1]);
+        ((SuporteSuportador) suportes[6][1]).colocar(a);
+        
+        Animal b = new Animal(TipoAnimal.POLVO, (SuporteSuportador) suportes[5][1]);
+        ((SuporteSuportador) suportes[5][1]).colocar(b);
+        
+
+        Animal c = new Animal(TipoAnimal.POLVO, (SuporteSuportador) suportes[4][1]);
+        ((SuporteSuportador) suportes[4][1]).colocar(c);
     }
 
     public int getNumeroDeMacasEmJogo()
@@ -204,6 +219,86 @@ public class PainelPrincipal extends Painel
     	
         return false;
     }
+
+	@Override
+	public void mouseDragged(MouseEvent arg0, int arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent arg0, int arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent evt, int linha, int coluna) {
+		posicaoOrigem = new Posicao(linha,coluna);
+		suporteOrigem = getSuporte(posicaoOrigem);
+		animalOrigem = (Animal) ((SuporteSuportador)suporteOrigem).getSuportado();
+		
+		if(seEAnimal(suporteOrigem)){
+			aArrastar = true;
+			System.out.println("É um animal");
+			animalOrigem = (Animal) ((SuporteSuportador)suporteOrigem).getSuportado();
+			System.out.println(" " + animalOrigem.toString());
+		}
+		
+	}
+	
+
+	@Override
+	public void mouseReleased(MouseEvent evt, int linha, int coluna) {
+		Posicao posicaoDestino = new Posicao(linha,coluna);
+		suporteDestino = getSuporte(posicaoDestino);
+		animalDestino = (Animal) ((SuporteSuportador)suporteDestino).getSuportado();
+		setSuportado(suporteDestino,animalOrigem);
+		setSuportado(suporteOrigem,animalDestino);
+		
+		/*if(suporteDestino instanceof SuporteAr){
+			System.out.println("Impossivel(AR)!!");
+		}else if(((SuporteSuportador)suporteDestino).getSuportado() instanceof Cesto){
+			System.out.println("Impossivel(CESTO)!!");
+		}else if(posicaoOrigem.getLinha() == posicaoDestino.getLinha() && posicaoOrigem.getColuna() == posicaoDestino.getColuna()){
+			System.out.println("Impossivel(MESMA POSICAO)!!");
+		}else if(!isPosicaoValida(posicaoDestino)){
+			System.out.println("TESTE123");
+		}else if(proximaPosicao(posicaoOrigem, posicaoDestino) == false){
+			System.out.println("Impossivel(JOGADA IMPOSSIVEL)!!");
+//		}else if(((SuporteSuportador)suporteDestino).getSuportado() instanceof Inimigo){
+//			System.out.println("Impossivel(Inimigo)!!");
+		}else if(isAnimal(suporteDestino) && isAnimal(suporteOrigem)){*/
+		
+		atualizarSuporte(posicaoDestino);
+		atualizarSuporte(posicaoOrigem);
+		//}
+	}
+	
+	public boolean seEAnimal(Suporte suporte){
+		if(!(suporte instanceof SuporteAr)){
+			if(((SuporteSuportador)suporte).getSuportado() instanceof Animal){
+				return true;
+			}
+			return false;
+		}
+		return false;
+	}
+
+	private void setSuportado(Suporte suporteOrigem2, Animal animalDestino2) {
+		if(animalDestino2 == null){
+			((SuporteSuportador)suportes[suporteOrigem2.getPosicao().getLinha()][suporteOrigem2.getPosicao().getColuna()]).setSuportado(animalDestino2);
+		}else{
+			((SuporteSuportador)suportes[suporteOrigem2.getPosicao().getLinha()][suporteOrigem2.getPosicao().getColuna()]).setSuportado(animalDestino2);
+			suportes[suporteOrigem2.getPosicao().getLinha()][suporteOrigem2.getPosicao().getColuna()].getRepresentacao();
+		}
+	}
 
 }
 
