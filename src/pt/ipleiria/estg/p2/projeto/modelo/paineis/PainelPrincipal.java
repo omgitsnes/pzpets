@@ -1,7 +1,6 @@
 package pt.ipleiria.estg.p2.projeto.modelo.paineis;
 
 import java.awt.event.MouseEvent;
-
 import pt.ipleiria.estg.dei.gridpanel.GridPanel;
 import pt.ipleiria.estg.dei.gridpanel.GridPanelEventHandler;
 import pt.ipleiria.estg.p2.projeto.modelo.Animal;
@@ -55,13 +54,12 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
         Maca maca = new Maca((SuporteSuportador)suportes[0][0]);
         ((SuporteSuportador)suportes[0][0]).colocar(maca);
         
-        Animal a = new Animal(TipoAnimal.SAPO, (SuporteSuportador) suportes[6][1]);
-        ((SuporteSuportador) suportes[6][1]).colocar(a);
+        Animal a = new Animal(TipoAnimal.SAPO, (SuporteSuportador) suportes[1][0]);
+        ((SuporteSuportador) suportes[1][0]).colocar(a);
         
-        Animal b = new Animal(TipoAnimal.POLVO, (SuporteSuportador) suportes[5][1]);
-        ((SuporteSuportador) suportes[5][1]).colocar(b);
+        Animal b = new Animal(TipoAnimal.POLVO, (SuporteSuportador) suportes[5][0]);
+        ((SuporteSuportador) suportes[5][0]).colocar(b);
         
-
         Animal c = new Animal(TipoAnimal.POLVO, (SuporteSuportador) suportes[4][1]);
         ((SuporteSuportador) suportes[4][1]).colocar(c);
     }
@@ -247,7 +245,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
 		
 		if(seEAnimal(suporteInicio)){
 			aArrastar = true;
-			System.out.println("É um animal");
+			System.out.println("ï¿½ um animal");
 			animalInicio = (Animal) ((SuporteSuportador)suporteInicio).getSuportado();
 			System.out.println(" " + animalInicio.toString());
 		}

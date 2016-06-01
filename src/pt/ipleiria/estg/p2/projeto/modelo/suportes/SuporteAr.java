@@ -20,7 +20,7 @@ public class SuporteAr extends Suporte
     {
         if (sentido == Sentido.S) {
             System.out.println("Suporte de ar aceita que passe");
-            getPainelPrincipal().podeCair(suportado, getPosicao(), sentido);
+            return getPainelPrincipal().podeCair(suportado, getPosicao(), sentido);
         }
         return true;
     }

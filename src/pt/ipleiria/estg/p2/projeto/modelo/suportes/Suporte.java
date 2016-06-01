@@ -1,11 +1,7 @@
 package pt.ipleiria.estg.p2.projeto.modelo.suportes;
 
-import javax.swing.plaf.ActionMapUIResource;
-
 import pt.ipleiria.estg.dei.gridpanel.CellRepresentation;
 import pt.ipleiria.estg.dei.gridpanel.SingleImageCellRepresentation;
-import pt.ipleiria.estg.p2.projeto.modelo.Cesto;
-import pt.ipleiria.estg.p2.projeto.modelo.Maca;
 import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
 import pt.ipleiria.estg.p2.projeto.modelo.Sentido;
 import pt.ipleiria.estg.p2.projeto.modelo.Suportado;
@@ -15,7 +11,7 @@ public abstract class Suporte
 {
     private CellRepresentation representacao;
     protected Posicao posicao;
-    protected Sentido sentido;
+    protected Sentido sentido; // why?
     private PainelPrincipal painelPrincipal;
 
     public Suporte(PainelPrincipal painelPrincipal, String representacao, Posicao posicao)
