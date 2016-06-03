@@ -20,10 +20,10 @@ import pt.ipleiria.estg.p2.projeto.vista.JanelaPuzzlePets;
 
 public class PainelPrincipal extends Painel implements GridPanelEventHandler
 {
+    private JanelaPuzzlePets jogo;
     private Suporte[][] suportes;
     private int numeroDeMacasEmJogo;
     private int numeroDeSuportesCongelados;
-    private JanelaPuzzlePets jogo;
     private Posicao posicaoOrigem;
     private Animal animalInicio;
     private Animal animalFinal;

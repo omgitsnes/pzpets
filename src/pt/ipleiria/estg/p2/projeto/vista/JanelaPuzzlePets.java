@@ -9,6 +9,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import pt.ipleiria.estg.dei.gridpanel.GridPanel;
 import pt.ipleiria.estg.dei.gridpanel.JBackgroundPanel;
+import pt.ipleiria.estg.p2.projeto.modelo.Jogo;
 
 @SuppressWarnings("serial")
 public class JanelaPuzzlePets extends JFrame {
@@ -37,8 +38,6 @@ public class JanelaPuzzlePets extends JFrame {
 	 */
 	public JanelaPuzzlePets() {
 		initComponents();
-		// threads
-
 	}
 
 	private void initComponents() {
@@ -102,7 +101,7 @@ public class JanelaPuzzlePets extends JFrame {
 			public void run() {
 				while (true) {
 					try {
-                        sleep(1000);
+                        sleep(100);
 						try {
 							SwingUtilities.invokeAndWait(iterar);
 						} catch (InvocationTargetException e) {
