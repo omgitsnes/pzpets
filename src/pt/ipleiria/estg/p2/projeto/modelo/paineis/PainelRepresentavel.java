@@ -2,11 +2,7 @@ package pt.ipleiria.estg.p2.projeto.modelo.paineis;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.time.format.TextStyle;
-
-import pt.ipleiria.estg.dei.gridpanel.CellRepresentation;
 import pt.ipleiria.estg.dei.gridpanel.GridPanel;
-import pt.ipleiria.estg.dei.gridpanel.OverlayCellRepresentation;
 import pt.ipleiria.estg.dei.gridpanel.SingleImageCellRepresentation;
 import pt.ipleiria.estg.dei.gridpanel.TextCellRepresentation;
 import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
@@ -43,6 +39,11 @@ public class PainelRepresentavel extends Painel
     {
         this.indicacao.setTextColor(Color.CYAN);
         this.indicacao.setTextFont(Font.decode("Arial-18"));
+    }
+
+    private void adicionarAoGridPanel(Posicao posicao, SingleImageCellRepresentation representacao)
+    {
+        gridPanel.put(posicao.getLinha(), posicao.getColuna(), representacao);
     }
 }
     

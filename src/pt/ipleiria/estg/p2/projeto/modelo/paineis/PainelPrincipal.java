@@ -46,7 +46,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
         this.numeroDeMacasEmJogo = 0; //Deve come�ar a 0 ou 1?
         gridPanel.setEventHandler(this);
         gerarNivel();
-        colocarCesto();
+        colocarCestos();
         colocarMacaNivel1();
     }
 
@@ -110,13 +110,6 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
         return false;
     }
 
-    public void atualizarSuporte(Posicao posicao) {
-        gridPanel.clear(posicao.getLinha(), posicao.getColuna());
-        gridPanel.add(posicao.getLinha(), posicao.getColuna(), 
-                suportes[posicao.getLinha()][posicao.getColuna()].getRepresentacao());
-        gridPanel.repaint();
-    }
-
     private void gerarNivel()
     {
         for (int i = 0; i < getNumeroDeLinhas(); i++) {
@@ -152,10 +145,12 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
                 }
             }       
         }
-        atualizarGridPanel();
     }
-
-    public void colocarCesto()
+    
+    /*
+     * Adiciona os cestos a ultimo suporte agua do painel
+    */
+    public void colocarCestos()
     {
         for (int j = 0; j < getNumeroDeColunas(); j++) {
             for (int i = getNumeroDeLinhas()-1; i>0; i--) {
@@ -172,8 +167,8 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
     {
         // adicionar a matriz de suportes
         suportes[suporte.getPosicao().getLinha()][suporte.getPosicao().getColuna()] = suporte;
-        // atualiza a imagem
-        atualizarImagem(suporte);
+        //atualizar a imagem
+        atualizarGridPanel(suporte);
     }
 
     
@@ -185,12 +180,6 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
             }
         }
     }
-
-    
-    public void atualizarImagem(Suporte suporte) {
-        adicionarAoGridPanel(suporte.getPosicao(), suporte.getRepresentacao());
-    }
-
 
     public void fazMeCair(Suportado suportado, Posicao posicao, Sentido sentido) {
         switch (sentido) {
@@ -238,14 +227,15 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
 	}
 
 	@Override
-	public void mousePressed(MouseEvent evt, int linha, int coluna) {
-		posicaoOrigem = new Posicao(linha,coluna);
+	public void mousePressed(MouseEvent evt, int linha, int coluna) 
+    {
+        posicaoOrigem = new Posicao(linha,coluna);
 		suporteInicio = getSuporte(posicaoOrigem);
 		animalInicio = (Animal) ((SuporteSuportador)suporteInicio).getSuportado();
 		
-		if(seEAnimal(suporteInicio)){
+		if (seEAnimal(suporteInicio)) {
 			aArrastar = true;
-			System.out.println("� um animal");
+			System.out.println("É um animal");
 			animalInicio = (Animal) ((SuporteSuportador)suporteInicio).getSuportado();
 			System.out.println(" " + animalInicio.toString());
 		}
@@ -255,6 +245,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
 
 	@Override
 	public void mouseReleased(MouseEvent evt, int linha, int coluna) {
+        // TODO verificar se é posicao adjacente a primeira posicao?
 		Posicao posicaoDestino = new Posicao(linha,coluna);
 		suporteFinal = getSuporte(posicaoDestino);
 		animalFinal = (Animal) ((SuporteSuportador)suporteFinal).getSuportado();
@@ -275,9 +266,10 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
 			System.out.println("Impossivel(Inimigo)!!");
 		}else if(seEAnimal(suporteFinal) && seEAnimal(suporteInicio)){
 		
-		atualizarSuporte(posicaoDestino);
-		atualizarSuporte(posicaoOrigem);
-		}
+		//atualizarSuporte(posicaoDestino);
+		//atualizarSuporte(posicaoOrigem);
+		
+        }
 	}
 	
 	public boolean seEAnimal(Suporte suporte){

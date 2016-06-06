@@ -11,7 +11,6 @@ public abstract class Suporte
 {
     private CellRepresentation representacao;
     protected Posicao posicao;
-    protected Sentido sentido; // why?
     private PainelPrincipal painelPrincipal;
 
     public Suporte(PainelPrincipal painelPrincipal, String representacao, Posicao posicao)
@@ -53,7 +52,7 @@ public abstract class Suporte
     public abstract void tomaLa(Suportado suportado, Posicao posicao, Sentido s);
 
 	public void actualizarImagem() {
-		getPainelPrincipal().atualizarImagem(this);
+		getPainelPrincipal().atualizarGridPanel(this);
 		
 	}
 }

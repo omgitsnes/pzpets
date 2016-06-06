@@ -18,14 +18,9 @@ public class Painel
         return gridPanel;
     }
     
-    protected void atualizarGridPanel(Suporte suporte)
+    public void atualizarGridPanel(Suporte suporte)
     {
         gridPanel.put(suporte.getPosicao().getLinha(), suporte.getPosicao().getColuna(), suporte.getRepresentacao());
-    }
-    
-    public void atualizarGridPanel()
-    {
-        gridPanel.repaint();
     }
     
     public int getNumeroDeLinhas()

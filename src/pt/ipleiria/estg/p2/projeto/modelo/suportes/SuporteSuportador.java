@@ -30,7 +30,7 @@ public abstract class SuporteSuportador<TSuportado extends Suportado> extends Su
     public void colocar(TSuportado suportado)
     {
         this.suportado = suportado;
-        getPainelPrincipal().atualizarImagem(this); 
+        getPainelPrincipal().atualizarGridPanel(this); 
     }
 
 
@@ -60,7 +60,7 @@ public abstract class SuporteSuportador<TSuportado extends Suportado> extends Su
     public void fazMeCair(Sentido s) {
     	TSuportado sup=suportado;
     	suportado=null;
-    	getPainelPrincipal().atualizarImagem(this);
+    	getPainelPrincipal().atualizarGridPanel(this);
         getPainelPrincipal().fazMeCair(sup, posicao, s);
     }
 
@@ -79,6 +79,6 @@ public abstract class SuporteSuportador<TSuportado extends Suportado> extends Su
     {
         this.suportado = (TSuportado) suportado;
         this.suportado.setSuporte(this);
-        getPainelPrincipal().atualizarImagem(this);
+        getPainelPrincipal().atualizarGridPanel(this);
     }
 }
