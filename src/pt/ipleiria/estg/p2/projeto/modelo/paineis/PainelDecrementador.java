@@ -13,5 +13,6 @@ public class PainelDecrementador extends PainelRepresentavel
     public void decrementarValor()
     {
         this.valor--;
+        atualizarIndicacao();
     }
 }

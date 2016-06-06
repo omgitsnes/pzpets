@@ -27,5 +27,6 @@ public class Cesto extends Suportado<SuporteAgua> implements Iteravel
 	public void tomaLa(Suportado suportado, Posicao posicao, Sentido s) {
 		representacao = new SingleImageCellRepresentation("/pt/ipleiria/estg/p2/projeto/imagens/objetivos/cestoComMaca.png");
 		getSuporte().actualizarImagem();
+		getSuporte().aMacaCaiuNoCesto();
 	}
 }

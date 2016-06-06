@@ -53,6 +53,11 @@ public abstract class Suporte
 
 	public void actualizarImagem() {
 		getPainelPrincipal().atualizarGridPanel(this);
-		
+	}
+	
+	public void aMacaCaiuNoCesto()
+	{
+		getPainelPrincipal().decrementarNumeroDeMacasNoPainelDeMacas();
+		getPainelPrincipal().decrementarNumeroDeMacasEmJogo();
 	}
 }

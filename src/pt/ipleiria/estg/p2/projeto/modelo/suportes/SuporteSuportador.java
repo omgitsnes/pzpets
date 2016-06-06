@@ -58,6 +58,7 @@ public abstract class SuporteSuportador<TSuportado extends Suportado> extends Su
     }
 
     public void fazMeCair(Sentido s) {
+    	System.out.println(suportado + "Estou a cair!");
     	TSuportado sup=suportado;
     	suportado=null;
     	getPainelPrincipal().atualizarGridPanel(this);
@@ -68,7 +69,7 @@ public abstract class SuporteSuportador<TSuportado extends Suportado> extends Su
     public boolean podeCair(Sentido sentido)
     {
         if (getPainelPrincipal().podeCair(suportado, posicao, sentido)) {
-            System.out.println(suportado + " pode cair !");
+            System.out.println(suportado + " Podes cair !");
             return true;
         }
         return false;

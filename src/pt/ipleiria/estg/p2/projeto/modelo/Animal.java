@@ -26,17 +26,17 @@ public class Animal extends Combinavel implements Iteravel {
 
     @Override
 	public void iterar(long tempo) {
-	    System.out.println(this + " Pronta para cair!");
+	    System.out.println(this + " Será que posso cair ?");
 		if (getSuporte().podeCair(Sentido.S)) {
-		    System.out.println(this + "Posso cair para baixo!");
+		    System.out.println(this + " Posso cair para baixo!");
 		    getSuporte().fazMeCair(Sentido.S);
 		}
 		    else if (getSuporte().podeCair(Sentido.SE)) {
-		    		System.out.println(this + "Posso cair para a direita!");
+		    		System.out.println(this + " Posso cair para a direita!");
 		    		getSuporte().fazMeCair(Sentido.SE);
 		    }
 		    	else if (getSuporte().podeCair(Sentido.SO)) {
-		    			System.out.println(this + "Posso cair para a esquerda!");
+		    			System.out.println(this + " Posso cair para a esquerda!");
 		    			getSuporte().fazMeCair(Sentido.SO);
 		    	}
 		

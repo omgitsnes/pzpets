@@ -25,6 +25,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
     private int numeroDeMacasEmJogo;
     private int numeroDeSuportesCongelados;
     private Suporte suporteInicial;
+    private PainelDeMacas painelDeMacas;
 
     
     static final Posicao[] POSSIVEIS = {new Posicao(1,0),new Posicao(0,1), new Posicao(0,-1), new Posicao(-1,0)};
@@ -33,20 +34,16 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
     /**
      * @param gridPanel
      */
-    public PainelPrincipal(GridPanel gridPanel) 
+    public PainelPrincipal(GridPanel gridPanel, PainelDeMacas painelDeMacas) 
     {
         super(gridPanel);
         this.suportes = new Suporte[getNumeroDeLinhas()][getNumeroDeColunas()];
         this.numeroDeMacasEmJogo = 0; //Deve come�ar a 0 ou 1?
         gridPanel.setEventHandler(this);
+        this.painelDeMacas = painelDeMacas;
         gerarNivel();
         colocarCestos();
-        colocarMacaNivel1();
-    }
-
-    private void colocarMacaNivel1() {
-        Maca maca = new Maca((SuporteSuportador)suportes[0][0]);
-        ((SuporteSuportador)suportes[0][0]).colocar(maca);
+        //colocarMacaNivel1();
     }
 
     public int getNumeroDeMacasEmJogo()
@@ -61,15 +58,14 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
 
     public void incrementarNumeroDeMacasEmJogo() 
     {
-        if (numeroDeMacasEmJogo < 2)
             numeroDeMacasEmJogo++;
     }
 
     public void decrementarNumeroDeMacasEmJogo() 
     {
-        if (numeroDeMacasEmJogo > 0)
-            numeroDeMacasEmJogo--;
+    	numeroDeMacasEmJogo--;  
     }
+    
 
     public int getCadenciaDeQueda()
     {
@@ -158,7 +154,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
             for (int j = 0; j < getNumeroDeColunas(); j++) {
                 if (suportes[i][j] instanceof SuporteSuportador)
                     ((SuporteSuportador)suportes[i][j]).iterar(tempo);
-                    adicionarAnimalAleatorio();
+                    adicionarAleatorio();
             }
         }
     }
@@ -279,17 +275,19 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
         return false;
     }
     
-    private boolean combinam(Posicao posicao, Sentido sentido, int valor)
-    {
-        return true;
-    }
-    
-    public void adicionarAnimalAleatorio()
+    public void adicionarAleatorio()
     {
         for (int coluna = 0; coluna < getNumeroDeColunas(); coluna++) {
             if (suportes[0][coluna] instanceof SuporteSuportador) {
                 if (((SuporteSuportador) suportes[0][coluna]).getSuportado() == null) {
-                    Random random = new Random();
+                    if(numeroDeMacasEmJogo==0){
+                    	Maca maca = new Maca((SuporteSuportador)suportes[0][coluna]);
+                		((SuporteSuportador)suportes[0][coluna]).colocar(maca);
+                		incrementarNumeroDeMacasEmJogo();
+                    }
+                    else{
+                   
+                    	Random random = new Random();
                     switch (random.nextInt(5)) {
                         case 0: ((SuporteSuportador) suportes[0][coluna]).colocar(new Animal(TipoAnimal.SAPO, ((SuporteSuportador) suportes[0][coluna])));
                             break;
@@ -302,10 +300,15 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
                         case 4: ((SuporteSuportador) suportes[0][coluna]).colocar(new Animal(TipoAnimal.RAPOSA, ((SuporteSuportador) suportes[0][coluna])));
                             break;
                     }
+                    }
                 }
             }
         }
     }
+
+	public void decrementarNumeroDeMacasNoPainelDeMacas() {
+		painelDeMacas.decrementarValor();
+	}
     
 }
 

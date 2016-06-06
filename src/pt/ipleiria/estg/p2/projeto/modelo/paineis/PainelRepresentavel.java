@@ -28,6 +28,7 @@ public class PainelRepresentavel extends Painel
     {
         this.indicacao = new TextCellRepresentation(Integer.toString(this.valor));
         this.getGridPanel().add(0, 0, this.indicacao);
+        getGridPanel().repaint();
     }
 
     public int getValor()
