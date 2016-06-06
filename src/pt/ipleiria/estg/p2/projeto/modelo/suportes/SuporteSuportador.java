@@ -21,7 +21,7 @@ public abstract class SuporteSuportador<TSuportado extends Suportado> extends Su
     {
         super(painelPrincipal, representacao, posicao);
     }
-
+    
     public TSuportado getSuportado()
     {
         return suportado;

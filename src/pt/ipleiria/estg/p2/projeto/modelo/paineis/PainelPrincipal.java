@@ -10,7 +10,6 @@ import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
 import pt.ipleiria.estg.p2.projeto.modelo.Sentido;
 import pt.ipleiria.estg.p2.projeto.modelo.Suportado;
 import pt.ipleiria.estg.p2.projeto.modelo.TipoAnimal;
-import pt.ipleiria.estg.p2.projeto.modelo.inimigos.Inimigo;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.Suporte;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAgua;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAr;
@@ -25,11 +24,9 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
     private int numeroDeMacasEmJogo;
     private int numeroDeSuportesCongelados;
     private Posicao posicaoOrigem;
-    private Animal animalInicio;
-    private Animal animalFinal;
    
     private boolean aArrastar;
-    private Suporte suporteInicio;
+    private Suporte suporteInicial;
     private Suporte suporteFinal;
 
     
@@ -89,10 +86,6 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
     public int getCadenciaDeQueda()
     {
         return CADENCIA_DE_QUEDA;
-    }
-
-    private Suporte getSuporte(Posicao posicao) {
-        return suportes[posicao.getLinha()][posicao.getColuna()];
     }
 
     public boolean isPosicaoValida(Posicao posicao) {
@@ -229,59 +222,56 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
 	@Override
 	public void mousePressed(MouseEvent evt, int linha, int coluna) 
     {
-        posicaoOrigem = new Posicao(linha,coluna);
-		suporteInicio = getSuporte(posicaoOrigem);
-		animalInicio = (Animal) ((SuporteSuportador)suporteInicio).getSuportado();
-		
-		if (seEAnimal(suporteInicio)) {
-			aArrastar = true;
-			System.out.println("É um animal");
-			animalInicio = (Animal) ((SuporteSuportador)suporteInicio).getSuportado();
-			System.out.println(" " + animalInicio.toString());
-		}
-		
+        suporteInicial = suportes[linha][coluna];
+        //check if movivel
+        //TODO CLASSE MOVIVEIS
+        if (suporteInicial instanceof SuporteSuportador) {
+            if (isMovivel(suporteInicial)) {
+                System.out.println(((SuporteSuportador) suporteInicial).getSuportado() + "; L:" + suporteInicial.getPosicao().getLinha() + "; C:" + suporteInicial.getPosicao().getColuna());
+            aArrastar = true;
+            }
+        }
 	}
 	
 
 	@Override
-	public void mouseReleased(MouseEvent evt, int linha, int coluna) {
-        // TODO verificar se é posicao adjacente a primeira posicao?
-		Posicao posicaoDestino = new Posicao(linha,coluna);
-		suporteFinal = getSuporte(posicaoDestino);
-		animalFinal = (Animal) ((SuporteSuportador)suporteFinal).getSuportado();
-		setSuportado(suporteFinal,animalInicio);
-		setSuportado(suporteInicio,animalFinal);
-		
-		if(suporteFinal instanceof SuporteAr){ 
-			System.out.println("Impossivel(AR)!!");
-		}else if(((SuporteSuportador)suporteFinal).getSuportado() instanceof Cesto){
-			System.out.println("Impossivel(CESTO)!!");
-		}else if(posicaoOrigem.getLinha() == posicaoDestino.getLinha() && posicaoOrigem.getColuna() == posicaoDestino.getColuna()){
-			System.out.println("Impossivel(MESMA POSICAO)!!");
-		}else if(!isPosicaoValida(posicaoDestino)){
-			System.out.println("TESTE123");
-		}else if(proximaPosicao(posicaoOrigem, posicaoDestino) == false){
-			System.out.println("Impossivel(JOGADA IMPOSSIVEL)!!");
-		}else if(((SuporteSuportador)suporteFinal).getSuportado() instanceof Inimigo){
-			System.out.println("Impossivel(Inimigo)!!");
-		}else if(seEAnimal(suporteFinal) && seEAnimal(suporteInicio)){
-		
+	public void mouseReleased(MouseEvent evt, int linha, int coluna) 
+    {
+        suporteFinal = suportes[linha][coluna];
+        Sentido sentido = suporteInicial.getPosicao().getSentido(suporteFinal.getPosicao());
+        System.out.println(sentido + " -> sentido");
+        if (sentido == Sentido.N || sentido == Sentido.S || sentido == Sentido.E || sentido == Sentido.O) {
+            
+        }
+        
+        
+//        Posicao posicaoDestino = new Posicao(linha,coluna);
+//		suporteFinal = getSuporte(posicaoDestino);
+//		animalFinal = (Animal) ((SuporteSuportador)suporteFinal).getSuportado();
+//		setSuportado(suporteFinal,animalInicio);
+//		setSuportado(suporteInicio,animalFinal);
+//		
+//		if(suporteFinal instanceof SuporteAr){ 
+//			System.out.println("Impossivel(AR)!!");
+//		}else if(((SuporteSuportador)suporteFinal).getSuportado() instanceof Cesto){
+//			System.out.println("Impossivel(CESTO)!!");
+//		}else if(posicaoOrigem.getLinha() == posicaoDestino.getLinha() && posicaoOrigem.getColuna() == posicaoDestino.getColuna()){
+//			System.out.println("Impossivel(MESMA POSICAO)!!");
+//		}else if(!isPosicaoValida(posicaoDestino)){
+//			System.out.println("TESTE123");
+//		}else if(proximaPosicao(posicaoOrigem, posicaoDestino) == false){
+//			System.out.println("Impossivel(JOGADA IMPOSSIVEL)!!");
+//		}else if(((SuporteSuportador)suporteFinal).getSuportado() instanceof Inimigo){
+//			System.out.println("Impossivel(Inimigo)!!");
+//		}else if(isAnimal(suporteFinal) && isAnimal(suporteInicio)){
+//		
 		//atualizarSuporte(posicaoDestino);
 		//atualizarSuporte(posicaoOrigem);
 		
-        }
-	}
-	
-	public boolean seEAnimal(Suporte suporte){
-		if(!(suporte instanceof SuporteAr)){
-			if(((SuporteSuportador)suporte).getSuportado() instanceof Animal){
-				return true;
-			}
-			return false;
-		}
-		return false;
+//        }
 	}
 
+    
 	private void setSuportado(Suporte suporteOrigem, Animal animalDestino) {
 		if(animalDestino == null){
 			((SuporteSuportador)suportes[suporteOrigem.getPosicao().getLinha()][suporteOrigem.getPosicao().getColuna()]).setSuportado(animalDestino);
@@ -291,5 +281,12 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
 		}
 	}
 
+    private boolean isMovivel(Suporte suporteInicial)
+    {
+        if(((SuporteSuportador)suporteInicial).getSuportado() instanceof Animal){
+            return true;
+        }
+        return false;
+    }
 }
 
