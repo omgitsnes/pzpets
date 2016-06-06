@@ -25,9 +25,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
     private int numeroDeSuportesCongelados;
     private Posicao posicaoOrigem;
    
-    private boolean aArrastar;
     private Suporte suporteInicial;
-    private Suporte suporteFinal;
 
     
     static final Posicao[] POSSIVEIS = {new Posicao(1,0),new Posicao(0,1), new Posicao(0,-1), new Posicao(-1,0)};
@@ -228,7 +226,6 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
         if (suporteInicial instanceof SuporteSuportador) {
             if (isMovivel(suporteInicial)) {
                 System.out.println(((SuporteSuportador) suporteInicial).getSuportado() + "; L:" + suporteInicial.getPosicao().getLinha() + "; C:" + suporteInicial.getPosicao().getColuna());
-            aArrastar = true;
             }
         }
 	}
@@ -237,13 +234,14 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
 	@Override
 	public void mouseReleased(MouseEvent evt, int linha, int coluna) 
     {
-        suporteFinal = suportes[linha][coluna];
-        Sentido sentido = suporteInicial.getPosicao().getSentido(suporteFinal.getPosicao());
-        System.out.println(sentido + " -> sentido");
-        if (sentido == Sentido.N || sentido == Sentido.S || sentido == Sentido.E || sentido == Sentido.O) {
-            
+        Suporte suporteFinal = suportes[linha][coluna];
+        if (suporteInicial instanceof SuporteSuportador) {
+            Sentido sentido = suporteInicial.getPosicao().getSentido(suporteFinal.getPosicao());
+            System.out.println(sentido + " -> sentido");
+            if (sentido == Sentido.N || sentido == Sentido.S || sentido == Sentido.E || sentido == Sentido.O) {
+                trocarMoviveis(suporteFinal);
+            }
         }
-        
         
 //        Posicao posicaoDestino = new Posicao(linha,coluna);
 //		suporteFinal = getSuporte(posicaoDestino);
@@ -271,22 +269,23 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
 //        }
 	}
 
-    
-	private void setSuportado(Suporte suporteOrigem, Animal animalDestino) {
-		if(animalDestino == null){
-			((SuporteSuportador)suportes[suporteOrigem.getPosicao().getLinha()][suporteOrigem.getPosicao().getColuna()]).setSuportado(animalDestino);
-		}else{
-			((SuporteSuportador)suportes[suporteOrigem.getPosicao().getLinha()][suporteOrigem.getPosicao().getColuna()]).setSuportado(animalDestino);
-			suportes[suporteOrigem.getPosicao().getLinha()][suporteOrigem.getPosicao().getColuna()].getRepresentacao();
-		}
-	}
-
     private boolean isMovivel(Suporte suporteInicial)
     {
-        if(((SuporteSuportador)suporteInicial).getSuportado() instanceof Animal){
+        if(((SuporteSuportador) suporteInicial).getSuportado() instanceof Animal){
             return true;
         }
         return false;
+    }
+
+    private void trocarMoviveis(Suporte suporteFinal)
+    {
+        Suporte suporteAux = suporteInicial;
+        ((SuporteSuportador) suporteInicial).colocar(((SuporteSuportador) suporteFinal).getSuportado());
+        ((SuporteSuportador) suporteFinal).colocar(((SuporteSuportador) suporteAux).getSuportado());
+        
+        atualizarGridPanel(suporteInicial);
+        atualizarGridPanel(suporteFinal);
+        
     }
 }
 
