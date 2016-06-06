@@ -22,7 +22,7 @@ public class SuporteAr extends Suporte
             System.out.println("Suporte de ar aceita que passe");
             return getPainelPrincipal().podeCair(suportado, getPosicao(), sentido);
         }
-        return true;
+        return false;
     }
 
     @Override
