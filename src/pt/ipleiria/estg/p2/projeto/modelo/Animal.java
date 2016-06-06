@@ -3,9 +3,10 @@ package pt.ipleiria.estg.p2.projeto.modelo;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.Iteravel;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteSuportador;
 
-public class Animal extends Suportado implements Iteravel {
+public class Animal extends Combinavel implements Iteravel {
 
 	private TipoAnimal tipo;
+    private boolean movimentoExtra;
 
 	public TipoAnimal getTipo() {
 		return tipo;
@@ -14,28 +15,6 @@ public class Animal extends Suportado implements Iteravel {
 	public Animal(TipoAnimal tipo, SuporteSuportador suporte) {
 		super(tipo.getRepresentacao(), suporte);
 		this.tipo = tipo;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Animal other = (Animal) obj;
-		if (tipo != other.tipo)
-			return false;
-		return true;
 	}
 
 	@Override
@@ -60,7 +39,7 @@ public class Animal extends Suportado implements Iteravel {
 		    	}
 		
 		else {
-		    System.out.println(this + " Nao pode cair!");
+		    System.out.println(this + " Nao posso cair!");
 		}
 		
 	}
