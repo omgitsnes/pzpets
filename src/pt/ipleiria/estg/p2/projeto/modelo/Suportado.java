@@ -34,6 +34,5 @@ public class Suportado<TSuporte extends SuporteSuportador>
     {
         this.suporte = (TSuporte) suporte;
     }
-    
-    
+
 }
