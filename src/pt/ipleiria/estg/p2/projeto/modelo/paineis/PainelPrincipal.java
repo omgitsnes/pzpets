@@ -24,8 +24,6 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
     private Suporte[][] suportes;
     private int numeroDeMacasEmJogo;
     private int numeroDeSuportesCongelados;
-    private Posicao posicaoOrigem;
-   
     private Suporte suporteInicial;
 
     
@@ -49,15 +47,6 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
     private void colocarMacaNivel1() {
         Maca maca = new Maca((SuporteSuportador)suportes[0][0]);
         ((SuporteSuportador)suportes[0][0]).colocar(maca);
-        
-        Animal a = new Animal(TipoAnimal.SAPO, (SuporteSuportador) suportes[1][0]);
-        ((SuporteSuportador) suportes[1][0]).colocar(a);
-        
-        Animal b = new Animal(TipoAnimal.POLVO, (SuporteSuportador) suportes[5][0]);
-        ((SuporteSuportador) suportes[5][0]).colocar(b);
-        
-        Animal c = new Animal(TipoAnimal.POLVO, (SuporteSuportador) suportes[4][1]);
-        ((SuporteSuportador) suportes[4][1]).colocar(c);
     }
 
     public int getNumeroDeMacasEmJogo()
@@ -246,7 +235,12 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
                     Sentido sentido = suporteInicial.getPosicao().getSentido(suporteFinal.getPosicao());
                     System.out.println(sentido + " -> sentido");
                     if (sentido == Sentido.N || sentido == Sentido.S || sentido == Sentido.E || sentido == Sentido.O) {
-                        trocar(suporteFinal);
+                        
+                        System.out.println(sentido.seguirSentido(suporteInicial.getPosicao()) + " =? " + suporteFinal.getPosicao());
+                        
+                        if (sentido.seguirSentido(suporteInicial.getPosicao()).equals(suporteFinal.getPosicao())) {
+                            trocar(suporteFinal);
+                        }
                     }
                 }
             }
