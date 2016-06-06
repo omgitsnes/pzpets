@@ -11,11 +11,19 @@ import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteSuportador;
  *
  * @author nes
  */
-class Combinavel extends Suportado<SuporteSuportador>
+public class Combinavel extends Suportado<SuporteSuportador>
 {
     public Combinavel(String representacao, SuporteSuportador suporte)
     {
         super(representacao, suporte);
+    }
+
+    public boolean combinaCom(Suportado suportado)
+    {
+        if (((Animal)suportado).getTipo() == ((Animal) this).getTipo()) {
+            return true;
+        }
+        return false;
     }
     
 }

@@ -6,6 +6,7 @@ import pt.ipleiria.estg.dei.gridpanel.GridPanel;
 import pt.ipleiria.estg.dei.gridpanel.GridPanelEventHandler;
 import pt.ipleiria.estg.p2.projeto.modelo.Animal;
 import pt.ipleiria.estg.p2.projeto.modelo.Cesto;
+import pt.ipleiria.estg.p2.projeto.modelo.Combinavel;
 import pt.ipleiria.estg.p2.projeto.modelo.Maca;
 import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
 import pt.ipleiria.estg.p2.projeto.modelo.Sentido;
@@ -158,9 +159,9 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
             for (int j = 0; j < getNumeroDeColunas(); j++) {
                 if (suportes[i][j] instanceof SuporteSuportador)
                     ((SuporteSuportador)suportes[i][j]).iterar(tempo);
-                    adicionarAnimalAleatorio();
             }
         }
+        adicionarAnimalAleatorio();
     }
 
     public void fazMeCair(Suportado suportado, Posicao posicao, Sentido sentido) {
@@ -240,6 +241,11 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
                         
                         if (sentido.seguirSentido(suporteInicial.getPosicao()).equals(suporteFinal.getPosicao())) {
                             trocar(suporteFinal);
+                            if (gerarCombinacao(suporteInicial.getPosicao()) || gerarCombinacao(suporteFinal.getPosicao())) {
+                                //combinar;
+                            } else {
+                                trocar(suporteFinal);
+                            }
                         }
                     }
                 }
@@ -276,11 +282,31 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
     
     private boolean gerarCombinacao(Posicao posicao)
     {
+        //TODO make getSuportado
+        Suportado suportado = ((SuporteSuportador) suportes[posicao.getLinha()][posicao.getColuna()]).getSuportado();
+        if (suportado instanceof Combinavel) {
+            Sentido[] sentidos = { Sentido.E, Sentido.S };
+            for (Sentido sentido : sentidos) {
+                if (combinam(posicao, sentido, 2) || combinam(posicao, sentido.getInverso(), 2) || (combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 1))) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
     
     private boolean combinam(Posicao posicao, Sentido sentido, int valor)
     {
+        Suportado suportado = getSuportado(posicao);
+        Suportado suportadoSentido = getSuportado(sentido.seguirSentido(posicao));
+
+            while (valor-- > 0) {
+                if (!(suportadoSentido instanceof Combinavel &&
+                    ((Combinavel) suportadoSentido).combinaCom(suportado))) {
+                    return false;
+                }
+                suportadoSentido = getSuportado(sentido.seguirSentido(suportadoSentido.getSuporte().getPosicao()));
+            }
         return true;
     }
     
@@ -305,6 +331,11 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
                 }
             }
         }
+    }
+    
+    public Suportado getSuportado(Posicao posicao)
+    {
+            return ((SuporteSuportador) suportes[posicao.getLinha()][posicao.getColuna()]).getSuportado();
     }
     
 }
