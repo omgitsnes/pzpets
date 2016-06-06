@@ -1,5 +1,6 @@
 package pt.ipleiria.estg.p2.projeto.modelo;
 
+import java.util.Random;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.Iteravel;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteSuportador;
 
@@ -15,6 +16,7 @@ public class Animal extends Combinavel implements Iteravel {
 	public Animal(TipoAnimal tipo, SuporteSuportador suporte) {
 		super(tipo.getRepresentacao(), suporte);
 		this.tipo = tipo;
+        this.movimentoExtra = randomMovimentoExtra();
 	}
 
 	@Override
@@ -43,5 +45,14 @@ public class Animal extends Combinavel implements Iteravel {
 		}
 		
 	}
+    
+    /**
+     * Devolve um valor true com uma probabilidade de 10%
+     * 
+     */
+    private boolean randomMovimentoExtra()
+    {
+        return new Random().nextInt(10) == 1 ? true : false;
+    }
 
 }
