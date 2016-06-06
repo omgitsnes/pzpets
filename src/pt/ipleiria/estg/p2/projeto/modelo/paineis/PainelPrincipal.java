@@ -282,13 +282,17 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
 
     private void trocar(Suporte suporteFinal)
     {
-        Suporte suporteAux = suporteInicial;
+        Suportado suportadoAux = ((SuporteSuportador) suporteInicial).getSuportado();
         
 //DEBUG
-        System.out.println("Trocar " + ((SuporteSuportador) suporteFinal).getSuportado() + " com " + ((SuporteSuportador) suporteAux).getSuportado());
+        System.out.println("Trocar " + ((SuporteSuportador) suporteFinal).getSuportado() + " com " + suportadoAux);
         
         ((SuporteSuportador) suporteInicial).colocar(((SuporteSuportador) suporteFinal).getSuportado());
-        ((SuporteSuportador) suporteFinal).colocar(((SuporteSuportador) suporteAux).getSuportado());
+        System.out.println(((SuporteSuportador) suporteInicial) + " --> " + ((SuporteSuportador) suporteFinal).getSuportado());
+        
+        ((SuporteSuportador) suporteFinal).colocar(suportadoAux);
+        System.out.println(((SuporteSuportador) suporteFinal) + " --> " + suportadoAux);
+        
         
         atualizarGridPanel(suporteInicial);
         atualizarGridPanel(suporteFinal);

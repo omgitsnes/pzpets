@@ -21,6 +21,7 @@ public class Painel
     public void atualizarGridPanel(Suporte suporte)
     {
         gridPanel.put(suporte.getPosicao().getLinha(), suporte.getPosicao().getColuna(), suporte.getRepresentacao());
+        gridPanel.repaint();
     }
     
     public int getNumeroDeLinhas()
