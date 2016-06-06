@@ -226,6 +226,8 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
         if (suporteInicial instanceof SuporteSuportador) {
             if (isMovivel(suporteInicial)) {
                 System.out.println(((SuporteSuportador) suporteInicial).getSuportado() + "; L:" + suporteInicial.getPosicao().getLinha() + "; C:" + suporteInicial.getPosicao().getColuna());
+            } else {
+                suporteInicial = null;
             }
         }
 	}
@@ -234,42 +236,19 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
 	@Override
 	public void mouseReleased(MouseEvent evt, int linha, int coluna) 
     {
-        Suporte suporteFinal = suportes[linha][coluna];
-        if (suporteFinal instanceof SuporteSuportador) {
-            if (isMovivel(suporteFinal)) {
-                System.out.println(((SuporteSuportador) suporteFinal).getSuportado() + "; L:" + suporteFinal.getPosicao().getLinha() + "; C:" + suporteFinal.getPosicao().getColuna());
-                Sentido sentido = suporteInicial.getPosicao().getSentido(suporteFinal.getPosicao());
-                System.out.println(sentido + " -> sentido");
-                if (sentido == Sentido.N || sentido == Sentido.S || sentido == Sentido.E || sentido == Sentido.O) {
-                    trocar(suporteFinal);
+        if (suporteInicial != null) {
+            Suporte suporteFinal = suportes[linha][coluna];
+            if (suporteFinal instanceof SuporteSuportador) {
+                if (isMovivel(suporteFinal)) {
+                    System.out.println(((SuporteSuportador) suporteFinal).getSuportado() + "; L:" + suporteFinal.getPosicao().getLinha() + "; C:" + suporteFinal.getPosicao().getColuna());
+                    Sentido sentido = suporteInicial.getPosicao().getSentido(suporteFinal.getPosicao());
+                    System.out.println(sentido + " -> sentido");
+                    if (sentido == Sentido.N || sentido == Sentido.S || sentido == Sentido.E || sentido == Sentido.O) {
+                        trocar(suporteFinal);
+                    }
                 }
             }
         }
-        
-//        Posicao posicaoDestino = new Posicao(linha,coluna);
-//		suporteFinal = getSuporte(posicaoDestino);
-//		animalFinal = (Animal) ((SuporteSuportador)suporteFinal).getSuportado();
-//		setSuportado(suporteFinal,animalInicio);
-//		setSuportado(suporteInicio,animalFinal);
-//		
-//		if(suporteFinal instanceof SuporteAr){ 
-//			System.out.println("Impossivel(AR)!!");
-//		}else if(((SuporteSuportador)suporteFinal).getSuportado() instanceof Cesto){
-//			System.out.println("Impossivel(CESTO)!!");
-//		}else if(posicaoOrigem.getLinha() == posicaoDestino.getLinha() && posicaoOrigem.getColuna() == posicaoDestino.getColuna()){
-//			System.out.println("Impossivel(MESMA POSICAO)!!");
-//		}else if(!isPosicaoValida(posicaoDestino)){
-//			System.out.println("TESTE123");
-//		}else if(proximaPosicao(posicaoOrigem, posicaoDestino) == false){
-//			System.out.println("Impossivel(JOGADA IMPOSSIVEL)!!");
-//		}else if(((SuporteSuportador)suporteFinal).getSuportado() instanceof Inimigo){
-//			System.out.println("Impossivel(Inimigo)!!");
-//		}else if(isAnimal(suporteFinal) && isAnimal(suporteInicio)){
-//		
-//		atualizarSuporte(posicaoDestino);
-//		atualizarSuporte(posicaoOrigem);
-		
-//        }
 	}
 
     private boolean isMovivel(Suporte suporte)
