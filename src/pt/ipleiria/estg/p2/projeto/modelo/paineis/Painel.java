@@ -18,7 +18,7 @@ public class Painel
         return gridPanel;
     }
     
-    protected void adicionarAoGridPanel(Suporte suporte)
+    protected void atualizarGridPanel(Suporte suporte)
     {
         gridPanel.put(suporte.getPosicao().getLinha(), suporte.getPosicao().getColuna(), suporte.getRepresentacao());
     }
