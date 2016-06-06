@@ -235,11 +235,14 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
 	public void mouseReleased(MouseEvent evt, int linha, int coluna) 
     {
         Suporte suporteFinal = suportes[linha][coluna];
-        if (suporteInicial instanceof SuporteSuportador) {
-            Sentido sentido = suporteInicial.getPosicao().getSentido(suporteFinal.getPosicao());
-            System.out.println(sentido + " -> sentido");
-            if (sentido == Sentido.N || sentido == Sentido.S || sentido == Sentido.E || sentido == Sentido.O) {
-                trocarMoviveis(suporteFinal);
+        if (suporteFinal instanceof SuporteSuportador) {
+            if (isMovivel(suporteFinal)) {
+                System.out.println(((SuporteSuportador) suporteFinal).getSuportado() + "; L:" + suporteFinal.getPosicao().getLinha() + "; C:" + suporteFinal.getPosicao().getColuna());
+                Sentido sentido = suporteInicial.getPosicao().getSentido(suporteFinal.getPosicao());
+                System.out.println(sentido + " -> sentido");
+                if (sentido == Sentido.N || sentido == Sentido.S || sentido == Sentido.E || sentido == Sentido.O) {
+                    trocar(suporteFinal);
+                }
             }
         }
         
@@ -263,29 +266,43 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
 //			System.out.println("Impossivel(Inimigo)!!");
 //		}else if(isAnimal(suporteFinal) && isAnimal(suporteInicio)){
 //		
-		//atualizarSuporte(posicaoDestino);
-		//atualizarSuporte(posicaoOrigem);
+//		atualizarSuporte(posicaoDestino);
+//		atualizarSuporte(posicaoOrigem);
 		
 //        }
 	}
 
-    private boolean isMovivel(Suporte suporteInicial)
+    private boolean isMovivel(Suporte suporte)
     {
-        if(((SuporteSuportador) suporteInicial).getSuportado() instanceof Animal){
+        if(((SuporteSuportador) suporte).getSuportado() instanceof Animal){
             return true;
         }
         return false;
     }
 
-    private void trocarMoviveis(Suporte suporteFinal)
+    private void trocar(Suporte suporteFinal)
     {
         Suporte suporteAux = suporteInicial;
+        
+//DEBUG
+        System.out.println("Trocar " + ((SuporteSuportador) suporteFinal).getSuportado() + " com " + ((SuporteSuportador) suporteAux).getSuportado());
+        
         ((SuporteSuportador) suporteInicial).colocar(((SuporteSuportador) suporteFinal).getSuportado());
         ((SuporteSuportador) suporteFinal).colocar(((SuporteSuportador) suporteAux).getSuportado());
         
         atualizarGridPanel(suporteInicial);
         atualizarGridPanel(suporteFinal);
         
+    }
+    
+    private boolean gerarCombinacao(Posicao posicao)
+    {
+        return false;
+    }
+    
+    private boolean combinam(Posicao posicao, Sentido sentido, int valor)
+    {
+        return true;
     }
 }
 
