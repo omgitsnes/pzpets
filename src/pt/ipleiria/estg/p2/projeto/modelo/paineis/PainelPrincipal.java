@@ -1,6 +1,7 @@
 package pt.ipleiria.estg.p2.projeto.modelo.paineis;
 
 import java.awt.event.MouseEvent;
+import java.util.Random;
 import pt.ipleiria.estg.dei.gridpanel.GridPanel;
 import pt.ipleiria.estg.dei.gridpanel.GridPanelEventHandler;
 import pt.ipleiria.estg.p2.projeto.modelo.Animal;
@@ -168,6 +169,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
             for (int j = 0; j < getNumeroDeColunas(); j++) {
                 if (suportes[i][j] instanceof SuporteSuportador)
                     ((SuporteSuportador)suportes[i][j]).iterar(tempo);
+                    adicionarAnimalAleatorio();
             }
         }
     }
@@ -287,5 +289,29 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
     {
         return true;
     }
+    
+    public void adicionarAnimalAleatorio()
+    {
+        for (int coluna = 0; coluna < getNumeroDeColunas(); coluna++) {
+            if (suportes[0][coluna] instanceof SuporteSuportador) {
+                if (((SuporteSuportador) suportes[0][coluna]).getSuportado() == null) {
+                    Random random = new Random();
+                    switch (random.nextInt(5)) {
+                        case 0: ((SuporteSuportador) suportes[0][coluna]).colocar(new Animal(TipoAnimal.SAPO, ((SuporteSuportador) suportes[0][coluna])));
+                            break;
+                        case 1: ((SuporteSuportador) suportes[0][coluna]).colocar(new Animal(TipoAnimal.PANDA, ((SuporteSuportador) suportes[0][coluna])));
+                            break;
+                        case 2: ((SuporteSuportador) suportes[0][coluna]).colocar(new Animal(TipoAnimal.PEIXE, ((SuporteSuportador) suportes[0][coluna])));
+                            break;
+                        case 3: ((SuporteSuportador) suportes[0][coluna]).colocar(new Animal(TipoAnimal.POLVO, ((SuporteSuportador) suportes[0][coluna])));
+                            break;
+                        case 4: ((SuporteSuportador) suportes[0][coluna]).colocar(new Animal(TipoAnimal.RAPOSA, ((SuporteSuportador) suportes[0][coluna])));
+                            break;
+                    }
+                }
+            }
+        }
+    }
+    
 }
 
