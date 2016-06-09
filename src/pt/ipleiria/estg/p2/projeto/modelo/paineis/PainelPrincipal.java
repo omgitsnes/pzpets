@@ -73,21 +73,6 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
         return CADENCIA_DE_QUEDA;
     }
 
-    public boolean isPosicaoValida(Posicao posicao) {
-        return posicao.getLinha() >= 0 && posicao.getLinha() < suportes.length && 
-                posicao.getColuna() >= 0 && posicao.getColuna() < suportes[0].length;
-    }
-
-    public boolean proximaPosicao(Posicao posicaoOrigem, Posicao posicaoDestino){
-        for(int i=0; i < POSSIVEIS.length; i++){
-            if(posicaoDestino.getLinha() == POSSIVEIS[i].getLinha()+posicaoOrigem.getLinha() &&
-                    posicaoDestino.getColuna() == POSSIVEIS[i].getColuna()+posicaoOrigem.getColuna()){
-                return true;
-            }
-        }
-        return false;
-    }
-
     private void gerarNivel()
     {
         for (int i = 0; i < getNumeroDeLinhas(); i++) {
@@ -238,8 +223,10 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
                         if (sentido.seguirSentido(suporteInicial.getPosicao()).equals(suporteFinal.getPosicao())) {
                             trocar(suporteFinal);
                             if (gerarCombinacao(suporteInicial.getPosicao()) || gerarCombinacao(suporteFinal.getPosicao())) {
+                                System.err.println("Combinam");
                                 //combinar;
                             } else {
+                                System.err.println("Nai«o combinam");
                                 trocar(suporteFinal);
                             }
                         }
@@ -283,7 +270,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
         if (suportado instanceof Combinavel) {
             Sentido[] sentidos = { Sentido.E, Sentido.S };
             for (Sentido sentido : sentidos) {
-                if (combinam(posicao, sentido, 2) || combinam(posicao, sentido.getInverso(), 2) || (combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 1))) {
+                if (combinam(posicao, sentido, 2) || combinam(posicao, sentido.getInverso(), 2) || ((combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 1)))) {
                     return true;
                 }
             }
@@ -292,20 +279,35 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
     }
     
 
-
+    /*
+     * Verifica para um numero @valor de posicoes sucecivas
+     * no sentido @sentido, existe suportados do mesmo tipo
+     * @return true if true.
+     * TODO reuse code!
+    */
     private boolean combinam(Posicao posicao, Sentido sentido, int valor)
     {
         Suportado suportado = getSuportado(posicao);
-        Suportado suportadoSentido = getSuportado(sentido.seguirSentido(posicao));
+        Suportado suportadoSentido;
+        Posicao proximaPosicao = sentido.seguirSentido(posicao);
+        if (proximaPosicao.isDentro(getNumeroDeLinhas(), getNumeroDeColunas())) {
+            suportadoSentido = getSuportado(sentido.seguirSentido(posicao));
+        } else {
+            System.err.println("Posicao Invalida" + proximaPosicao);
+            return false;
+        }
 
             while (valor-- > 0) {
                 if (!(suportadoSentido instanceof Combinavel &&
                     ((Combinavel) suportadoSentido).combinaCom(suportado))) {
                     return false;
                 }
-                Posicao proximaPosicao = sentido.seguirSentido(suportadoSentido.getSuporte().getPosicao());
+                proximaPosicao = sentido.seguirSentido(suportadoSentido.getSuporte().getPosicao());
                 if (proximaPosicao.isDentro(getNumeroDeLinhas(), getNumeroDeColunas())) {
-                    suportadoSentido = getSuportado(proximaPosicao);
+                    suportadoSentido = getSuportado(sentido.seguirSentido(proximaPosicao));
+                } else {
+                    System.err.println("Posicao Invalida" + proximaPosicao);
+                    return false;
                 }
             }
         return true;

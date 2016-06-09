@@ -2,8 +2,8 @@ package pt.ipleiria.estg.p2.projeto.modelo.suportes;
 
 import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
 import pt.ipleiria.estg.p2.projeto.modelo.Sentido;
-import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.Suportado;
 import pt.ipleiria.estg.p2.projeto.modelo.paineis.PainelPrincipal;
+import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.Suportado;
 
 public class SuporteAr extends Suporte
 {
@@ -19,7 +19,6 @@ public class SuporteAr extends Suporte
     public boolean aceitas(Suportado suportado, Posicao posicao, Sentido sentido)
     {
         if (sentido == Sentido.S) {
-            System.out.println("Suporte de ar aceita que passe");
             return getPainelPrincipal().podeCair(suportado, getPosicao(), sentido);
         }
         return false;

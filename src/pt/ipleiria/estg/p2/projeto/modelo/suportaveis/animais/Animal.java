@@ -32,17 +32,12 @@ public class Animal extends Combinavel implements Iteravel {
 		if (getSuporte().podeCair(Sentido.S)) {
 		    getSuporte().fazMeCair(Sentido.S);
 		}
-		    else if (getSuporte().podeCair(Sentido.SE)) {
-		    		getSuporte().fazMeCair(Sentido.SE);
-		    }
-		    	else if (getSuporte().podeCair(Sentido.SO)) {
-		    			getSuporte().fazMeCair(Sentido.SO);
-		    	}
-		
-		else {
-		    System.out.println(this + " Nao posso cair!");
-		}
-		
+        else if (getSuporte().podeCair(Sentido.SE)) {
+            getSuporte().fazMeCair(Sentido.SE);
+        }
+        else if (getSuporte().podeCair(Sentido.SO)) {
+            getSuporte().fazMeCair(Sentido.SO);
+        }
 	}
     
     /**
