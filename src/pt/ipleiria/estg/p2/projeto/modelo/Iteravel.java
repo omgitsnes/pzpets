@@ -1,4 +1,4 @@
-package pt.ipleiria.estg.p2.projeto.modelo.suportes;
+package pt.ipleiria.estg.p2.projeto.modelo;
 
 public interface Iteravel {
 	public void iterar(long tempo);

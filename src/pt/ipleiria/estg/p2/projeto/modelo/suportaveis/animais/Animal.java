@@ -1,7 +1,10 @@
-package pt.ipleiria.estg.p2.projeto.modelo;
+package pt.ipleiria.estg.p2.projeto.modelo.suportaveis.animais;
 
 import java.util.Random;
-import pt.ipleiria.estg.p2.projeto.modelo.suportes.Iteravel;
+import pt.ipleiria.estg.p2.projeto.modelo.Combinavel;
+import pt.ipleiria.estg.p2.projeto.modelo.Sentido;
+import pt.ipleiria.estg.p2.projeto.modelo.TipoAnimal;
+import pt.ipleiria.estg.p2.projeto.modelo.Iteravel;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteSuportador;
 
 public class Animal extends Combinavel implements Iteravel {
@@ -26,7 +29,7 @@ public class Animal extends Combinavel implements Iteravel {
 
     @Override
 	public void iterar(long tempo) {
-	    System.out.println(this + " Será que posso cair ?");
+	    System.out.println(this + " Serï¿½ que posso cair ?");
 		if (getSuporte().podeCair(Sentido.S)) {
 		    System.out.println(this + " Posso cair para baixo!");
 		    getSuporte().fazMeCair(Sentido.S);

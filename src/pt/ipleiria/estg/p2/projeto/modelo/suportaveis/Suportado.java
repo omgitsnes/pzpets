@@ -1,4 +1,4 @@
-package pt.ipleiria.estg.p2.projeto.modelo;
+package pt.ipleiria.estg.p2.projeto.modelo.suportaveis;
 
 import pt.ipleiria.estg.dei.gridpanel.CellRepresentation;
 import pt.ipleiria.estg.dei.gridpanel.SingleImageCellRepresentation;

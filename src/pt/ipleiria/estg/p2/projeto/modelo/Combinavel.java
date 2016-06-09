@@ -5,6 +5,8 @@
  */
 package pt.ipleiria.estg.p2.projeto.modelo;
 
+import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.Suportado;
+import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.animais.Animal;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteSuportador;
 
 /**

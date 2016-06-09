@@ -1,4 +1,4 @@
-package pt.ipleiria.estg.p2.projeto.modelo.inimigos;
+package pt.ipleiria.estg.p2.projeto.modelo.suportaveis.inimigos;
 
 import java.util.LinkedList;
 

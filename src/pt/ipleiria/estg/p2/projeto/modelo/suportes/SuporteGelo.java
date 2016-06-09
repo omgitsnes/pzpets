@@ -1,9 +1,9 @@
 package pt.ipleiria.estg.p2.projeto.modelo.suportes;
 
-import pt.ipleiria.estg.p2.projeto.modelo.SuportadoPorGelo;
+import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.SuportadoPorGelo;
 import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
 import pt.ipleiria.estg.p2.projeto.modelo.Sentido;
-import pt.ipleiria.estg.p2.projeto.modelo.Suportado;
+import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.Suportado;
 import pt.ipleiria.estg.p2.projeto.modelo.paineis.PainelPrincipal;
 
 public class SuporteGelo extends SuporteSuportador<SuportadoPorGelo>

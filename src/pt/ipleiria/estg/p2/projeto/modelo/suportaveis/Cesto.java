@@ -1,7 +1,9 @@
-package pt.ipleiria.estg.p2.projeto.modelo;
+package pt.ipleiria.estg.p2.projeto.modelo.suportaveis;
 
 import pt.ipleiria.estg.dei.gridpanel.SingleImageCellRepresentation;
-import pt.ipleiria.estg.p2.projeto.modelo.suportes.Iteravel;
+import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
+import pt.ipleiria.estg.p2.projeto.modelo.Sentido;
+import pt.ipleiria.estg.p2.projeto.modelo.Iteravel;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.Suporte;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAgua;
 
