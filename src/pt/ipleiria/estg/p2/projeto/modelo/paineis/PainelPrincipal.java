@@ -4,14 +4,14 @@ import java.awt.event.MouseEvent;
 import java.util.Random;
 import pt.ipleiria.estg.dei.gridpanel.GridPanel;
 import pt.ipleiria.estg.dei.gridpanel.GridPanelEventHandler;
-import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.animais.Animal;
-import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.Cesto;
 import pt.ipleiria.estg.p2.projeto.modelo.Combinavel;
-import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.Maca;
 import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
 import pt.ipleiria.estg.p2.projeto.modelo.Sentido;
-import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.Suportado;
 import pt.ipleiria.estg.p2.projeto.modelo.TipoAnimal;
+import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.Cesto;
+import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.Maca;
+import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.Suportado;
+import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.animais.Animal;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.Suporte;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAgua;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAr;
@@ -303,7 +303,10 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
                     ((Combinavel) suportadoSentido).combinaCom(suportado))) {
                     return false;
                 }
-                suportadoSentido = getSuportado(sentido.seguirSentido(suportadoSentido.getSuporte().getPosicao()));
+                Posicao proximaPosicao = sentido.seguirSentido(suportadoSentido.getSuporte().getPosicao());
+                if (proximaPosicao.isDentro(getNumeroDeLinhas(), getNumeroDeColunas())) {
+                    suportadoSentido = getSuportado(proximaPosicao);
+                }
             }
         return true;
     }
@@ -345,7 +348,11 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
     
     public Suportado getSuportado(Posicao posicao)
     {
-            return ((SuporteSuportador) suportes[posicao.getLinha()][posicao.getColuna()]).getSuportado();
+        Suporte suporte = suportes[posicao.getLinha()][posicao.getColuna()];
+        if (suporte instanceof SuporteSuportador) {
+            return ((SuporteSuportador) suporte).getSuportado();
+        }
+        return null;
     }
     
 }
