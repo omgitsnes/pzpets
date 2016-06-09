@@ -304,7 +304,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
                 }
                 proximaPosicao = sentido.seguirSentido(suportadoSentido.getSuporte().getPosicao());
                 if (proximaPosicao.isDentro(getNumeroDeLinhas(), getNumeroDeColunas())) {
-                    suportadoSentido = getSuportado(sentido.seguirSentido(proximaPosicao));
+                    suportadoSentido = getSuportado(proximaPosicao);
                 } else {
                     System.err.println("Posicao Invalida" + proximaPosicao);
                     return false;
