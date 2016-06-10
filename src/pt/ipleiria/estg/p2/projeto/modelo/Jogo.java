@@ -22,12 +22,22 @@ public class Jogo {
         painelDeMacas = new PainelDeMacas(gridPanelPainelDeMacas, objetivo.getNumeroDeMacasParaApanhar());
         painelDeMovimentosEstrelas = new PainelDeMovimentosEstrelas(gridPanelPainelDeMovimentosEstrelas, objetivo.getNumeroDeMovimentosMaximo());
         painelDePontuacoes = new PainelDePontuacoes(gridPanelPainelDePontuacoes);
-        painelPrincipal = new PainelPrincipal(gridPanelPainelPrincipal, painelDeMacas);
+        painelPrincipal = new PainelPrincipal(gridPanelPainelPrincipal, this);
 	}
 
 
 	public void iterar(long tempo) {
 		painelPrincipal.iterar(tempo);
 	}
+
+    public void decrementarMovimentosDisponiveis()
+    {
+        painelDeMovimentosEstrelas.decrementarValor();
+    }
+    
+    public void decrementarMacasPorApanhar()
+    {
+        painelDeMacas.decrementarValor();
+    }
     
 }

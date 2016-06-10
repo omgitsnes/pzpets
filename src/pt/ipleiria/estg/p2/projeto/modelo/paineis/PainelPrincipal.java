@@ -5,6 +5,7 @@ import java.util.Random;
 import pt.ipleiria.estg.dei.gridpanel.GridPanel;
 import pt.ipleiria.estg.dei.gridpanel.GridPanelEventHandler;
 import pt.ipleiria.estg.p2.projeto.modelo.Combinavel;
+import pt.ipleiria.estg.p2.projeto.modelo.Jogo;
 import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
 import pt.ipleiria.estg.p2.projeto.modelo.Sentido;
 import pt.ipleiria.estg.p2.projeto.modelo.TipoAnimal;
@@ -17,29 +18,27 @@ import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAgua;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAr;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteGelo;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteSuportador;
-import pt.ipleiria.estg.p2.projeto.vista.JanelaPuzzlePets;
 
 public class PainelPrincipal extends Painel implements GridPanelEventHandler
 {
 
-    private JanelaPuzzlePets jogo;
+    private Jogo jogo;
     private Suporte[][] suportes;
     private int numeroDeMacasEmJogo;
     private int numeroDeSuportesCongelados;
     private Suporte suporteInicial;
-    private PainelDeMacas painelDeMacas;
     private static final int CADENCIA_DE_QUEDA = 100;
 
     /**
      * @param gridPanel
      */
-    public PainelPrincipal(GridPanel gridPanel, PainelDeMacas painelDeMacas)
+    public PainelPrincipal(GridPanel gridPanel, Jogo jogo)
     {
         super(gridPanel);
         this.suportes = new Suporte[getNumeroDeLinhas()][getNumeroDeColunas()];
         this.numeroDeMacasEmJogo = 0;
+        this.jogo = jogo;
         gridPanel.setEventHandler(this);
-        this.painelDeMacas = painelDeMacas;
         gerarNivel();
         colocarCestos();
     }
@@ -225,6 +224,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
                             if (gerarCombinacao(suporteInicial.getPosicao()) || gerarCombinacao(suporteFinal.getPosicao())) {
                                 System.err.println("Combinam");
                                 //combinar;
+                                jogo.decrementarMovimentosDisponiveis();
                             } else {
                                 System.err.println("Nai«o combinam");
                                 trocar(suporteFinal);
@@ -351,7 +351,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
 
     public void decrementarNumeroDeMacasNoPainelDeMacas()
     {
-        painelDeMacas.decrementarValor();
+        jogo.decrementarMacasPorApanhar();
     }
 
     public Suportado getSuportado(Posicao posicao)
