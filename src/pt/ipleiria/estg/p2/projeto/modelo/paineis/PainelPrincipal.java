@@ -13,6 +13,8 @@ import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.Cesto;
 import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.Maca;
 import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.Suportado;
 import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.animais.Animal;
+import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.inimigos.Espinho;
+import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.inimigos.Roseira;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.Suporte;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAgua;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAr;
@@ -103,6 +105,13 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
                 }
             }
         }
+        
+        //Adicionar inimigos
+        
+            Roseira r = new Roseira((SuporteSuportador)suportes[0][0]);
+            ((SuporteSuportador) suportes[0][0]).colocar(r);
+        
+        
     }
 
     /*
@@ -363,4 +372,37 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
         return null;
     }
 
+    public Posicao gerarEspinho(Posicao posicao)
+    {
+        for (Sentido sentido : Sentido.values()) {
+            Posicao novaPosicao = posicaoValidaParaGerarEspinho(posicao, sentido);
+            if (novaPosicao != null) {
+                return novaPosicao;
+            }
+        }
+        return null;
+    }
+    
+    public void colocarEspinho(Posicao posicao)
+    {
+        SuporteSuportador s = (SuporteSuportador) getSuporte(posicao);
+        Espinho e = new Espinho((SuporteSuportador) s);
+        ((SuporteSuportador) s).colocar(e);
+    }
+
+    private Posicao posicaoValidaParaGerarEspinho(Posicao posicao, Sentido sentido)
+    {
+        Posicao proximaPosicao = sentido.seguirSentido(posicao);
+        if (proximaPosicao.isDentro(getNumeroDeLinhas(), getNumeroDeColunas())) {
+            if(getSuportado(proximaPosicao) instanceof Animal) {
+                return proximaPosicao;
+            }
+        }
+        return null;
+    }
+
+    public Suporte getSuporte(Posicao posicao) {
+        return suportes[posicao.getLinha()][posicao.getColuna()];
+    }
+    
 }

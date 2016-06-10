@@ -2,7 +2,7 @@ package pt.ipleiria.estg.p2.projeto.modelo.suportaveis.inimigos;
 
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteSuportador;
 
-public class Pedra extends InimigoSemPosicao
+public class Pedra extends Inimigo
 {
 
     public Pedra(String representacao, SuporteSuportador suporte)

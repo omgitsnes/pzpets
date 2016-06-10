@@ -1,12 +1,12 @@
 package pt.ipleiria.estg.p2.projeto.modelo.suportes;
 
-import pt.ipleiria.estg.p2.projeto.modelo.Iteravel;
 import pt.ipleiria.estg.dei.gridpanel.CellRepresentation;
 import pt.ipleiria.estg.dei.gridpanel.OverlayCellRepresentation;
+import pt.ipleiria.estg.p2.projeto.modelo.Iteravel;
 import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
 import pt.ipleiria.estg.p2.projeto.modelo.Sentido;
-import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.Suportado;
 import pt.ipleiria.estg.p2.projeto.modelo.paineis.PainelPrincipal;
+import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.Suportado;
 
 public abstract class SuporteSuportador<TSuportado extends Suportado> extends Suporte
 {
@@ -82,5 +82,15 @@ public abstract class SuporteSuportador<TSuportado extends Suportado> extends Su
         this.suportado = (TSuportado) suportado;
         this.suportado.setSuporte(this);
         getPainelPrincipal().atualizarGridPanel(this);
+    }
+
+    public Posicao gerarEspinho()
+    {
+        return super.gerarEspinho();
+    }
+
+    public void gerarEspinho(Posicao posicao)
+    {
+        super.gerarEspinho(posicao);
     }
 }

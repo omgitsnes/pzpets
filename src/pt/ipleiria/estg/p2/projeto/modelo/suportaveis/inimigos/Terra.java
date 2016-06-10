@@ -2,7 +2,7 @@ package pt.ipleiria.estg.p2.projeto.modelo.suportaveis.inimigos;
 
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteSuportador;
 
-public class Terra extends InimigoSemPosicao
+public class Terra extends Inimigo
 {
 
     public Terra(String representacao, SuporteSuportador suporte)

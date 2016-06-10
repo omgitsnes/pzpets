@@ -2,7 +2,7 @@ package pt.ipleiria.estg.p2.projeto.modelo.suportaveis.inimigos;
 
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteSuportador;
 
-public class Aco extends InimigoSemPosicao
+public class Aco extends Inimigo
 {
 
     public Aco(SuporteSuportador suporte)

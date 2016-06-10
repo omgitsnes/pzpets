@@ -59,4 +59,14 @@ public abstract class Suporte
 		getPainelPrincipal().decrementarNumeroDeMacasNoPainelDeMacas();
 		getPainelPrincipal().decrementarNumeroDeMacasEmJogo();
 	}
+
+    public Posicao gerarEspinho()
+    {
+        return painelPrincipal.gerarEspinho(posicao);
+    }
+
+    public void gerarEspinho(Posicao posicao)
+    {
+        painelPrincipal.colocarEspinho(posicao);
+    }
 }
