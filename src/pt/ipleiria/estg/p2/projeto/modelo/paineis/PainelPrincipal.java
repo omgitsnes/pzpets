@@ -323,7 +323,6 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
                         Maca maca = new Maca((SuporteSuportador) suportes[0][coluna]);
                         ((SuporteSuportador) suportes[0][coluna]).colocar(maca);
                         incrementarNumeroDeMacasEmJogo();
-                        painelDeMacas.decrementarValor();
                     } else {
 
                         Random random = new Random();
