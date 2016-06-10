@@ -9,23 +9,22 @@ import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAgua;
 
 public class Cesto extends Suportado<SuporteAgua> implements Iteravel
 {
+
     private Temporizador temporizador;
     private boolean cheio;
-    
-    
+
     public Cesto(SuporteAgua suporte)
     {
         super("/pt/ipleiria/estg/p2/projeto/imagens/objetivos/cesto.png", suporte);
         temporizador = new Temporizador(10000);
     }
 
-    
     /**
-     * A cada iteracao verifica o estado e enquanto estiver cheio
-     * vrtifiva se o temporizador chegou a 0. Caso se verifique
-     * altera o valor do atributo cheio.
-     * 
-     * @param tempo 
+     * A cada iteracao verifica o estado e enquanto estiver cheio vrtifiva se o
+     * temporizador chegou a 0. Caso se verifique altera o valor do atributo
+     * cheio.
+     *
+     * @param tempo
      */
     public void iterar(long tempo)
     {
@@ -37,7 +36,6 @@ public class Cesto extends Suportado<SuporteAgua> implements Iteravel
         }
     }
 
-    
     public boolean aceitas(Suportado suportado)
     {
         if (suportado instanceof Maca) {
@@ -47,10 +45,11 @@ public class Cesto extends Suportado<SuporteAgua> implements Iteravel
         return false;
     }
 
-    
     /**
      * Altera a representacao e inicia/reinicia o temporizador
-     *
+     * Pede para decrementar o numero de macas em jogo e o numero de macas no painel
+     * 
+     * 
      * @param suportado
      * @param posicao
      * @param s
@@ -62,14 +61,12 @@ public class Cesto extends Suportado<SuporteAgua> implements Iteravel
         temporizador.reiniciar();
         getSuporte().aMacaCaiuNoCesto();
     }
-    
-    
-    private void alterarEstado() 
+
+    private void alterarEstado()
     {
         cheio = (cheio != true);
     }
-    
-    
+
     private void alterarRepresentacao()
     {
         if (cheio) {

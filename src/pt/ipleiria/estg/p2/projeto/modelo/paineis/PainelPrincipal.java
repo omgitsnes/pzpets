@@ -298,7 +298,6 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
             System.err.println("Posicao Invalida" + proximaPosicao);
             return false;
         }
-
         while (valor-- > 0) {
             if (!(suportadoSentido instanceof Combinavel
                 && ((Combinavel) suportadoSentido).combinaCom(suportado))) {
@@ -308,7 +307,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
             if (proximaPosicao.isDentro(getNumeroDeLinhas(), getNumeroDeColunas())) {
                 suportadoSentido = getSuportado(proximaPosicao);
             } else {
-                System.err.println("Posicao Invalida" + proximaPosicao);
+                System.err.println("Pesuisa em Posicao Invalida" + proximaPosicao);
                 return false;
             }
         }
@@ -320,10 +319,11 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
         for (int coluna = 0; coluna < getNumeroDeColunas(); coluna++) {
             if (suportes[0][coluna] instanceof SuporteSuportador) {
                 if (((SuporteSuportador) suportes[0][coluna]).getSuportado() == null) {
-                    if (numeroDeMacasEmJogo == 0) {
+                    if (numeroDeMacasEmJogo < 2) {
                         Maca maca = new Maca((SuporteSuportador) suportes[0][coluna]);
                         ((SuporteSuportador) suportes[0][coluna]).colocar(maca);
                         incrementarNumeroDeMacasEmJogo();
+                        painelDeMacas.decrementarValor();
                     } else {
 
                         Random random = new Random();
