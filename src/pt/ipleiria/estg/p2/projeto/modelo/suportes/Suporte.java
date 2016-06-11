@@ -69,6 +69,6 @@ public abstract class Suporte
 
     public void gerarEspinho(Posicao posicao, Posicao posicaoEspinho)
     {
-        painelPrincipal.colocarEspinho(posicao, posicaoEspinho);
+        painelPrincipal.colocarNovoEspinho(posicao, posicaoEspinho);
     }
 }

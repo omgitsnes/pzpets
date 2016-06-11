@@ -6,7 +6,6 @@ import pt.ipleiria.estg.dei.gridpanel.GridPanel;
 import pt.ipleiria.estg.dei.gridpanel.OverlayCellRepresentation;
 import pt.ipleiria.estg.dei.gridpanel.SingleImageCellRepresentation;
 import pt.ipleiria.estg.dei.gridpanel.TextCellRepresentation;
-import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
 
 public class PainelRepresentavel extends Painel
 {
@@ -20,7 +19,6 @@ public class PainelRepresentavel extends Painel
     {
         super(gridPanel);
         this.representacao = new SingleImageCellRepresentation(representacao);
-        adicionarAoGridPanel(new Posicao(0, 0), this.representacao);
         this.valor = valor;
         atualizarIndicacao();
     }
@@ -28,14 +26,8 @@ public class PainelRepresentavel extends Painel
     public void atualizarIndicacao()
     {
         this.indicacao = new TextCellRepresentation(Integer.toString(this.valor));
-        this.getGridPanel().put(0, 0, new OverlayCellRepresentation(representacao, indicacao));
-        getGridPanel().repaint();
+        atualizarIndicacao(new OverlayCellRepresentation(representacao, indicacao));
         format();
-    }
-
-    public int getValor()
-    {
-        return valor;
     }
 
     private void format()
@@ -44,8 +36,4 @@ public class PainelRepresentavel extends Painel
         this.indicacao.setTextFont(Font.decode("Arial-18"));
     }
 
-    private void adicionarAoGridPanel(Posicao posicao, SingleImageCellRepresentation representacao)
-    {
-        gridPanel.put(posicao.getLinha(), posicao.getColuna(), representacao);
-    }
 }

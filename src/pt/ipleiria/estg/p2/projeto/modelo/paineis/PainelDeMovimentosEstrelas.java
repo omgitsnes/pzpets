@@ -4,11 +4,12 @@ import pt.ipleiria.estg.dei.gridpanel.GridPanel;
 
 public class PainelDeMovimentosEstrelas extends PainelDecrementador
 {
+
     public PainelDeMovimentosEstrelas(GridPanel gridPanel, int valor)
     {
         super(gridPanel,
-                "/pt/ipleiria/estg/p2/projeto/imagens/paineis/movimentos0Estrelas.png",
-                valor);
+            "/pt/ipleiria/estg/p2/projeto/imagens/paineis/movimentos0Estrelas.png",
+            valor);
     }
 
     public void incrementarValor()
@@ -30,7 +31,6 @@ public class PainelDeMovimentosEstrelas extends PainelDecrementador
 //                break;
 //        }
 //    }
-
     @Override
     public void atualizarIndicacao()
     {
@@ -39,4 +39,3 @@ public class PainelDeMovimentosEstrelas extends PainelDecrementador
         //atualizarRepresentacaoNumeroDeEstrelas(numeroDeEstrelas);
     }
 }
-

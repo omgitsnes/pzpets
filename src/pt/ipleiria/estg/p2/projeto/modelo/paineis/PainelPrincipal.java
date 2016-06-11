@@ -43,12 +43,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
         this.jogo = jogo;
         gridPanel.setEventHandler(this);
         gerarNivel();
-        colocarCestos();
-    }
-
-    public int getNumeroDeMacasEmJogo()
-    {
-        return numeroDeMacasEmJogo;
+        gerarCestos();
     }
 
     public int getNumeroDeSuportesCongelados()
@@ -106,19 +101,17 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
                 }
             }
         }
-        
+
         //Adicionar inimigos
-        
-            Roseira r = new Roseira((SuporteSuportador)suportes[0][0]);
-            ((SuporteSuportador) suportes[0][0]).colocar(r);
-        
-        
+        Roseira r = new Roseira((SuporteSuportador) suportes[0][0]);
+        ((SuporteSuportador) suportes[0][0]).colocar(r);
+
     }
 
     /*
-     * Adiciona os cestos a ultimo suporte agua do painel
+     * Adiciona os cestos ao ultimo suporte agua do painel
      */
-    public void colocarCestos()
+    private void gerarCestos()
     {
         for (int j = 0; j < getNumeroDeColunas(); j++) {
             for (int i = getNumeroDeLinhas() - 1; i > 0; i--) {
@@ -151,53 +144,27 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
         adicionarAnimalAleatorio();
     }
 
+    /**
+     * Altera um Suportado para uma nova posicao previamente validada
+     *
+     * @param suportado
+     * @param posicao
+     * @param sentido
+     */
     public void fazMeCair(Suportado suportado, Posicao posicao, Sentido sentido)
     {
-        switch (sentido) {
-            case S:
-                suportes[posicao.getLinha() + 1][posicao.getColuna()].tomaLa(suportado, posicao, sentido);
-                break;
-
-            case SO:
-                suportes[posicao.getLinha() + 1][posicao.getColuna() - 1].tomaLa(suportado, posicao, sentido);
-                break;
-
-            case SE:
-                suportes[posicao.getLinha() + 1][posicao.getColuna() + 1].tomaLa(suportado, posicao, sentido);
-                break;
-
-        }
+        Posicao novaPosicao = posicao.seguir(sentido);
+        suportes[novaPosicao.getLinha()][novaPosicao.getColuna()].tomaLa(suportado, posicao, sentido);
     }
 
     public boolean podeCair(Suportado suportado, Posicao posicao, Sentido sentido)
     {
         Posicao novaPosicao = posicao.seguir(sentido);
-        if (novaPosicao.isDentro(8, 8)) {
+        if (isPosicaoValida(novaPosicao)) {
             return suportes[novaPosicao.getLinha()][novaPosicao.getColuna()].aceitas(suportado, posicao, sentido);
         }
 
         return false;
-    }
-
-    @Override
-    public void mouseDragged(MouseEvent arg0, int arg1, int arg2)
-    {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent arg0)
-    {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent arg0, int arg1, int arg2)
-    {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
@@ -231,7 +198,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
 
                         if (sentido.seguirSentido(suporteInicial.getPosicao()).equals(suporteFinal.getPosicao())) {
                             trocar(suporteFinal);
-                            if (gerarCombinacao(suporteInicial.getPosicao()) || gerarCombinacao(suporteFinal.getPosicao())) {
+                            if (geraCombinacao(suporteInicial.getPosicao()) || geraCombinacao(suporteFinal.getPosicao())) {
                                 System.err.println("Combinam");
                                 //combinar;
                                 jogo.decrementarMovimentosDisponiveis();
@@ -248,7 +215,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
 
     private boolean isMovivel(Suporte suporte)
     {
-        if (((SuporteSuportador) suporte).getSuportado() instanceof Animal) {
+        if (((SuporteSuportador) suporte).getSuportado() instanceof Combinavel) {
             return true;
         }
         return false;
@@ -272,7 +239,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
 
     }
 
-    private boolean gerarCombinacao(Posicao posicao)
+    private boolean geraCombinacao(Posicao posicao)
     {
         //TODO make getSuportado
         Suportado suportado = ((SuporteSuportador) suportes[posicao.getLinha()][posicao.getColuna()]).getSuportado();
@@ -288,21 +255,20 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
     }
 
     /**
-     * Verifica para um numero @valor de posicoes sucecivas no sentido @sentido,
-     * existe suportados do mesmo tipo
+     * Verifica para um numero de posicoes sucessivas num sentido se existe
+     * suportados do mesmo tipo
      *
-     * @return true if true. TODO reuse code!
      * @param posicao
      * @param sentido
      * @param valor
-     * @return
+     * @return true if true.
      */
     private boolean combinam(Posicao posicao, Sentido sentido, int valor)
     {
         Suportado suportado = getSuportado(posicao);
         Suportado suportadoSentido;
         Posicao proximaPosicao = sentido.seguirSentido(posicao);
-        if (proximaPosicao.isDentro(getNumeroDeLinhas(), getNumeroDeColunas())) {
+        if (isPosicaoValida(proximaPosicao)) {
             suportadoSentido = getSuportado(sentido.seguirSentido(posicao));
         } else {
             System.err.println("Posicao Invalida" + proximaPosicao);
@@ -314,7 +280,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
                 return false;
             }
             proximaPosicao = sentido.seguirSentido(suportadoSentido.getSuporte().getPosicao());
-            if (proximaPosicao.isDentro(getNumeroDeLinhas(), getNumeroDeColunas())) {
+            if (isPosicaoValida(proximaPosicao)) {
                 suportadoSentido = getSuportado(proximaPosicao);
             } else {
                 System.err.println("Pesuisa em Posicao Invalida" + proximaPosicao);
@@ -390,32 +356,65 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
                 if (novaPosicao != null) {
                     return novaPosicao;
                 }
-            }    
+            }
         }
         return null;
     }
-    
-    public void colocarEspinho(Posicao posicao, Posicao posicaoEspinho)
+
+    /**
+     * Cria e adicina um novo Espinho numa posicao previamente encontrada
+     *
+     * @param posicao Posicao da roseira Mae
+     * @param posicaoEspinho Posicao do novo espinho
+     */
+    public void colocarNovoEspinho(Posicao posicao, Posicao posicaoEspinho)
     {
         SuporteSuportador s = (SuporteSuportador) getSuporte(posicaoEspinho);
         Espinho e = new Espinho(s);
         ((SuporteSuportador) s).colocar(e);
-        ((Roseira)getSuportado(posicao)).adicionarEspinho(e);
+        ((Roseira) getSuportado(posicao)).adicionarEspinho(e);
+    }
+
+    private boolean isPosicaoValida(Posicao posicao)
+    {
+        if (posicao.isDentro(getNumeroDeLinhas(), getNumeroDeColunas())) {
+            return true;
+        }
+        return false;
     }
 
     private Posicao posicaoValidaParaGerarEspinho(Posicao posicao, Sentido sentido)
     {
         Posicao proximaPosicao = sentido.seguirSentido(posicao);
-        if (proximaPosicao.isDentro(getNumeroDeLinhas(), getNumeroDeColunas())) {
-            if(getSuportado(proximaPosicao) instanceof Animal) {
+        if (isPosicaoValida(proximaPosicao)) {
+            if (getSuportado(proximaPosicao) instanceof Animal) {
                 return proximaPosicao;
             }
         }
         return null;
     }
 
-    public Suporte getSuporte(Posicao posicao) {
+    public Suporte getSuporte(Posicao posicao)
+    {
         return suportes[posicao.getLinha()][posicao.getColuna()];
     }
-    
+
+    @Override
+    public void mouseDragged(MouseEvent me, int i, int i1)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent me, int i, int i1)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseExited(MouseEvent me)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
