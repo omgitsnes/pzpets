@@ -1,11 +1,13 @@
 package pt.ipleiria.estg.p2.projeto.modelo.suportes;
 
+import java.util.LinkedList;
 import pt.ipleiria.estg.dei.gridpanel.CellRepresentation;
 import pt.ipleiria.estg.dei.gridpanel.SingleImageCellRepresentation;
 import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
 import pt.ipleiria.estg.p2.projeto.modelo.Sentido;
 import pt.ipleiria.estg.p2.projeto.modelo.paineis.PainelPrincipal;
 import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.Suportado;
+import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.inimigos.Espinho;
 
 public abstract class Suporte
 {
@@ -60,13 +62,13 @@ public abstract class Suporte
 		getPainelPrincipal().decrementarNumeroDeMacasEmJogo();
 	}
 
-    public Posicao gerarEspinho()
+    public Posicao gerarEspinho(LinkedList<Espinho> espinhos)
     {
-        return painelPrincipal.gerarEspinho(posicao);
+        return painelPrincipal.gerarEspinho(posicao, espinhos);
     }
 
-    public void gerarEspinho(Posicao posicao)
+    public void gerarEspinho(Posicao posicao, Posicao posicaoEspinho)
     {
-        painelPrincipal.colocarEspinho(posicao);
+        painelPrincipal.colocarEspinho(posicao, posicaoEspinho);
     }
 }

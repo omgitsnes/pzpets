@@ -1,5 +1,6 @@
 package pt.ipleiria.estg.p2.projeto.modelo.suportes;
 
+import java.util.LinkedList;
 import pt.ipleiria.estg.dei.gridpanel.CellRepresentation;
 import pt.ipleiria.estg.dei.gridpanel.OverlayCellRepresentation;
 import pt.ipleiria.estg.p2.projeto.modelo.Iteravel;
@@ -7,6 +8,7 @@ import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
 import pt.ipleiria.estg.p2.projeto.modelo.Sentido;
 import pt.ipleiria.estg.p2.projeto.modelo.paineis.PainelPrincipal;
 import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.Suportado;
+import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.inimigos.Espinho;
 
 public abstract class SuporteSuportador<TSuportado extends Suportado> extends Suporte
 {
@@ -84,13 +86,13 @@ public abstract class SuporteSuportador<TSuportado extends Suportado> extends Su
         getPainelPrincipal().atualizarGridPanel(this);
     }
 
-    public Posicao gerarEspinho()
+    public Posicao gerarEspinho(LinkedList<Espinho> espinhos)
     {
-        return super.gerarEspinho();
+        return super.gerarEspinho(espinhos);
     }
 
-    public void gerarEspinho(Posicao posicao)
+    public void gerarEspinho(Posicao posicaoEspinho)
     {
-        super.gerarEspinho(posicao);
+        super.gerarEspinho(posicao, posicaoEspinho);
     }
 }

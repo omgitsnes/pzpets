@@ -1,6 +1,7 @@
 package pt.ipleiria.estg.p2.projeto.modelo.paineis;
 
 import java.awt.event.MouseEvent;
+import java.util.LinkedList;
 import java.util.Random;
 import pt.ipleiria.estg.dei.gridpanel.GridPanel;
 import pt.ipleiria.estg.dei.gridpanel.GridPanelEventHandler;
@@ -372,22 +373,34 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
         return null;
     }
 
-    public Posicao gerarEspinho(Posicao posicao)
+    public Posicao gerarEspinho(Posicao posicao, LinkedList<Espinho> espinhos)
     {
+        //Posicoes em volta da roseira
         for (Sentido sentido : Sentido.values()) {
             Posicao novaPosicao = posicaoValidaParaGerarEspinho(posicao, sentido);
             if (novaPosicao != null) {
                 return novaPosicao;
             }
         }
+        //posicoes em volta dos espinhos
+        for (Espinho espinho : espinhos) {
+            System.err.println("Tentar gerar espinho por espinho");
+            for (Sentido sentido : Sentido.values()) {
+                Posicao novaPosicao = posicaoValidaParaGerarEspinho(espinho.getSuporte().getPosicao(), sentido);
+                if (novaPosicao != null) {
+                    return novaPosicao;
+                }
+            }    
+        }
         return null;
     }
     
-    public void colocarEspinho(Posicao posicao)
+    public void colocarEspinho(Posicao posicao, Posicao posicaoEspinho)
     {
-        SuporteSuportador s = (SuporteSuportador) getSuporte(posicao);
-        Espinho e = new Espinho((SuporteSuportador) s);
+        SuporteSuportador s = (SuporteSuportador) getSuporte(posicaoEspinho);
+        Espinho e = new Espinho(s);
         ((SuporteSuportador) s).colocar(e);
+        ((Roseira)getSuportado(posicao)).adicionarEspinho(e);
     }
 
     private Posicao posicaoValidaParaGerarEspinho(Posicao posicao, Sentido sentido)

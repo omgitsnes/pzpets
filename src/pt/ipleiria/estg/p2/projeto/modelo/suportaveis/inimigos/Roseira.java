@@ -39,16 +39,22 @@ public class Roseira extends Inimigo implements Iteravel
         //Pergunta ao Painel Principal se existe alguma posicao disponivel para
         //gerar novo espinho
         
-        Posicao posicao = this.getSuporte().gerarEspinho();
+        Posicao posicaoEspinho = this.getSuporte().gerarEspinho(espinhos);
         
-        if (posicao != null) {
-            System.err.println("vou gerar espinho posicao: " + posicao);
-            gerarEspinho(posicao);
+        if (posicaoEspinho != null) {
+            System.err.println("vou gerar espinho posicao: " + posicaoEspinho);
+            gerarEspinho(posicaoEspinho);
         }
     }
     
-    private void gerarEspinho(Posicao posicao)
+    private void gerarEspinho(Posicao posicaoEspinho)
     {
-        this.getSuporte().gerarEspinho(posicao);
+        
+        this.getSuporte().gerarEspinho(posicaoEspinho);
+    }
+    
+    public void adicionarEspinho(Espinho espinho)
+    {
+        espinhos.add(espinho);
     }
 }
