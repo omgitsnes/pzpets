@@ -69,4 +69,8 @@ public abstract class Suporte
     {
         painelPrincipal.colocarEspinho(posicao);
     }
+    
+    public void deixaMeExplodir(){
+    	painelPrincipal.podeExplodir(this.posicao);
+    }
 }

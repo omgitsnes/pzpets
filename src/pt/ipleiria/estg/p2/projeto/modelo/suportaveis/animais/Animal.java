@@ -38,6 +38,10 @@ public class Animal extends Combinavel implements Iteravel {
         else if (getSuporte().podeCair(Sentido.SO)) {
             getSuporte().fazMeCair(Sentido.SO);
         }
+        else{
+        	getSuporte().deixaMeExplodir();
+        }
+
 	}
     
     /**
