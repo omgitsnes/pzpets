@@ -240,9 +240,10 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
 					for (Posicao pos : listaSuportadosArebentar) {
 						if(getSuporte(pos) instanceof SuporteGelo) {
 							explodirSuporte(pos);
-						}
-						((SuporteSuportador) getSuporte(pos)).colocar(null);
-						Poder p = new Poder(TipoPoder.PANDAVERTICAL, (SuporteSuportador) getSuporte(posicao));
+						} else {
+                            ((SuporteSuportador) getSuporte(pos)).colocar(null);
+                            Poder p = new Poder(TipoPoder.PANDAVERTICAL, (SuporteSuportador) getSuporte(posicao));
+                        }
 					}
 					break;
 				}
