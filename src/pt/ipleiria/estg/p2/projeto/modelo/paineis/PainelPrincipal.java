@@ -242,12 +242,14 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
     private boolean geraCombinacao(Posicao posicao)
     {
         //TODO make getSuportado
-        Suportado suportado = ((SuporteSuportador) suportes[posicao.getLinha()][posicao.getColuna()]).getSuportado();
-        if (suportado instanceof Combinavel) {
-            Sentido[] sentidos = {Sentido.E, Sentido.S};
-            for (Sentido sentido : sentidos) {
-                if (combinam(posicao, sentido, 2) || combinam(posicao, sentido.getInverso(), 2) || ((combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 1)))) {
-                    return true;
+        if (getSuporte(posicao) instanceof SuporteSuportador) {
+            Suportado suportado = getSuportado(posicao);
+            if (suportado instanceof Combinavel) {
+                Sentido[] sentidos = {Sentido.E, Sentido.S};
+                for (Sentido sentido : sentidos) {
+                    if (combinam(posicao, sentido, 2) || combinam(posicao, sentido.getInverso(), 2) || ((combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 1)))) {
+                        return true;
+                    }
                 }
             }
         }
