@@ -95,4 +95,6 @@ public abstract class SuporteSuportador<TSuportado extends Suportado> extends Su
     {
         super.gerarEspinho(posicao, posicaoEspinho);
     }
+
+	
 }

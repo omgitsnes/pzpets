@@ -3,6 +3,7 @@ package pt.ipleiria.estg.p2.projeto.modelo.paineis;
 import java.awt.event.MouseEvent;
 import java.util.LinkedList;
 import java.util.Random;
+import java.util.concurrent.CopyOnWriteArrayList;
 import pt.ipleiria.estg.dei.gridpanel.GridPanel;
 import pt.ipleiria.estg.dei.gridpanel.GridPanelEventHandler;
 import pt.ipleiria.estg.p2.projeto.modelo.Combinavel;
@@ -16,6 +17,8 @@ import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.Suportado;
 import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.animais.Animal;
 import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.inimigos.Espinho;
 import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.inimigos.Roseira;
+import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.poderes.Poder;
+import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.poderes.TipoPoder;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.Suporte;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAgua;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAr;
@@ -31,6 +34,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
     private int numeroDeSuportesCongelados;
     private Suporte suporteInicial;
     private static final int CADENCIA_DE_QUEDA = 100;
+    private CopyOnWriteArrayList<Posicao> listaSuportadosArebentar;
 
     /**
      * @param gridPanel
@@ -41,6 +45,8 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
         this.suportes = new Suporte[getNumeroDeLinhas()][getNumeroDeColunas()];
         this.numeroDeMacasEmJogo = 0;
         this.jogo = jogo;
+        listaSuportadosArebentar = new CopyOnWriteArrayList<>();
+        
         gridPanel.setEventHandler(this);
         gerarNivel();
         gerarCestos();
@@ -100,12 +106,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
                     colocar(s);
                 }
             }
-        }
-
-        //Adicionar inimigos
-        Roseira r = new Roseira((SuporteSuportador) suportes[0][0]);
-        ((SuporteSuportador) suportes[0][0]).colocar(r);
-
+        } 
     }
 
     /*
@@ -176,6 +177,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
         if (suporteInicial instanceof SuporteSuportador) {
             if (isMovivel(suporteInicial)) {
                 System.out.println(((SuporteSuportador) suporteInicial).getSuportado() + "; L:" + suporteInicial.getPosicao().getLinha() + "; C:" + suporteInicial.getPosicao().getColuna());
+                listaSuportadosArebentar.add(new Posicao(linha, coluna));
             } else {
                 suporteInicial = null;
             }
@@ -195,15 +197,16 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
                     if (sentido == Sentido.N || sentido == Sentido.S || sentido == Sentido.E || sentido == Sentido.O) {
 
                         System.out.println(sentido.seguirSentido(suporteInicial.getPosicao()) + " =? " + suporteFinal.getPosicao());
+                        listaSuportadosArebentar.add(new Posicao(linha, coluna));
 
                         if (sentido.seguirSentido(suporteInicial.getPosicao()).equals(suporteFinal.getPosicao())) {
                             trocar(suporteFinal);
                             if (geraCombinacao(suporteInicial.getPosicao()) || geraCombinacao(suporteFinal.getPosicao())) {
                                 System.err.println("Combinam");
-                                //combinar;
+                                System.out.println("Entao vou rebentar!!");
                                 jogo.decrementarMovimentosDisponiveis();
                             } else {
-                                System.err.println("Nai«o combinam");
+                                System.err.println("Nao combinam");
                                 trocar(suporteFinal);
                             }
                         }
@@ -213,7 +216,54 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
         }
     }
 
-    private boolean isMovivel(Suporte suporte)
+	public void podeExplodir(Posicao posicao) {		
+		if (geraCombinacao(posicao)){
+					
+			explodir(posicao);
+		}
+
+	}
+	
+	public void explodir(Posicao posicao){
+		
+		Sentido[] sentidos = {Sentido.E, Sentido.N};
+		for (Sentido sentido : sentidos) {
+			listaSuportadosArebentar.clear();
+			//CombinacoesEspeciais
+			if((combinam(posicao, sentido, 2) && combinam(posicao, sentido.getInverso(), 1)) || (combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 2))){
+				if(listaSuportadosArebentar.size() >= 3){
+					if(sentido==Sentido.N || sentido == Sentido.S){
+						
+					}
+				}
+			}
+			//Combinacoes Normais
+			if (combinam(posicao, sentido, 2) || combinam(posicao, sentido.getInverso(), 2)
+				|| (combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 1))){
+				if(listaSuportadosArebentar.size() >= 2) {
+					listaSuportadosArebentar.add(posicao);
+					for (Posicao pos : listaSuportadosArebentar) {
+						if(getSuporte(pos) instanceof SuporteGelo) {
+							explodirSuporte(pos);
+						}
+						((SuporteSuportador) getSuporte(pos)).colocar(null);
+						Poder p = new Poder(TipoPoder.PANDAVERTICAL, (SuporteSuportador) getSuporte(posicao));
+						((SuporteSuportador) getSuporte(posicao)).colocar(p);
+					}
+					break;
+				}
+				
+			}
+		}
+	}
+						
+
+	private void explodirSuporte(Posicao posicao) {
+		suportes[posicao.getLinha()][posicao.getColuna()] = new SuporteAgua(this, posicao);
+		
+	}
+
+	private boolean isMovivel(Suporte suporte)
     {
         if (((SuporteSuportador) suporte).getSuportado() instanceof Combinavel) {
             return true;
@@ -265,7 +315,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
      * @param valor
      * @return true if true.
      */
-    private boolean combinam(Posicao posicao, Sentido sentido, int valor)
+    public boolean combinam(Posicao posicao, Sentido sentido, int valor)
     {
         Suportado suportado = getSuportado(posicao);
         Suportado suportadoSentido;
@@ -273,19 +323,22 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
         if (isPosicaoValida(proximaPosicao)) {
             suportadoSentido = getSuportado(sentido.seguirSentido(posicao));
         } else {
-            System.err.println("Posicao Invalida" + proximaPosicao);
+            //pesuisa em posicao invalida
             return false;
         }
+        listaSuportadosArebentar.clear();
         while (valor-- > 0) {
             if (!(suportadoSentido instanceof Combinavel
                 && ((Combinavel) suportadoSentido).combinaCom(suportado))) {
                 return false;
             }
+            listaSuportadosArebentar.add(proximaPosicao);
             proximaPosicao = sentido.seguirSentido(suportadoSentido.getSuporte().getPosicao());
             if (isPosicaoValida(proximaPosicao)) {
                 suportadoSentido = getSuportado(proximaPosicao);
+
             } else {
-                System.err.println("Pesuisa em Posicao Invalida" + proximaPosicao);
+                //pesquisa em posicao invalida
                 return false;
             }
         }
@@ -352,7 +405,6 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
         }
         //posicoes em volta dos espinhos
         for (Espinho espinho : espinhos) {
-            System.err.println("Tentar gerar espinho por espinho");
             for (Sentido sentido : Sentido.values()) {
                 Posicao novaPosicao = posicaoValidaParaGerarEspinho(espinho.getSuporte().getPosicao(), sentido);
                 if (novaPosicao != null) {
@@ -404,19 +456,16 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
     @Override
     public void mouseDragged(MouseEvent me, int i, int i1)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void mouseMoved(MouseEvent me, int i, int i1)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void mouseExited(MouseEvent me)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
