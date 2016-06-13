@@ -1,10 +1,10 @@
 package pt.ipleiria.estg.p2.projeto.modelo.suportes;
 
-import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.Cesto;
 import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
 import pt.ipleiria.estg.p2.projeto.modelo.Sentido;
-import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.Suportado;
 import pt.ipleiria.estg.p2.projeto.modelo.paineis.PainelPrincipal;
+import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.Cesto;
+import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.Suportado;
 
 public class SuporteAgua extends SuporteSuportador<Suportado>
 {
@@ -31,9 +31,9 @@ public class SuporteAgua extends SuporteSuportador<Suportado>
     @Override
     public void tomaLa(Suportado suportado, Posicao posicao, Sentido s) {
     	if (getSuportado() instanceof Cesto) {
-            ((Cesto)getSuportado()).tomaLa(suportado, posicao, s);
-    	}
-            else
+            ((Cesto) getSuportado()).tomaLa(suportado, posicao, s);
+    	} else {
     	     super.tomaLa(suportado, posicao, s);
+        }
     }
 }

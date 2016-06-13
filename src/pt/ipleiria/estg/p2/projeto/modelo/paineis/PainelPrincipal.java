@@ -94,7 +94,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
                 //todas as outras
                 if (i > 3) {
                     if ((i == 4 && j == 0) || (i == 4 && j == 7)) {
-                        Suporte s = new SuporteAr(this, new Posicao(i, j));
+                        Suporte s = new SuporteAgua(this, new Posicao(i, j));
                         colocar(s);
                     } else {
                         Suporte s = new SuporteAgua(this, new Posicao(i, j));
@@ -155,14 +155,14 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
     public void fazMeCair(Suportado suportado, Posicao posicao, Sentido sentido)
     {
         Posicao novaPosicao = posicao.seguir(sentido);
-        suportes[novaPosicao.getLinha()][novaPosicao.getColuna()].tomaLa(suportado, posicao, sentido);
+        getSuporte(novaPosicao).tomaLa(suportado, posicao, sentido);
     }
 
     public boolean podeCair(Suportado suportado, Posicao posicao, Sentido sentido)
     {
         Posicao novaPosicao = posicao.seguir(sentido);
         if (isPosicaoValida(novaPosicao)) {
-            return suportes[novaPosicao.getLinha()][novaPosicao.getColuna()].aceitas(suportado, posicao, sentido);
+            return getSuporte(novaPosicao).aceitas(suportado, posicao, sentido);
         }
 
         return false;
@@ -191,19 +191,14 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
             Suporte suporteFinal = suportes[linha][coluna];
             if (suporteFinal instanceof SuporteSuportador) {
                 if (isMovivel(suporteFinal)) {
-                    System.out.println(((SuporteSuportador) suporteFinal).getSuportado() + "; L:" + suporteFinal.getPosicao().getLinha() + "; C:" + suporteFinal.getPosicao().getColuna());
                     Sentido sentido = suporteInicial.getPosicao().getSentido(suporteFinal.getPosicao());
                     System.out.println(sentido + " -> sentido");
                     if (sentido == Sentido.N || sentido == Sentido.S || sentido == Sentido.E || sentido == Sentido.O) {
-
                         System.out.println(sentido.seguirSentido(suporteInicial.getPosicao()) + " =? " + suporteFinal.getPosicao());
-                        listaSuportadosArebentar.add(new Posicao(linha, coluna));
-
                         if (sentido.seguirSentido(suporteInicial.getPosicao()).equals(suporteFinal.getPosicao())) {
                             trocar(suporteFinal);
                             if (geraCombinacao(suporteInicial.getPosicao()) || geraCombinacao(suporteFinal.getPosicao())) {
                                 System.err.println("Combinam");
-                                System.out.println("Entao vou rebentar!!");
                                 jogo.decrementarMovimentosDisponiveis();
                             } else {
                                 System.err.println("Nao combinam");
@@ -248,7 +243,6 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
 						}
 						((SuporteSuportador) getSuporte(pos)).colocar(null);
 						Poder p = new Poder(TipoPoder.PANDAVERTICAL, (SuporteSuportador) getSuporte(posicao));
-						((SuporteSuportador) getSuporte(posicao)).colocar(p);
 					}
 					break;
 				}
@@ -297,7 +291,8 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
             if (suportado instanceof Combinavel) {
                 Sentido[] sentidos = {Sentido.E, Sentido.S};
                 for (Sentido sentido : sentidos) {
-                    if (combinam(posicao, sentido, 2) || combinam(posicao, sentido.getInverso(), 2) || ((combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 1)))) {
+                    if (combinam(posicao, sentido, 2) || combinam(posicao, sentido.getInverso(), 2) 
+                        || (combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 1))) {
                         return true;
                     }
                 }
@@ -327,6 +322,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
             return false;
         }
         listaSuportadosArebentar.clear();
+        listaSuportadosArebentar.add(posicao);
         while (valor-- > 0) {
             if (!(suportadoSentido instanceof Combinavel
                 && ((Combinavel) suportadoSentido).combinaCom(suportado))) {

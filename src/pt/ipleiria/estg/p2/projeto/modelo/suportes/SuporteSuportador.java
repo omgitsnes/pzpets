@@ -23,6 +23,7 @@ public abstract class SuporteSuportador<TSuportado extends Suportado> extends Su
     public SuporteSuportador(PainelPrincipal painelPrincipal, String representacao, Posicao posicao)
     {
         super(painelPrincipal, representacao, posicao);
+        this.suportado = null;
     }
     
     public TSuportado getSuportado()
@@ -38,8 +39,9 @@ public abstract class SuporteSuportador<TSuportado extends Suportado> extends Su
 
 
     public void iterar(long tempo) {
-        if (suportado instanceof Iteravel)
-            ((Iteravel)suportado).iterar(tempo);
+        if (suportado instanceof Iteravel && suportado != null) {
+            ((Iteravel) suportado).iterar(tempo);
+        }
     }
 
     @Override
@@ -62,7 +64,7 @@ public abstract class SuporteSuportador<TSuportado extends Suportado> extends Su
 
     public void fazMeCair(Sentido s) {
     	System.out.println(suportado + "Estou a cair!");
-    	TSuportado sup=suportado;
+    	TSuportado sup = suportado;
     	suportado=null;
     	getPainelPrincipal().atualizarGridPanel(this);
         getPainelPrincipal().fazMeCair(sup, posicao, s);
