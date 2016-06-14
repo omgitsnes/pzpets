@@ -231,7 +231,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
 
             if ((combinam(posicao, sentido, 2) && combinam(posicao, sentido.getInverso(), 1))
                 || (combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 2))) {
-                if (listaSuportadosArebentar.size() >= 3) {
+                if (listaSuportadosArebentar.size() > 3) {
                     if ((sentido == Sentido.N || sentido == Sentido.S)) {
                         // colocar o poder horizontal correcto(getTipoAnimal) na
                         // posximaInicial
@@ -262,7 +262,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
             // Combinacoes Normais
             else if (combinam(posicao, sentido, 2) || combinam(posicao, sentido.getInverso(), 2)
                 || (combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 1))) {
-                if (listaSuportadosArebentar.size() >= 2) {
+                if (listaSuportadosArebentar.size() > 2) {
                     for (Posicao pos : listaSuportadosArebentar) {
                         if (getSuporte(pos) instanceof SuporteGelo) {
                             explodirSuporte(pos);
