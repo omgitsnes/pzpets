@@ -230,15 +230,45 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
 		for (Sentido sentido : sentidos) {
 			listaSuportadosArebentar.clear();
 			//CombinacoesEspeciais
-			if((combinam(posicao, sentido, 2) && combinam(posicao, sentido.getInverso(), 1)) || (combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 2))){
+			//Combinacoes de 4 Animais
+			
+			if((combinam(posicao, sentido, 2) && combinam(posicao, sentido.getInverso(), 1))
+					|| (combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 2))){
 				if(listaSuportadosArebentar.size() >= 3){
-					if(sentido==Sentido.N || sentido == Sentido.S){
-						
+					if((sentido==Sentido.N || sentido == Sentido.S)){
+						listaSuportadosArebentar.add(posicao);
+						//colocar o poder horizontal correcto(getTipoAnimal) na posximaInicial
+					}
+						else if(sentido==Sentido.E || sentido == Sentido.O){
+							listaSuportadosArebentar.add(posicao);
+						// colocar poder vertical getTipoAnimal ..
 					}
 				}
 			}
+			else if((combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 1)
+					&& combinam(posicao, sentido, 2)
+					|| combinam(posicao, sentido.getInverso(), 2))){
+				if(listaSuportadosArebentar.size() >= 4){
+					listaSuportadosArebentar.add(posicao);
+					//PoderEstrela	
+				}
+			}
+			else if((combinam(posicao, sentido, 2) && combinam(posicao, sentido.getInverso(), 2))){
+				if(listaSuportadosArebentar.size() >= 4){
+					if((sentido==Sentido.N && sentido == Sentido.S) || (sentido==Sentido.E && sentido == Sentido.O) ){
+						Poder p = new Poder(TipoPoder.ARCOIRIS, (SuporteSuportador) getSuporte(posicao));
+						((SuporteSuportador) getSuporte(posicao)).colocar(p);
+					}
+					else if((sentido==Sentido.N && sentido == Sentido.E) || (sentido==Sentido.N && sentido == Sentido.O) ||
+							(sentido==Sentido.S && sentido == Sentido.E) || (sentido==Sentido.S && sentido == Sentido.O)){
+						listaSuportadosArebentar.add(posicao);
+						//tipo Poder CRUZ , COLOCAR O PODER NO CENTRO DA EXPLOSAO DAR COR CERTA
+					}
+				}				
+			}
+			//else if()
 			//Combinacoes Normais
-			if (combinam(posicao, sentido, 2) || combinam(posicao, sentido.getInverso(), 2)
+			else if (combinam(posicao, sentido, 2) || combinam(posicao, sentido.getInverso(), 2)
 				|| (combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 1))){
 				if(listaSuportadosArebentar.size() >= 2) {
 					listaSuportadosArebentar.add(posicao);
@@ -247,8 +277,6 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
 							explodirSuporte(pos);
 						}
 						((SuporteSuportador) getSuporte(pos)).colocar(null);
-						Poder p = new Poder(TipoPoder.PANDAVERTICAL, (SuporteSuportador) getSuporte(posicao));
-						((SuporteSuportador) getSuporte(posicao)).colocar(p);
 					}
 					break;
 				}
