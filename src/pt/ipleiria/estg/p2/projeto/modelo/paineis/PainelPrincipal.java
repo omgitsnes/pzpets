@@ -16,8 +16,11 @@ import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.Suportado;
 import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.animais.Animal;
 import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.inimigos.Espinho;
 import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.inimigos.Roseira;
+import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.poderes.Poder;
+import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.poderes.TipoPoder;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.Suporte;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAgua;
+import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAr;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteGelo;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteSuportador;
 
@@ -70,44 +73,43 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
     {
         for (int i = 0; i < getNumeroDeLinhas(); i++) {
             for (int j = 0; j < getNumeroDeColunas(); j++) {
-//                //Primeiras 2 linhas
-//                if (i < 2) {
-//                    Suporte s = new SuporteAgua(this, new Posicao(i, j));
-//                    colocar(s);
-//                }
-//                // linhas 2 e 3 
-//                if (i > 1 && i < 4) {
-//                    if (j == 0 || j == 3 || j == 7) {
-//                        Suporte s = new SuporteAr(this, new Posicao(i, j));
-//                        colocar(s);
-//                    } else {
-//                        Suporte s = new SuporteGelo(this, new Posicao(i, j));
-//                        colocar(s);
-//                    }
-//                }
-//                //todas as outras
-//                if (i > 3) {
-//                    if ((i == 4 && j == 0) || (i == 4 && j == 7)) {
-//                        Suporte s = new SuporteAgua(this, new Posicao(i, j));
-//                        colocar(s);
-//                    } else {
-//                        Suporte s = new SuporteAgua(this, new Posicao(i, j));
-//                        colocar(s);
-//                    }
-//                }
-//                if (i == 7) {
-//                    Suporte s = new SuporteAgua(this, new Posicao(i, j));
-//                    colocar(s);
-//                }
-                Suporte s = new SuporteAgua(this, new Posicao(i, j));
-                colocar(s);
+                //Primeiras 2 linhas
+                if (i < 2) {
+                    Suporte s = new SuporteAgua(this, new Posicao(i, j));
+                    colocar(s);
+                }
+                // linhas 2 e 3 
+                if (i > 1 && i < 4) {
+                    if (j == 0 || j == 3 || j == 7) {
+                        Suporte s = new SuporteAr(this, new Posicao(i, j));
+                        colocar(s);
+                    } else {
+                        Suporte s = new SuporteGelo(this, new Posicao(i, j));
+                        colocar(s);
+                    }
+                }
+                //todas as outras
+                if (i > 3) {
+                    if ((i == 4 && j == 0) || (i == 4 && j == 7)) {
+                        Suporte s = new SuporteAgua(this, new Posicao(i, j));
+                        colocar(s);
+                    } else {
+                        Suporte s = new SuporteAgua(this, new Posicao(i, j));
+                        colocar(s);
+                    }
+                }
+                if (i == 7) {
+                    Suporte s = new SuporteAgua(this, new Posicao(i, j));
+                    colocar(s);
+                }
             }
         }
         gerarCestos();
     }
 
+
     /*
-     * Adiciona os cestos ao ultimo suporte agua do painel
+	 * Adiciona os cestos ao ultimo suporte agua do painel
      */
     private void gerarCestos()
     {
@@ -150,19 +152,19 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
      * @param posicao
      * @param sentido
      */
-    public void fazMeCair(Suportado suportado, Posicao posicao, Sentido sentido)
+    public void fazMeCair(Suportado suportado, Sentido sentido)
     {
-        Posicao novaPosicao = posicao.seguir(sentido);
-        getSuporte(novaPosicao).tomaLa(suportado, posicao, sentido);
+        Posicao novaPosicao = suportado.getPosicao().seguir(sentido);
+        getSuporte(novaPosicao).tomaLa(suportado, sentido);
     }
 
-    public boolean podeCair(Suportado suportado, Posicao posicao, Sentido sentido)
+    public boolean podeCair(Suportado suportado, Sentido sentido)
     {
-        Posicao novaPosicao = posicao.seguir(sentido);
-        if (isPosicaoValida(novaPosicao)) {
-            return getSuporte(novaPosicao).aceitas(suportado, posicao, sentido);
-        }
+        Posicao novaPosicao = suportado.getPosicao().seguir(sentido);
 
+        if (isPosicaoValida(novaPosicao)) {
+            return getSuporte(novaPosicao).aceitas(suportado, sentido);
+        }
         return false;
     }
 
@@ -170,11 +172,12 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
     public void mousePressed(MouseEvent evt, int linha, int coluna)
     {
         suporteInicial = suportes[linha][coluna];
-        //check if movivel
-        //TODO CLASSE MOVIVEIS
+        // check if movivel
+        // TODO CLASSE MOVIVEIS
         if (suporteInicial instanceof SuporteSuportador) {
             if (isMovivel(suporteInicial)) {
-                System.out.println(((SuporteSuportador) suporteInicial).getSuportado() + "; L:" + suporteInicial.getPosicao().getLinha() + "; C:" + suporteInicial.getPosicao().getColuna());
+                System.out.println(((SuporteSuportador) suporteInicial).getSuportado() + "; L:"
+                    + suporteInicial.getPosicao().getLinha() + "; C:" + suporteInicial.getPosicao().getColuna());
                 listaSuportadosArebentar.add(new Posicao(linha, coluna));
             } else {
                 suporteInicial = null;
@@ -223,14 +226,49 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
 
         Sentido[] sentidos = {Sentido.E, Sentido.N};
         for (Sentido sentido : sentidos) {
-            //Combinacoes Normais
-            if (combinam(posicao, sentido, 2) || combinam(posicao, sentido.getInverso(), 2)
+            listaSuportadosArebentar.clear();
+            // CombinacoesEspeciais
+            // Combinacoes de 4 Animais
+
+            if ((combinam(posicao, sentido, 2) && combinam(posicao, sentido.getInverso(), 1))
+                || (combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 2))) {
+                if (listaSuportadosArebentar.size() >= 3) {
+                    if ((sentido == Sentido.N || sentido == Sentido.S)) {
+                        listaSuportadosArebentar.add(posicao);
+                        // colocar o poder horizontal correcto(getTipoAnimal) na
+                        // posximaInicial
+                    } else if (sentido == Sentido.E || sentido == Sentido.O) {
+                        listaSuportadosArebentar.add(posicao);
+                        // colocar poder vertical getTipoAnimal ..
+                    }
+                }
+            } else if ((combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 1)
+                && combinam(posicao, sentido, 2) || combinam(posicao, sentido.getInverso(), 2))) {
+                if (listaSuportadosArebentar.size() >= 4) {
+                    listaSuportadosArebentar.add(posicao);
+                    // PoderEstrela
+                }
+            } else if ((combinam(posicao, sentido, 2) && combinam(posicao, sentido.getInverso(), 2))) {
+                if (listaSuportadosArebentar.size() >= 4) {
+                    if ((sentido == Sentido.N && sentido == Sentido.S)
+                        || (sentido == Sentido.E && sentido == Sentido.O)) {
+                        Poder p = new Poder(TipoPoder.ARCOIRIS, (SuporteSuportador) getSuporte(posicao));
+                        ((SuporteSuportador) getSuporte(posicao)).colocar(p);
+                    } else if ((sentido == Sentido.N && sentido == Sentido.E)
+                        || (sentido == Sentido.N && sentido == Sentido.O)
+                        || (sentido == Sentido.S && sentido == Sentido.E)
+                        || (sentido == Sentido.S && sentido == Sentido.O)) {
+                        listaSuportadosArebentar.add(posicao);
+                        // tipo Poder CRUZ , COLOCAR O PODER NO CENTRO DA
+                        // EXPLOSAO DAR COR CERTA
+                    }
+                }
+            } // else if()
+            // Combinacoes Normais
+            else if (combinam(posicao, sentido, 2) || combinam(posicao, sentido.getInverso(), 2)
                 || (combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 1))) {
-                if (listaSuportadosArebentar.size() > 2) {
-
-                    //DEBUG
-                    System.out.println("Tamanho da lista(prontoparaRebentar)" + listaSuportadosArebentar.size());
-
+                if (listaSuportadosArebentar.size() >= 2) {
+                    listaSuportadosArebentar.add(posicao);
                     for (Posicao pos : listaSuportadosArebentar) {
                         if (getSuporte(pos) instanceof SuporteGelo) {
                             explodirSuporte(pos);
@@ -251,6 +289,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
 
     }
 
+
     private boolean isMovivel(Suporte suporte)
     {
         if (((SuporteSuportador) suporte).getSuportado() instanceof Combinavel) {
@@ -263,11 +302,12 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
     {
         Suportado suportadoAux = ((SuporteSuportador) suporteInicial).getSuportado();
 
-//DEBUG
+        // DEBUG
         System.out.println("Trocar " + ((SuporteSuportador) suporteFinal).getSuportado() + " com " + suportadoAux);
 
         ((SuporteSuportador) suporteInicial).colocar(((SuporteSuportador) suporteFinal).getSuportado());
-        System.out.println(((SuporteSuportador) suporteInicial) + " --> " + ((SuporteSuportador) suporteFinal).getSuportado());
+        System.out.println(
+            ((SuporteSuportador) suporteInicial) + " --> " + ((SuporteSuportador) suporteFinal).getSuportado());
 
         ((SuporteSuportador) suporteFinal).colocar(suportadoAux);
         System.out.println(((SuporteSuportador) suporteFinal) + " --> " + suportadoAux);
@@ -394,14 +434,14 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
 
     public Posicao gerarEspinho(Posicao posicao, LinkedList<Espinho> espinhos)
     {
-        //Posicoes em volta da roseira
+        // Posicoes em volta da roseira
         for (Sentido sentido : Sentido.values()) {
             Posicao novaPosicao = posicaoValidaParaGerarEspinho(posicao, sentido);
             if (novaPosicao != null) {
                 return novaPosicao;
             }
         }
-        //posicoes em volta dos espinhos
+        // posicoes em volta dos espinhos
         for (Espinho espinho : espinhos) {
             for (Sentido sentido : Sentido.values()) {
                 Posicao novaPosicao = posicaoValidaParaGerarEspinho(espinho.getSuporte().getPosicao(), sentido);
@@ -446,9 +486,9 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
         return null;
     }
 
-    public Suporte getSuporte(Posicao posicao)
+    private Suporte getSuporte(Posicao posicao)
     {
-        return suportes[posicao.getLinha()][posicao.getColuna()];
+        return isPosicaoValida(posicao) ? suportes[posicao.getLinha()][posicao.getColuna()] : null;
     }
 
     public Suportado getSuportado(Posicao posicao)

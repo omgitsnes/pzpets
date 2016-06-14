@@ -4,9 +4,10 @@ import java.util.LinkedList;
 import pt.ipleiria.estg.p2.projeto.modelo.Iteravel;
 import pt.ipleiria.estg.p2.projeto.modelo.Posicao;
 import pt.ipleiria.estg.p2.projeto.modelo.Temporizador;
+import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.SuportadoPorGelo;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteSuportador;
 
-public class Roseira extends Inimigo implements Iteravel
+public class Roseira extends SuportadoPorGelo implements Iteravel
 {
 
     private Temporizador temporizador;

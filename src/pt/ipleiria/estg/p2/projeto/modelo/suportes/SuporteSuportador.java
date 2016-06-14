@@ -70,21 +70,21 @@ public abstract class SuporteSuportador<TSuportado extends Suportado> extends Su
     	TSuportado sup = suportado;
     	this.suportado = null;
     	getPainelPrincipal().atualizarGridPanel(this);
-        getPainelPrincipal().fazMeCair(sup, posicao, s);
+        getPainelPrincipal().fazMeCair(sup, s);
     }
 
     @Override
     public boolean podeCair(Sentido sentido)
     {
-        if (getPainelPrincipal().podeCair(suportado, posicao, sentido)) {
-            System.out.println(suportado + " Podes cair ! Posicao: "+ posicao +" Sentido: "+ sentido);
+        if (getPainelPrincipal().podeCair(suportado, sentido)) {
+            System.out.println(suportado + " Podes cair !");
             return true;
         }
         return false;
     }
 
     @Override
-    public void tomaLa(Suportado suportado, Posicao posicao, Sentido s)
+    public void tomaLa(Suportado suportado, Sentido s)
     {
         this.suportado = (TSuportado) suportado;
         this.suportado.setSuporte(this);

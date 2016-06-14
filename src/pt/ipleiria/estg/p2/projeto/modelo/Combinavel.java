@@ -6,6 +6,7 @@
 package pt.ipleiria.estg.p2.projeto.modelo;
 
 import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.Suportado;
+import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.SuportadoPorGelo;
 import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.animais.Animal;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteSuportador;
 
@@ -13,7 +14,7 @@ import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteSuportador;
  *
  * @author nes
  */
-public class Combinavel extends Suportado<SuporteSuportador>
+public class Combinavel extends SuportadoPorGelo
 {
     public Combinavel(String representacao, SuporteSuportador suporte)
     {
