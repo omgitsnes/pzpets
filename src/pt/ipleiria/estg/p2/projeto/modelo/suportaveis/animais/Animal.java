@@ -24,7 +24,7 @@ public class Animal extends Combinavel implements Iteravel {
 
 	@Override
 	public String toString() {
-		return "Animal [tipo=" + tipo + "]";
+		return "[" + tipo + "]";
 	}
 
     @Override

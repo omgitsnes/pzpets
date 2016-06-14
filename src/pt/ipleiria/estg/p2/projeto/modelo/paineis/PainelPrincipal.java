@@ -3,7 +3,6 @@ package pt.ipleiria.estg.p2.projeto.modelo.paineis;
 import java.awt.event.MouseEvent;
 import java.util.LinkedList;
 import java.util.Random;
-import java.util.concurrent.CopyOnWriteArrayList;
 import pt.ipleiria.estg.dei.gridpanel.GridPanel;
 import pt.ipleiria.estg.dei.gridpanel.GridPanelEventHandler;
 import pt.ipleiria.estg.p2.projeto.modelo.Combinavel;
@@ -34,7 +33,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
     private int numeroDeSuportesCongelados;
     private Suporte suporteInicial;
     private static final int CADENCIA_DE_QUEDA = 100;
-    private CopyOnWriteArrayList<Posicao> listaSuportadosArebentar;
+    private LinkedList<Posicao> listaSuportadosArebentar;
 
     /**
      * @param gridPanel
@@ -45,8 +44,8 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
         this.suportes = new Suporte[getNumeroDeLinhas()][getNumeroDeColunas()];
         this.numeroDeMacasEmJogo = 0;
         this.jogo = jogo;
-        listaSuportadosArebentar = new CopyOnWriteArrayList<>();
-        
+        listaSuportadosArebentar = new LinkedList<Posicao>();
+
         gridPanel.setEventHandler(this);
         gerarNivel();
         gerarCestos();
@@ -106,7 +105,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
                     colocar(s);
                 }
             }
-        } 
+        }
     }
 
     /*
@@ -211,54 +210,55 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
         }
     }
 
-	public void podeExplodir(Posicao posicao) {		
-		if (geraCombinacao(posicao)){
-					
-			explodir(posicao);
-		}
+    public void podeExplodir(Posicao posicao)
+    {
+        if (geraCombinacao(posicao)) {
 
-	}
-	
-	public void explodir(Posicao posicao){
-		
-		Sentido[] sentidos = {Sentido.E, Sentido.N};
-		for (Sentido sentido : sentidos) {
-			listaSuportadosArebentar.clear();
-			//CombinacoesEspeciais
-			if((combinam(posicao, sentido, 2) && combinam(posicao, sentido.getInverso(), 1)) || (combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 2))){
-				if(listaSuportadosArebentar.size() >= 3){
-					if(sentido==Sentido.N || sentido == Sentido.S){
-						
-					}
-				}
-			}
-			//Combinacoes Normais
-			if (combinam(posicao, sentido, 2) || combinam(posicao, sentido.getInverso(), 2)
-				|| (combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 1))){
-				if(listaSuportadosArebentar.size() >= 2) {
-					listaSuportadosArebentar.add(posicao);
-					for (Posicao pos : listaSuportadosArebentar) {
-						if(getSuporte(pos) instanceof SuporteGelo) {
-							explodirSuporte(pos);
-						} else {
+            explodir(posicao);
+        }
+
+    }
+
+    public void explodir(Posicao posicao)
+    {
+
+        Sentido[] sentidos = {Sentido.E, Sentido.N};
+        for (Sentido sentido : sentidos) {
+            listaSuportadosArebentar.clear();
+            //CombinacoesEspeciais
+            if ((combinam(posicao, sentido, 2) && combinam(posicao, sentido.getInverso(), 1)) || (combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 2))) {
+                if (listaSuportadosArebentar.size() >= 3) {
+                    if (sentido == Sentido.N || sentido == Sentido.S) {
+
+                    }
+                }
+            }
+            //Combinacoes Normais
+            if (combinam(posicao, sentido, 2) || combinam(posicao, sentido.getInverso(), 2)
+                || (combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 1))) {
+                if (listaSuportadosArebentar.size() >= 2) {
+                    for (Posicao pos : listaSuportadosArebentar) {
+                        if (getSuporte(pos) instanceof SuporteGelo) {
+                            explodirSuporte(pos);
+                        } else {
                             ((SuporteSuportador) getSuporte(pos)).colocar(null);
                             Poder p = new Poder(TipoPoder.PANDAVERTICAL, (SuporteSuportador) getSuporte(posicao));
                         }
-					}
-					break;
-				}
-				
-			}
-		}
-	}
-						
+                    }
+                    break;
+                }
 
-	private void explodirSuporte(Posicao posicao) {
-		suportes[posicao.getLinha()][posicao.getColuna()] = new SuporteAgua(this, posicao);
-		
-	}
+            }
+        }
+    }
 
-	private boolean isMovivel(Suporte suporte)
+    private void explodirSuporte(Posicao posicao)
+    {
+        suportes[posicao.getLinha()][posicao.getColuna()] = new SuporteAgua(this, posicao);
+
+    }
+
+    private boolean isMovivel(Suporte suporte)
     {
         if (((SuporteSuportador) suporte).getSuportado() instanceof Combinavel) {
             return true;
@@ -288,12 +288,12 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
     {
         //TODO make getSuportado
         if (getSuporte(posicao) instanceof SuporteSuportador) {
-            Suportado suportado = getSuportado(posicao);
-            if (suportado instanceof Combinavel) {
+            if (getSuportado(posicao) instanceof Combinavel) {
                 Sentido[] sentidos = {Sentido.E, Sentido.S};
                 for (Sentido sentido : sentidos) {
-                    if (combinam(posicao, sentido, 2) || combinam(posicao, sentido.getInverso(), 2) 
+                    if (combinam(posicao, sentido, 2) || combinam(posicao, sentido.getInverso(), 2)
                         || (combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 1))) {
+
                         return true;
                     }
                 }
@@ -317,7 +317,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
         Suportado suportadoSentido;
         Posicao proximaPosicao = sentido.seguirSentido(posicao);
         if (isPosicaoValida(proximaPosicao)) {
-            suportadoSentido = getSuportado(sentido.seguirSentido(posicao));
+            suportadoSentido = getSuportado(proximaPosicao);
         } else {
             //pesuisa em posicao invalida
             return false;
@@ -327,16 +327,22 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
         while (valor-- > 0) {
             if (!(suportadoSentido instanceof Combinavel
                 && ((Combinavel) suportadoSentido).combinaCom(suportado))) {
+                listaSuportadosArebentar.clear();
                 return false;
             }
             listaSuportadosArebentar.add(proximaPosicao);
-            proximaPosicao = sentido.seguirSentido(suportadoSentido.getSuporte().getPosicao());
+            proximaPosicao = sentido.seguirSentido(proximaPosicao);
             if (isPosicaoValida(proximaPosicao)) {
                 suportadoSentido = getSuportado(proximaPosicao);
 
             } else {
                 //pesquisa em posicao invalida
                 return false;
+            }
+        }
+        if (listaSuportadosArebentar.size() >= 3) {
+            for (Posicao p : listaSuportadosArebentar) {
+                System.out.println(getSuportado(p) + " posicao: " + getSuporte(posicao).getPosicao());
             }
         }
         return true;
