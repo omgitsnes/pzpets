@@ -17,7 +17,7 @@ public class Jogo {
 	public Jogo(GridPanel gridPanelPainelDeMacas, GridPanel gridPanelPainelDeMovimentosEstrelas,
 			GridPanel gridPanelPainelDePontuacoes, GridPanel gridPanelPainelPrincipal) {
 		 //Definir objetivo
-        objetivo = new Objetivo(10, 150, 5000, 0);
+        objetivo = new Objetivo(10, 150, 300, 0);
         // criar paineis
         painelDeMacas = new PainelDeMacas(gridPanelPainelDeMacas, objetivo.getNumeroDeMacasParaApanhar());
         painelDeMovimentosEstrelas = new PainelDeMovimentosEstrelas(gridPanelPainelDeMovimentosEstrelas, objetivo.getNumeroDeMovimentosMaximo());
