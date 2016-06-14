@@ -16,8 +16,6 @@ import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.Suportado;
 import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.animais.Animal;
 import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.inimigos.Espinho;
 import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.inimigos.Roseira;
-import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.poderes.Poder;
-import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.poderes.TipoPoder;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.Suporte;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAgua;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteGelo;
@@ -238,7 +236,6 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
                             explodirSuporte(pos);
                         } else {
                             ((SuporteSuportador) getSuporte(pos)).colocar(null);
-                            Poder p = new Poder(TipoPoder.PANDAVERTICAL, (SuporteSuportador) getSuporte(posicao));
                         }
                     }
                     break;
@@ -365,7 +362,6 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
                     if (numeroDeMacasEmJogo < 2) {
                         ((SuporteSuportador) getSuporte(posicao)).colocar(new Maca());
                         incrementarNumeroDeMacasEmJogo();
-                        decrementarNumeroDeMacasNoPainelDeMacas();
                     } else {
                         Random random = new Random();
                         switch (random.nextInt(5)) {
