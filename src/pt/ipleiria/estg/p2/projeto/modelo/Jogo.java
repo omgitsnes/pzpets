@@ -39,5 +39,9 @@ public class Jogo {
     {
         painelDeMacas.decrementarValor();
     }
-    
+
+    public void incrementarPontuacao(int valor)
+    {
+        painelDePontuacoes.incrementarValor(valor);
+    }
 }

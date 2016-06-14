@@ -10,6 +10,7 @@ public class Animal extends Combinavel implements Iteravel {
 
 	private TipoAnimal tipo;
     private boolean movimentoExtra;
+    private int valor;
 
 	public TipoAnimal getTipo() {
 		return tipo;
@@ -19,6 +20,7 @@ public class Animal extends Combinavel implements Iteravel {
 		super(tipo.getRepresentacao(), null);
 		this.tipo = tipo;
         this.movimentoExtra = randomMovimentoExtra();
+        this.valor = 25;
 	}
 
 	@Override
@@ -50,6 +52,11 @@ public class Animal extends Combinavel implements Iteravel {
     private boolean randomMovimentoExtra()
     {
         return new Random().nextInt(10) == 1 ? true : false;
+    }
+    
+    public int getValor()
+    {
+        return valor;
     }
 
 }

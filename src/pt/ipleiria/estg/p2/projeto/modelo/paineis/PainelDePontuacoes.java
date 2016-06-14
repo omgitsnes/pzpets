@@ -27,5 +27,6 @@ public class PainelDePontuacoes extends PainelRepresentavel
     public void incrementarValor(int diferenca)
     {
         this.valor += diferenca;
+        atualizarIndicacao();
     }
 }

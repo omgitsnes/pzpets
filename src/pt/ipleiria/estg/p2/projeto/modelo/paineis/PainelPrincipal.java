@@ -215,7 +215,6 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
     public void podeExplodir(Posicao posicao)
     {
         if (geraCombinacao(posicao)) {
-
             explodir(posicao);
         }
 
@@ -234,18 +233,15 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
                 || (combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 2))) {
                 if (listaSuportadosArebentar.size() >= 3) {
                     if ((sentido == Sentido.N || sentido == Sentido.S)) {
-                        listaSuportadosArebentar.add(posicao);
                         // colocar o poder horizontal correcto(getTipoAnimal) na
                         // posximaInicial
                     } else if (sentido == Sentido.E || sentido == Sentido.O) {
-                        listaSuportadosArebentar.add(posicao);
                         // colocar poder vertical getTipoAnimal ..
                     }
                 }
             } else if ((combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 1)
                 && combinam(posicao, sentido, 2) || combinam(posicao, sentido.getInverso(), 2))) {
                 if (listaSuportadosArebentar.size() >= 4) {
-                    listaSuportadosArebentar.add(posicao);
                     // PoderEstrela
                 }
             } else if ((combinam(posicao, sentido, 2) && combinam(posicao, sentido.getInverso(), 2))) {
@@ -258,27 +254,27 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
                         || (sentido == Sentido.N && sentido == Sentido.O)
                         || (sentido == Sentido.S && sentido == Sentido.E)
                         || (sentido == Sentido.S && sentido == Sentido.O)) {
-                        listaSuportadosArebentar.add(posicao);
                         // tipo Poder CRUZ , COLOCAR O PODER NO CENTRO DA
                         // EXPLOSAO DAR COR CERTA
                     }
                 }
-            } // else if()
+            }
             // Combinacoes Normais
             else if (combinam(posicao, sentido, 2) || combinam(posicao, sentido.getInverso(), 2)
                 || (combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 1))) {
                 if (listaSuportadosArebentar.size() >= 2) {
-                    listaSuportadosArebentar.add(posicao);
                     for (Posicao pos : listaSuportadosArebentar) {
                         if (getSuporte(pos) instanceof SuporteGelo) {
                             explodirSuporte(pos);
                         } else {
-                            ((SuporteSuportador) getSuporte(pos)).colocar(null);
+                            
+                            //TODO CHANGE
+                            jogo.incrementarPontuacao(((Animal)getSuportado(pos)).getValor());
+                            getSuporteSuportador(pos).colocar(null);
                         }
                     }
                     break;
                 }
-
             }
         }
     }
@@ -499,6 +495,11 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
         }
         return null;
     }
+    
+    private SuporteSuportador getSuporteSuportador(Posicao posicao) {
+		Suporte suporte = getSuporte(posicao);
+		return suporte instanceof SuporteSuportador ? (SuporteSuportador) suporte : null;
+	}
 
     @Override
     public void mouseDragged(MouseEvent me, int i, int i1)
