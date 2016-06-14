@@ -49,7 +49,6 @@ public abstract class Suporte
 
     public abstract boolean aceitas(Suportado suportado, Posicao posicao, Sentido s);
     public abstract boolean podeCair(Sentido sentido);
-
     public abstract void tomaLa(Suportado suportado, Posicao posicao, Sentido s);
 
 	public void actualizarImagem() {

@@ -34,6 +34,9 @@ public abstract class SuporteSuportador<TSuportado extends Suportado> extends Su
     public void colocar(TSuportado suportado)
     {
         this.suportado = suportado;
+        if (suportado != null) {
+            this.suportado.setSuporte(this);
+        }
         getPainelPrincipal().atualizarGridPanel(this); 
     }
 

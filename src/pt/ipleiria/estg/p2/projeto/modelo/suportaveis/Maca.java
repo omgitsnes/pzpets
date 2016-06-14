@@ -2,15 +2,14 @@ package pt.ipleiria.estg.p2.projeto.modelo.suportaveis;
 
 import pt.ipleiria.estg.p2.projeto.modelo.Iteravel;
 import pt.ipleiria.estg.p2.projeto.modelo.Sentido;
-import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteSuportador;
 
 public class Maca extends SuportadoPorGelo implements Iteravel
 {
 	
     
-    public Maca(SuporteSuportador suporte)
+    public Maca()
     {
-        super("/pt/ipleiria/estg/p2/projeto/imagens/objetivos/maca.png",suporte);
+        super("/pt/ipleiria/estg/p2/projeto/imagens/objetivos/maca.png", null);
     }
 
 	@Override

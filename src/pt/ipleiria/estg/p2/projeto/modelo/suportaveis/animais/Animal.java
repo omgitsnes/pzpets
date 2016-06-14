@@ -5,7 +5,6 @@ import pt.ipleiria.estg.p2.projeto.modelo.Combinavel;
 import pt.ipleiria.estg.p2.projeto.modelo.Iteravel;
 import pt.ipleiria.estg.p2.projeto.modelo.Sentido;
 import pt.ipleiria.estg.p2.projeto.modelo.TipoAnimal;
-import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteSuportador;
 
 public class Animal extends Combinavel implements Iteravel {
 
@@ -16,8 +15,8 @@ public class Animal extends Combinavel implements Iteravel {
 		return tipo;
 	}
 
-	public Animal(TipoAnimal tipo, SuporteSuportador suporte) {
-		super(tipo.getRepresentacao(), suporte);
+	public Animal(TipoAnimal tipo) {
+		super(tipo.getRepresentacao(), null);
 		this.tipo = tipo;
         this.movimentoExtra = randomMovimentoExtra();
 	}

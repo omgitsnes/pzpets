@@ -20,7 +20,6 @@ import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.poderes.Poder;
 import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.poderes.TipoPoder;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.Suporte;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAgua;
-import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAr;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteGelo;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteSuportador;
 
@@ -45,10 +44,8 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
         this.numeroDeMacasEmJogo = 0;
         this.jogo = jogo;
         listaSuportadosArebentar = new LinkedList<Posicao>();
-
         gridPanel.setEventHandler(this);
         gerarNivel();
-        gerarCestos();
     }
 
     public int getNumeroDeSuportesCongelados()
@@ -75,37 +72,40 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
     {
         for (int i = 0; i < getNumeroDeLinhas(); i++) {
             for (int j = 0; j < getNumeroDeColunas(); j++) {
-                //Primeiras 2 linhas
-                if (i < 2) {
-                    Suporte s = new SuporteAgua(this, new Posicao(i, j));
-                    colocar(s);
-                }
-                // linhas 2 e 3 
-                if (i > 1 && i < 4) {
-                    if (j == 0 || j == 3 || j == 7) {
-                        Suporte s = new SuporteAr(this, new Posicao(i, j));
-                        colocar(s);
-                    } else {
-                        Suporte s = new SuporteGelo(this, new Posicao(i, j));
-                        colocar(s);
-                    }
-                }
-                //todas as outras
-                if (i > 3) {
-                    if ((i == 4 && j == 0) || (i == 4 && j == 7)) {
-                        Suporte s = new SuporteAgua(this, new Posicao(i, j));
-                        colocar(s);
-                    } else {
-                        Suporte s = new SuporteAgua(this, new Posicao(i, j));
-                        colocar(s);
-                    }
-                }
-                if (i == 7) {
-                    Suporte s = new SuporteAgua(this, new Posicao(i, j));
-                    colocar(s);
-                }
+//                //Primeiras 2 linhas
+//                if (i < 2) {
+//                    Suporte s = new SuporteAgua(this, new Posicao(i, j));
+//                    colocar(s);
+//                }
+//                // linhas 2 e 3 
+//                if (i > 1 && i < 4) {
+//                    if (j == 0 || j == 3 || j == 7) {
+//                        Suporte s = new SuporteAr(this, new Posicao(i, j));
+//                        colocar(s);
+//                    } else {
+//                        Suporte s = new SuporteGelo(this, new Posicao(i, j));
+//                        colocar(s);
+//                    }
+//                }
+//                //todas as outras
+//                if (i > 3) {
+//                    if ((i == 4 && j == 0) || (i == 4 && j == 7)) {
+//                        Suporte s = new SuporteAgua(this, new Posicao(i, j));
+//                        colocar(s);
+//                    } else {
+//                        Suporte s = new SuporteAgua(this, new Posicao(i, j));
+//                        colocar(s);
+//                    }
+//                }
+//                if (i == 7) {
+//                    Suporte s = new SuporteAgua(this, new Posicao(i, j));
+//                    colocar(s);
+//                }
+                Suporte s = new SuporteAgua(this, new Posicao(i, j));
+                colocar(s);
             }
         }
+        gerarCestos();
     }
 
     /*
@@ -134,6 +134,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
 
     public void iterar(long tempo)
     {
+
         for (int i = getNumeroDeLinhas() - 1; i >= 0; i--) {
             for (int j = 0; j < getNumeroDeColunas(); j++) {
                 if (suportes[i][j] instanceof SuporteSuportador) {
@@ -224,19 +225,14 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
 
         Sentido[] sentidos = {Sentido.E, Sentido.N};
         for (Sentido sentido : sentidos) {
-            listaSuportadosArebentar.clear();
-            //CombinacoesEspeciais
-            if ((combinam(posicao, sentido, 2) && combinam(posicao, sentido.getInverso(), 1)) || (combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 2))) {
-                if (listaSuportadosArebentar.size() >= 3) {
-                    if (sentido == Sentido.N || sentido == Sentido.S) {
-
-                    }
-                }
-            }
             //Combinacoes Normais
             if (combinam(posicao, sentido, 2) || combinam(posicao, sentido.getInverso(), 2)
                 || (combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 1))) {
-                if (listaSuportadosArebentar.size() >= 2) {
+                if (listaSuportadosArebentar.size() > 2) {
+
+                    //DEBUG
+                    System.out.println("Tamanho da lista(prontoparaRebentar)" + listaSuportadosArebentar.size());
+
                     for (Posicao pos : listaSuportadosArebentar) {
                         if (getSuporte(pos) instanceof SuporteGelo) {
                             explodirSuporte(pos);
@@ -302,6 +298,11 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
         return false;
     }
 
+    private void colocar(Posicao posicao, Suportado suportado)
+    {
+        ((SuporteSuportador) getSuporte(posicao)).colocar(suportado);
+    }
+
     /**
      * Verifica para um numero de posicoes sucessivas num sentido se existe
      * suportados do mesmo tipo
@@ -323,6 +324,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
             return false;
         }
         listaSuportadosArebentar.clear();
+
         listaSuportadosArebentar.add(posicao);
         while (valor-- > 0) {
             if (!(suportadoSentido instanceof Combinavel
@@ -331,6 +333,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
                 return false;
             }
             listaSuportadosArebentar.add(proximaPosicao);
+
             proximaPosicao = sentido.seguirSentido(proximaPosicao);
             if (isPosicaoValida(proximaPosicao)) {
                 suportadoSentido = getSuportado(proximaPosicao);
@@ -345,36 +348,41 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
                 System.out.println(getSuportado(p) + " posicao: " + getSuporte(posicao).getPosicao());
             }
         }
+
+        if (listaSuportadosArebentar.size() > 2) {
+            System.out.println("Fim! Tamanho da lista " + listaSuportadosArebentar.size());
+        }
+
         return true;
     }
 
     public void adicionarAnimalAleatorio()
     {
         for (int coluna = 0; coluna < getNumeroDeColunas(); coluna++) {
-            if (suportes[0][coluna] instanceof SuporteSuportador) {
+            Posicao posicao = new Posicao(0, coluna);
+            if (getSuporte(posicao) instanceof SuporteSuportador) {
                 if (((SuporteSuportador) suportes[0][coluna]).getSuportado() == null) {
                     if (numeroDeMacasEmJogo < 2) {
-                        Maca maca = new Maca((SuporteSuportador) suportes[0][coluna]);
-                        ((SuporteSuportador) suportes[0][coluna]).colocar(maca);
+                        ((SuporteSuportador) getSuporte(posicao)).colocar(new Maca());
                         incrementarNumeroDeMacasEmJogo();
+                        decrementarNumeroDeMacasNoPainelDeMacas();
                     } else {
-
                         Random random = new Random();
                         switch (random.nextInt(5)) {
                             case 0:
-                                ((SuporteSuportador) suportes[0][coluna]).colocar(new Animal(TipoAnimal.SAPO, ((SuporteSuportador) suportes[0][coluna])));
+                                colocar(posicao, new Animal(TipoAnimal.SAPO));
                                 break;
                             case 1:
-                                ((SuporteSuportador) suportes[0][coluna]).colocar(new Animal(TipoAnimal.PANDA, ((SuporteSuportador) suportes[0][coluna])));
+                                colocar(posicao, new Animal(TipoAnimal.PANDA));
                                 break;
                             case 2:
-                                ((SuporteSuportador) suportes[0][coluna]).colocar(new Animal(TipoAnimal.PEIXE, ((SuporteSuportador) suportes[0][coluna])));
+                                colocar(posicao, new Animal(TipoAnimal.PEIXE));
                                 break;
                             case 3:
-                                ((SuporteSuportador) suportes[0][coluna]).colocar(new Animal(TipoAnimal.POLVO, ((SuporteSuportador) suportes[0][coluna])));
+                                colocar(posicao, new Animal(TipoAnimal.POLVO));
                                 break;
                             case 4:
-                                ((SuporteSuportador) suportes[0][coluna]).colocar(new Animal(TipoAnimal.RAPOSA, ((SuporteSuportador) suportes[0][coluna])));
+                                colocar(posicao, new Animal(TipoAnimal.RAPOSA));
                                 break;
                         }
                     }
@@ -386,15 +394,6 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
     public void decrementarNumeroDeMacasNoPainelDeMacas()
     {
         jogo.decrementarMacasPorApanhar();
-    }
-
-    public Suportado getSuportado(Posicao posicao)
-    {
-        Suporte suporte = suportes[posicao.getLinha()][posicao.getColuna()];
-        if (suporte instanceof SuporteSuportador) {
-            return ((SuporteSuportador) suporte).getSuportado();
-        }
-        return null;
     }
 
     public Posicao gerarEspinho(Posicao posicao, LinkedList<Espinho> espinhos)
@@ -456,11 +455,21 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
         return suportes[posicao.getLinha()][posicao.getColuna()];
     }
 
+    public Suportado getSuportado(Posicao posicao)
+    {
+        Suporte suporte = suportes[posicao.getLinha()][posicao.getColuna()];
+        if (suporte instanceof SuporteSuportador) {
+            return ((SuporteSuportador) suporte).getSuportado();
+        }
+        return null;
+    }
+
     @Override
     public void mouseDragged(MouseEvent me, int i, int i1)
     {
     }
 
+    //NOT USED 
     @Override
     public void mouseMoved(MouseEvent me, int i, int i1)
     {
