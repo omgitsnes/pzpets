@@ -12,6 +12,7 @@ import pt.ipleiria.estg.p2.projeto.modelo.Sentido;
 import pt.ipleiria.estg.p2.projeto.modelo.TipoAnimal;
 import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.Cesto;
 import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.Maca;
+import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.Movivel;
 import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.Suportado;
 import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.animais.Animal;
 import pt.ipleiria.estg.p2.projeto.modelo.suportaveis.inimigos.Espinho;
@@ -220,64 +221,207 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
 
     }
 
-    public void explodir(Posicao posicao)
-    {
 
-        Sentido[] sentidos = {Sentido.E, Sentido.N};
-        for (Sentido sentido : sentidos) {
-            listaSuportadosArebentar.clear();
-            // CombinacoesEspeciais
-            // Combinacoes de 4 Animais
+	public void explodir(Posicao posicao) {
 
-            if ((combinam(posicao, sentido, 2) && combinam(posicao, sentido.getInverso(), 1))
-                || (combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 2))) {
-                if (listaSuportadosArebentar.size() > 3) {
-                    if ((sentido == Sentido.N || sentido == Sentido.S)) {
-                        // colocar o poder horizontal correcto(getTipoAnimal) na
-                        // posximaInicial
-                    } else if (sentido == Sentido.E || sentido == Sentido.O) {
-                        // colocar poder vertical getTipoAnimal ..
-                    }
-                }
-            } else if ((combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 1)
-                && combinam(posicao, sentido, 2) || combinam(posicao, sentido.getInverso(), 2))) {
-                if (listaSuportadosArebentar.size() >= 4) {
-                    // PoderEstrela
-                }
-            } else if ((combinam(posicao, sentido, 2) && combinam(posicao, sentido.getInverso(), 2))) {
-                if (listaSuportadosArebentar.size() >= 4) {
-                    if ((sentido == Sentido.N && sentido == Sentido.S)
-                        || (sentido == Sentido.E && sentido == Sentido.O)) {
-                        Poder p = new Poder(TipoPoder.ARCOIRIS, (SuporteSuportador) getSuporte(posicao));
-                        ((SuporteSuportador) getSuporte(posicao)).colocar(p);
-                    } else if ((sentido == Sentido.N && sentido == Sentido.E)
-                        || (sentido == Sentido.N && sentido == Sentido.O)
-                        || (sentido == Sentido.S && sentido == Sentido.E)
-                        || (sentido == Sentido.S && sentido == Sentido.O)) {
-                        // tipo Poder CRUZ , COLOCAR O PODER NO CENTRO DA
-                        // EXPLOSAO DAR COR CERTA
-                    }
-                }
-            }
-            // Combinacoes Normais
-            else if (combinam(posicao, sentido, 2) || combinam(posicao, sentido.getInverso(), 2)
-                || (combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 1))) {
-                if (listaSuportadosArebentar.size() > 2) {
-                    for (Posicao pos : listaSuportadosArebentar) {
-                        if (getSuporte(pos) instanceof SuporteGelo) {
-                            explodirSuporte(pos);
-                        } else {
-                            
-                            //TODO CHANGE
-                            jogo.incrementarPontuacao(((Animal)getSuportado(pos)).getValor());
-                            getSuporteSuportador(pos).colocar(null);
-                        }
-                    }
-                    break;
-                }
-            }
-        }
-    }
+		Sentido[] sentidos = { Sentido.E, Sentido.N };
+		for (Sentido sentido : sentidos) {
+			listaSuportadosArebentar.clear();
+			// CombinacoesEspeciais
+			// Combinacoes de 4 Animais
+			if ((combinam(posicao, sentido, 2) && combinam(posicao, sentido.getInverso(), 1))
+					|| (combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 2))) {
+
+				if (listaSuportadosArebentar.size() == 4) {
+					if ((sentido == Sentido.N || sentido == Sentido.S)) {
+						for (Posicao pos : listaSuportadosArebentar) {
+							if (getSuporte(pos) instanceof SuporteGelo) {
+								explodirSuporte(pos);
+							}
+							((SuporteSuportador) getSuporte(pos)).colocar(null);
+						}
+						System.out.println(" COMBINACAO 4 !!! ");
+						if (((Animal) getSuportado(posicao)).getTipo().equals(TipoAnimal.PANDA)) {
+							Poder p = new Poder(TipoPoder.PANDAVERTICAL, (SuporteSuportador) getSuporte(posicao));
+							((SuporteSuportador) getSuporte(listaSuportadosArebentar.get(0))).colocar(p);
+						} // EXPLOSAO DAR COR CERTA
+						if (((Animal) getSuportado(posicao)).getTipo().equals(TipoAnimal.POLVO)) {
+							Poder p = new Poder(TipoPoder.POLVOVERTICAL, (SuporteSuportador) getSuporte(posicao));
+							((SuporteSuportador) getSuporte(listaSuportadosArebentar.get(0))).colocar(p);
+						}
+						if (((Animal) getSuportado(posicao)).getTipo().equals(TipoAnimal.SAPO)) {
+							Poder p = new Poder(TipoPoder.SAPOHORIZONTAL, (SuporteSuportador) getSuporte(posicao));
+							((SuporteSuportador) getSuporte(listaSuportadosArebentar.get(0))).colocar(p);
+						}
+						if (((Animal) getSuportado(posicao)).getTipo().equals(TipoAnimal.PEIXE)) {
+							Poder p = new Poder(TipoPoder.PEIXEHORIZONTAL, (SuporteSuportador) getSuporte(posicao));
+							((SuporteSuportador) getSuporte(listaSuportadosArebentar.get(1))).colocar(p);
+						}
+						if (((Animal) getSuportado(posicao)).getTipo().equals(TipoAnimal.RAPOSA)) {
+							Poder p = new Poder(TipoPoder.RAPOSAHORIZONTAL, (SuporteSuportador) getSuporte(posicao));
+							((SuporteSuportador) getSuporte(listaSuportadosArebentar.get(0))).colocar(p);
+						}
+
+						// colocar o poder horizontal correcto(getTipoAnimal) na
+						// posicaoInicial
+					}
+					if (sentido == Sentido.E || sentido == Sentido.O) {
+
+						System.out.println(" COMBINACAO 4 !!! ");
+						if (((Animal) getSuportado(posicao)).getTipo().equals(TipoAnimal.PANDA)) {
+							Poder p = new Poder(TipoPoder.PANDAVERTICAL, (SuporteSuportador) getSuporte(posicao));
+							((SuporteSuportador) getSuporte(listaSuportadosArebentar.get(0))).colocar(p);
+						} // EXPLOSAO DAR COR CERTA
+						if (((Animal) getSuportado(posicao)).getTipo().equals(TipoAnimal.POLVO)) {
+							Poder p = new Poder(TipoPoder.POLVOVERTICAL, (SuporteSuportador) getSuporte(posicao));
+							((SuporteSuportador) getSuporte(listaSuportadosArebentar.get(0))).colocar(p);
+						}
+						if (((Animal) getSuportado(posicao)).getTipo().equals(TipoAnimal.SAPO)) {
+							Poder p = new Poder(TipoPoder.SAPOVERTICAL, (SuporteSuportador) getSuporte(posicao));
+							((SuporteSuportador) getSuporte(listaSuportadosArebentar.get(0))).colocar(p);
+						}
+						if (((Animal) getSuportado(posicao)).getTipo().equals(TipoAnimal.PEIXE)) {
+							Poder p = new Poder(TipoPoder.PEIXEVERTICAL, (SuporteSuportador) getSuporte(posicao));
+							((SuporteSuportador) getSuporte(listaSuportadosArebentar.get(1))).colocar(p);
+						}
+						if (((Animal) getSuportado(posicao)).getTipo().equals(TipoAnimal.RAPOSA)) {
+							Poder p = new Poder(TipoPoder.RAPOSAVERTICAL, (SuporteSuportador) getSuporte(posicao));
+							((SuporteSuportador) getSuporte(listaSuportadosArebentar.get(0))).colocar(p);
+						}
+					}
+				}
+			} else if ((combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 1)
+					&& combinam(posicao, sentido, 2) || combinam(posicao, sentido.getInverso(), 2))) {
+				if (listaSuportadosArebentar.size() > 4) {
+					if (((Animal) getSuportado(posicao)).getTipo().equals(TipoAnimal.PANDA)) {
+						Poder p = new Poder(TipoPoder.PANDAESTRELA, (SuporteSuportador) getSuporte(posicao));
+						((SuporteSuportador) getSuporte(listaSuportadosArebentar.get(0))).colocar(p);
+					} // EXPLOSAO DAR COR CERTA
+					if (((Animal) getSuportado(posicao)).getTipo().equals(TipoAnimal.POLVO)) {
+						Poder p = new Poder(TipoPoder.POLVOESTRELA, (SuporteSuportador) getSuporte(posicao));
+						((SuporteSuportador) getSuporte(listaSuportadosArebentar.get(0))).colocar(p);
+					}
+					if (((Animal) getSuportado(posicao)).getTipo().equals(TipoAnimal.SAPO)) {
+						Poder p = new Poder(TipoPoder.SAPOESTRELA, (SuporteSuportador) getSuporte(posicao));
+						((SuporteSuportador) getSuporte(listaSuportadosArebentar.get(0))).colocar(p);
+					}
+					if (((Animal) getSuportado(posicao)).getTipo().equals(TipoAnimal.PEIXE)) {
+						Poder p = new Poder(TipoPoder.PEIXEESTRELA, (SuporteSuportador) getSuporte(posicao));
+						((SuporteSuportador) getSuporte(listaSuportadosArebentar.get(1))).colocar(p);
+					}
+					if (((Animal) getSuportado(posicao)).getTipo().equals(TipoAnimal.RAPOSA)) {
+						Poder p = new Poder(TipoPoder.RAPOSAESTRELA, (SuporteSuportador) getSuporte(posicao));
+						((SuporteSuportador) getSuporte(listaSuportadosArebentar.get(0))).colocar(p);
+					}
+				}
+			} else if ((combinam(posicao, sentido, 2) && combinam(posicao, sentido.getInverso(), 2))) {
+				if (listaSuportadosArebentar.size() == 4) {
+					if ((sentido == Sentido.N && sentido == Sentido.S)
+							|| (sentido == Sentido.E && sentido == Sentido.O)) {
+						for (Posicao pos : listaSuportadosArebentar) {
+							if (getSuporte(pos) instanceof SuporteGelo) {
+								explodirSuporte(pos);
+							}
+						}
+						Poder p = new Poder(TipoPoder.ARCOIRIS, (SuporteSuportador) getSuporte(posicao));
+						((SuporteSuportador) getSuporte(listaSuportadosArebentar.get(1))).colocar(p);
+						((SuporteSuportador) getSuporte(posicao)).colocar(p);
+					}
+					if ((sentido == Sentido.N && sentido == Sentido.E) || (sentido == Sentido.N && sentido == Sentido.O)
+							|| (sentido == Sentido.S && sentido == Sentido.E)
+							|| (sentido == Sentido.S && sentido == Sentido.O)) {
+						for (Posicao pos : listaSuportadosArebentar) {
+							if (getSuporte(pos) instanceof SuporteGelo) {
+								explodirSuporte(pos);
+							}
+							((SuporteSuportador) getSuporte(pos)).colocar(null);
+						}
+
+						if (((Animal) getSuportado(posicao)).getTipo().equals(TipoAnimal.POLVO)) {
+							Poder p = new Poder(TipoPoder.POLVOCRUZ, (SuporteSuportador) getSuporte(posicao));
+							((SuporteSuportador) getSuporte(listaSuportadosArebentar.get(0))).colocar(p);
+						}
+						if (((Animal) getSuportado(posicao)).getTipo().equals(TipoAnimal.SAPO)) {
+							Poder p = new Poder(TipoPoder.SAPOCRUZ, (SuporteSuportador) getSuporte(posicao));
+							((SuporteSuportador) getSuporte(listaSuportadosArebentar.get(0))).colocar(p);
+						}
+						if (((Animal) getSuportado(posicao)).getTipo().equals(TipoAnimal.PEIXE)) {
+							Poder p = new Poder(TipoPoder.PEIXECRUZ, (SuporteSuportador) getSuporte(posicao));
+							((SuporteSuportador) getSuporte(listaSuportadosArebentar.get(1))).colocar(p);
+						}
+						if (((Animal) getSuportado(posicao)).getTipo().equals(TipoAnimal.RAPOSA)) {
+							Poder p = new Poder(TipoPoder.RAPOSACRUZ, (SuporteSuportador) getSuporte(posicao));
+							((SuporteSuportador) getSuporte(listaSuportadosArebentar.get(0))).colocar(p);
+						}
+					}
+				}
+			} // else if()
+				// Combinacoes Normais
+			else if (combinam(posicao, sentido, 2) || combinam(posicao, sentido.getInverso(), 2)
+					|| (combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 1))) {
+				if (listaSuportadosArebentar.size() == 3) {
+					for (Posicao pos : listaSuportadosArebentar) {
+						if (getSuporte(pos) instanceof SuporteGelo) {
+							explodirSuporte(pos);
+						} else {
+							((SuporteSuportador) getSuporte(pos)).colocar(null);
+						}
+					}
+					break;
+				}
+
+				if ((combinam(posicao, sentido, 2) && combinam(posicao, sentido.getInverso(), 1))
+						|| (combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 2))) {
+					if (listaSuportadosArebentar.size() > 3) {
+						if ((sentido == Sentido.N || sentido == Sentido.S)) {
+							// colocar o poder horizontal
+							// correcto(getTipoAnimal) na
+							// posximaInicial
+						} else if (sentido == Sentido.E || sentido == Sentido.O) {
+							// colocar poder vertical getTipoAnimal ..
+						}
+					}
+				} else if ((combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 1)
+						&& combinam(posicao, sentido, 2) || combinam(posicao, sentido.getInverso(), 2))) {
+					if (listaSuportadosArebentar.size() >= 4) {
+						// PoderEstrela
+					}
+				} else if ((combinam(posicao, sentido, 2) && combinam(posicao, sentido.getInverso(), 2))) {
+					if (listaSuportadosArebentar.size() >= 4) {
+						if ((sentido == Sentido.N && sentido == Sentido.S)
+								|| (sentido == Sentido.E && sentido == Sentido.O)) {
+							Poder p = new Poder(TipoPoder.ARCOIRIS, (SuporteSuportador) getSuporte(posicao));
+							((SuporteSuportador) getSuporte(posicao)).colocar(p);
+						} else if ((sentido == Sentido.N && sentido == Sentido.E)
+								|| (sentido == Sentido.N && sentido == Sentido.O)
+								|| (sentido == Sentido.S && sentido == Sentido.E)
+								|| (sentido == Sentido.S && sentido == Sentido.O)) {
+							// tipo Poder CRUZ , COLOCAR O PODER NO CENTRO DA
+							// EXPLOSAO DAR COR CERTA
+						}
+					}
+				}
+				// Combinacoes Normais
+				else if (combinam(posicao, sentido, 2) || combinam(posicao, sentido.getInverso(), 2)
+						|| (combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 1))) {
+					if (listaSuportadosArebentar.size() > 2) {
+						for (Posicao pos : listaSuportadosArebentar) {
+							if (getSuporte(pos) instanceof SuporteGelo) {
+								explodirSuporte(pos);
+							} else {
+
+								// TODO CHANGE
+								jogo.incrementarPontuacao(((Animal) getSuportado(pos)).getValor());
+								getSuporteSuportador(pos).colocar(null);
+							}
+						}
+						break;
+					}
+				}
+			}
+		}
+
+	}
 
     private void explodirSuporte(Posicao posicao)
     {
@@ -288,7 +432,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
 
     private boolean isMovivel(Suporte suporte)
     {
-        if (((SuporteSuportador) suporte).getSuportado() instanceof Combinavel) {
+        if (((SuporteSuportador) suporte).getSuportado() instanceof Movivel) {
             return true;
         }
         return false;

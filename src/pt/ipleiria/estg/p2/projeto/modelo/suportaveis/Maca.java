@@ -3,7 +3,7 @@ package pt.ipleiria.estg.p2.projeto.modelo.suportaveis;
 import pt.ipleiria.estg.p2.projeto.modelo.Iteravel;
 import pt.ipleiria.estg.p2.projeto.modelo.Sentido;
 
-public class Maca extends SuportadoPorGelo implements Iteravel
+public class Maca extends Movivel implements Iteravel
 {
 	
     
