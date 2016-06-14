@@ -47,10 +47,10 @@ public abstract class Suporte
         this.representacao = representacao;
     }
 
-    public abstract boolean aceitas(Suportado suportado, Posicao posicao, Sentido s);
+    public abstract boolean aceitas(Suportado suportado, Sentido s);
     public abstract boolean podeCair(Sentido sentido);
 
-    public abstract void tomaLa(Suportado suportado, Posicao posicao, Sentido s);
+    public abstract void tomaLa(Suportado suportado, Sentido s);
 
 	public void actualizarImagem() {
 		getPainelPrincipal().atualizarGridPanel(this);

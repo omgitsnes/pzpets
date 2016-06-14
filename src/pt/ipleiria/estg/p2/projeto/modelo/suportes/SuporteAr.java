@@ -16,11 +16,11 @@ public class SuporteAr extends Suporte
     }
     
     @Override
-    public boolean aceitas(Suportado suportado, Posicao posicao, Sentido sentido)
+    public boolean aceitas(Suportado suportado, Sentido sentido)
     {
-        if (sentido == Sentido.S) {
-            return getPainelPrincipal().podeCair(suportado, getPosicao(), sentido);
-        }
+//        if (sentido == Sentido.S) {
+//           return getPainelPrincipal().podeCair(suportado, sentido);
+//        }
         return false;
     }
 
@@ -34,10 +34,9 @@ public class SuporteAr extends Suporte
     }
 
     @Override
-    public void tomaLa(Suportado suportado, Posicao posicao, Sentido s)
+    public void tomaLa(Suportado suportado, Sentido s)
     {
-        getPainelPrincipal().fazMeCair(suportado, getPosicao(), s);
-    }
-    
+        getPainelPrincipal().fazMeCair(suportado, s);
+    }   
     
 }

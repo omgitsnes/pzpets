@@ -16,7 +16,7 @@ public class SuporteAgua extends SuporteSuportador<Suportado>
     }
 
     @Override
-    public boolean aceitas(Suportado suportado, Posicao posicao, Sentido s)
+    public boolean aceitas(Suportado suportado, Sentido s)
     {
         if (getSuportado() == null) {
           return true;
@@ -29,11 +29,11 @@ public class SuporteAgua extends SuporteSuportador<Suportado>
     }
     
     @Override
-    public void tomaLa(Suportado suportado, Posicao posicao, Sentido s) {
+    public void tomaLa(Suportado suportado, Sentido s) {
     	if (getSuportado() instanceof Cesto) {
             ((Cesto)getSuportado()).tomaLa(suportado, posicao, s);
     	}
             else
-    	     super.tomaLa(suportado, posicao, s);
+    	     super.tomaLa(suportado, s);
     }
 }

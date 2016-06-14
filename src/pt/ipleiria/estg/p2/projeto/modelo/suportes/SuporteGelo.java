@@ -16,7 +16,7 @@ public class SuporteGelo extends SuporteSuportador<SuportadoPorGelo>
     }
 
     @Override
-    public boolean aceitas(Suportado suportado, Posicao posicao, Sentido s)
+    public boolean aceitas(Suportado suportado, Sentido s)
     {
         if (getSuportado() == null) {
             return true;

@@ -25,475 +25,458 @@ import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAr;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteGelo;
 import pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteSuportador;
 
-public class PainelPrincipal extends Painel implements GridPanelEventHandler
-{
+public class PainelPrincipal extends Painel implements GridPanelEventHandler {
 
-    private Jogo jogo;
-    private Suporte[][] suportes;
-    private int numeroDeMacasEmJogo;
-    private int numeroDeSuportesCongelados;
-    private Suporte suporteInicial;
-    private static final int CADENCIA_DE_QUEDA = 100;
-    private CopyOnWriteArrayList<Posicao> listaSuportadosArebentar;
+	private Jogo jogo;
+	private Suporte[][] suportes;
+	private int numeroDeMacasEmJogo;
+	private int numeroDeSuportesCongelados;
+	private Suporte suporteInicial;
+	private static final int CADENCIA_DE_QUEDA = 100;
+	private CopyOnWriteArrayList<Posicao> listaSuportadosArebentar;
 
-    /**
-     * @param gridPanel
-     */
-    public PainelPrincipal(GridPanel gridPanel, Jogo jogo)
-    {
-        super(gridPanel);
-        this.suportes = new Suporte[getNumeroDeLinhas()][getNumeroDeColunas()];
-        this.numeroDeMacasEmJogo = 0;
-        this.jogo = jogo;
-        listaSuportadosArebentar = new CopyOnWriteArrayList<>();
-        
-        gridPanel.setEventHandler(this);
-        gerarNivel();
-        gerarCestos();
-    }
+	/**
+	 * @param gridPanel
+	 */
+	public PainelPrincipal(GridPanel gridPanel, Jogo jogo) {
+		super(gridPanel);
+		this.suportes = new Suporte[getNumeroDeLinhas()][getNumeroDeColunas()];
+		this.numeroDeMacasEmJogo = 0;
+		this.jogo = jogo;
+		listaSuportadosArebentar = new CopyOnWriteArrayList<>();
 
-    public int getNumeroDeSuportesCongelados()
-    {
-        return numeroDeSuportesCongelados;
-    }
+		gridPanel.setEventHandler(this);
+		gerarNivel();
+		gerarCestos();
+	}
 
-    public void incrementarNumeroDeMacasEmJogo()
-    {
-        numeroDeMacasEmJogo++;
-    }
+	public int getNumeroDeSuportesCongelados() {
+		return numeroDeSuportesCongelados;
+	}
 
-    public void decrementarNumeroDeMacasEmJogo()
-    {
-        numeroDeMacasEmJogo--;
-    }
+	public void incrementarNumeroDeMacasEmJogo() {
+		numeroDeMacasEmJogo++;
+	}
 
-    public int getCadenciaDeQueda()
-    {
-        return CADENCIA_DE_QUEDA;
-    }
+	public void decrementarNumeroDeMacasEmJogo() {
+		numeroDeMacasEmJogo--;
+	}
 
-    private void gerarNivel()
-    {
-        for (int i = 0; i < getNumeroDeLinhas(); i++) {
-            for (int j = 0; j < getNumeroDeColunas(); j++) {
-                //Primeiras 2 linhas
-                if (i < 2) {
-                    Suporte s = new SuporteAgua(this, new Posicao(i, j));
-                    colocar(s);
-                }
-                // linhas 2 e 3 
-                if (i > 1 && i < 4) {
-                    if (j == 0 || j == 3 || j == 7) {
-                        Suporte s = new SuporteAr(this, new Posicao(i, j));
-                        colocar(s);
-                    } else {
-                        Suporte s = new SuporteGelo(this, new Posicao(i, j));
-                        colocar(s);
-                    }
-                }
-                //todas as outras
-                if (i > 3) {
-                    if ((i == 4 && j == 0) || (i == 4 && j == 7)) {
-                        Suporte s = new SuporteAr(this, new Posicao(i, j));
-                        colocar(s);
-                    } else {
-                        Suporte s = new SuporteAgua(this, new Posicao(i, j));
-                        colocar(s);
-                    }
-                }
-                if (i == 7) {
-                    Suporte s = new SuporteAgua(this, new Posicao(i, j));
-                    colocar(s);
-                }
-            }
-        } 
-    }
+	public int getCadenciaDeQueda() {
+		return CADENCIA_DE_QUEDA;
+	}
 
-    /*
-     * Adiciona os cestos ao ultimo suporte agua do painel
-     */
-    private void gerarCestos()
-    {
-        for (int j = 0; j < getNumeroDeColunas(); j++) {
-            for (int i = getNumeroDeLinhas() - 1; i > 0; i--) {
-                if (suportes[i][j] instanceof SuporteAgua) {
-                    Cesto cesto = new Cesto((SuporteAgua) suportes[i][j]);
-                    ((SuporteAgua) suportes[i][j]).colocar(cesto);
-                    break;
-                }
-            }
-        }
-    }
+	private void gerarNivel() {
+		for (int i = 0; i < getNumeroDeLinhas(); i++) {
+			for (int j = 0; j < getNumeroDeColunas(); j++) {
+				// Primeiras 2 linhas
+				if (i < 2) {
+					Suporte s = new SuporteAgua(this, new Posicao(i, j));
+					colocar(s);
+				}
+				// linhas 2 e 3
+				if (i > 1 && i < 4) {
+					if (j == 0 || j == 3 || j == 7) {
+						Suporte s = new SuporteAr(this, new Posicao(i, j));
+						colocar(s);
+					} else {
+						Suporte s = new SuporteGelo(this, new Posicao(i, j));
+						colocar(s);
+					}
+				}
+				// todas as outras
+				if (i > 3) {
+					if ((i == 4 && j == 0) || (i == 4 && j == 7)) {
+						Suporte s = new SuporteAr(this, new Posicao(i, j));
+						colocar(s);
+					} else {
+						Suporte s = new SuporteAgua(this, new Posicao(i, j));
+						colocar(s);
+					}
+				}
+				if (i == 7) {
+					Suporte s = new SuporteAgua(this, new Posicao(i, j));
+					colocar(s);
+				}
+			}
+		}
+	}
 
-    public void colocar(Suporte suporte)
-    {
-        // adicionar a matriz de suportes
-        suportes[suporte.getPosicao().getLinha()][suporte.getPosicao().getColuna()] = suporte;
-        //atualizar a imagem
-        atualizarGridPanel(suporte);
-    }
+	/*
+	 * Adiciona os cestos ao ultimo suporte agua do painel
+	 */
+	private void gerarCestos() {
+		for (int j = 0; j < getNumeroDeColunas(); j++) {
+			for (int i = getNumeroDeLinhas() - 1; i > 0; i--) {
+				if (suportes[i][j] instanceof SuporteAgua) {
+					Cesto cesto = new Cesto((SuporteAgua) suportes[i][j]);
+					((SuporteAgua) suportes[i][j]).colocar(cesto);
+					break;
+				}
+			}
+		}
+	}
 
-    public void iterar(long tempo)
-    {
-        for (int i = getNumeroDeLinhas() - 1; i >= 0; i--) {
-            for (int j = 0; j < getNumeroDeColunas(); j++) {
-                if (suportes[i][j] instanceof SuporteSuportador) {
-                    ((SuporteSuportador) suportes[i][j]).iterar(tempo);
-                }
-            }
-        }
-        adicionarAnimalAleatorio();
-    }
+	public void colocar(Suporte suporte) {
+		// adicionar a matriz de suportes
+		suportes[suporte.getPosicao().getLinha()][suporte.getPosicao().getColuna()] = suporte;
+		// atualizar a imagem
+		atualizarGridPanel(suporte);
+	}
 
-    /**
-     * Altera um Suportado para uma nova posicao previamente validada
-     *
-     * @param suportado
-     * @param posicao
-     * @param sentido
-     */
-    public void fazMeCair(Suportado suportado, Posicao posicao, Sentido sentido)
-    {
-        Posicao novaPosicao = posicao.seguir(sentido);
-        suportes[novaPosicao.getLinha()][novaPosicao.getColuna()].tomaLa(suportado, posicao, sentido);
-    }
+	public void iterar(long tempo) {
+		for (int i = getNumeroDeLinhas() - 1; i >= 0; i--) {
+			for (int j = 0; j < getNumeroDeColunas(); j++) {
+				if (suportes[i][j] instanceof SuporteSuportador) {
+					((SuporteSuportador) suportes[i][j]).iterar(tempo);
+				}
+			}
+		}
+		adicionarAnimalAleatorio();
+	}
 
-    public boolean podeCair(Suportado suportado, Posicao posicao, Sentido sentido)
-    {
-        Posicao novaPosicao = posicao.seguir(sentido);
-        if (isPosicaoValida(novaPosicao)) {
-            return suportes[novaPosicao.getLinha()][novaPosicao.getColuna()].aceitas(suportado, posicao, sentido);
-        }
+	/**
+	 * Altera um Suportado para uma nova posicao previamente validada
+	 *
+	 * @param suportado
+	 * @param posicao
+	 * @param sentido
+	 */
+	public void fazMeCair(Suportado suportado, Sentido sentido) {
+		Posicao novaPosicao = suportado.getPosicao().seguir(sentido);
+		suportes[novaPosicao.getLinha()][novaPosicao.getColuna()].tomaLa(suportado, sentido);
+	}
 
-        return false;
-    }
+	public boolean podeCair(Suportado suportado, Sentido sentido) {
+		Posicao novaPosicao = suportado.getPosicao().seguir(sentido);
+		
+		if (isPosicaoValida(novaPosicao)) {
+			return suportes[novaPosicao.getLinha()][novaPosicao.getColuna()].aceitas(suportado, sentido);
+		}
+		return false;
+	}
 
-    @Override
-    public void mousePressed(MouseEvent evt, int linha, int coluna)
-    {
-        suporteInicial = suportes[linha][coluna];
-        //check if movivel
-        //TODO CLASSE MOVIVEIS
-        if (suporteInicial instanceof SuporteSuportador) {
-            if (isMovivel(suporteInicial)) {
-                System.out.println(((SuporteSuportador) suporteInicial).getSuportado() + "; L:" + suporteInicial.getPosicao().getLinha() + "; C:" + suporteInicial.getPosicao().getColuna());
-                listaSuportadosArebentar.add(new Posicao(linha, coluna));
-            } else {
-                suporteInicial = null;
-            }
-        }
-    }
+	@Override
+	public void mousePressed(MouseEvent evt, int linha, int coluna) {
+		suporteInicial = suportes[linha][coluna];
+		// check if movivel
+		// TODO CLASSE MOVIVEIS
+		if (suporteInicial instanceof SuporteSuportador) {
+			if (isMovivel(suporteInicial)) {
+				System.out.println(((SuporteSuportador) suporteInicial).getSuportado() + "; L:"
+						+ suporteInicial.getPosicao().getLinha() + "; C:" + suporteInicial.getPosicao().getColuna());
+				listaSuportadosArebentar.add(new Posicao(linha, coluna));
+			} else {
+				suporteInicial = null;
+			}
+		}
+	}
 
-    @Override
-    public void mouseReleased(MouseEvent evt, int linha, int coluna)
-    {
-        if (suporteInicial != null) {
-            Suporte suporteFinal = suportes[linha][coluna];
-            if (suporteFinal instanceof SuporteSuportador) {
-                if (isMovivel(suporteFinal)) {
-                    System.out.println(((SuporteSuportador) suporteFinal).getSuportado() + "; L:" + suporteFinal.getPosicao().getLinha() + "; C:" + suporteFinal.getPosicao().getColuna());
-                    Sentido sentido = suporteInicial.getPosicao().getSentido(suporteFinal.getPosicao());
-                    System.out.println(sentido + " -> sentido");
-                    if (sentido == Sentido.N || sentido == Sentido.S || sentido == Sentido.E || sentido == Sentido.O) {
+	@Override
+	public void mouseReleased(MouseEvent evt, int linha, int coluna) {
+		if (suporteInicial != null) {
+			Suporte suporteFinal = suportes[linha][coluna];
+			if (suporteFinal instanceof SuporteSuportador) {
+				if (isMovivel(suporteFinal)) {
+					System.out.println(((SuporteSuportador) suporteFinal).getSuportado() + "; L:"
+							+ suporteFinal.getPosicao().getLinha() + "; C:" + suporteFinal.getPosicao().getColuna());
+					Sentido sentido = suporteInicial.getPosicao().getSentido(suporteFinal.getPosicao());
+					System.out.println(sentido + " -> sentido");
+					if (sentido == Sentido.N || sentido == Sentido.S || sentido == Sentido.E || sentido == Sentido.O) {
 
-                        System.out.println(sentido.seguirSentido(suporteInicial.getPosicao()) + " =? " + suporteFinal.getPosicao());
-                        listaSuportadosArebentar.add(new Posicao(linha, coluna));
+						System.out.println(sentido.seguirSentido(suporteInicial.getPosicao()) + " =? "
+								+ suporteFinal.getPosicao());
+						listaSuportadosArebentar.add(new Posicao(linha, coluna));
 
-                        if (sentido.seguirSentido(suporteInicial.getPosicao()).equals(suporteFinal.getPosicao())) {
-                            trocar(suporteFinal);
-                            if (geraCombinacao(suporteInicial.getPosicao()) || geraCombinacao(suporteFinal.getPosicao())) {
-                                System.err.println("Combinam");
-                                System.out.println("Entao vou rebentar!!");
-                                jogo.decrementarMovimentosDisponiveis();
-                            } else {
-                                System.err.println("Nao combinam");
-                                trocar(suporteFinal);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+						if (sentido.seguirSentido(suporteInicial.getPosicao()).equals(suporteFinal.getPosicao())) {
+							trocar(suporteFinal);
+							if (geraCombinacao(suporteInicial.getPosicao())
+									|| geraCombinacao(suporteFinal.getPosicao())) {
+								System.err.println("Combinam");
+								System.out.println("Entao vou rebentar!!");
+								jogo.decrementarMovimentosDisponiveis();
+							} else {
+								System.err.println("Nao combinam");
+								trocar(suporteFinal);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 
-	public void podeExplodir(Posicao posicao) {		
-		if (geraCombinacao(posicao)){
-					
+	public void podeExplodir(Posicao posicao) {
+		if (geraCombinacao(posicao)) {
+
 			explodir(posicao);
 		}
 
 	}
-	
-	public void explodir(Posicao posicao){
-		
-		Sentido[] sentidos = {Sentido.E, Sentido.N};
+
+	public void explodir(Posicao posicao) {
+
+		Sentido[] sentidos = { Sentido.E, Sentido.N };
 		for (Sentido sentido : sentidos) {
 			listaSuportadosArebentar.clear();
-			//CombinacoesEspeciais
-			//Combinacoes de 4 Animais
-			
-			if((combinam(posicao, sentido, 2) && combinam(posicao, sentido.getInverso(), 1))
-					|| (combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 2))){
-				if(listaSuportadosArebentar.size() >= 3){
-					if((sentido==Sentido.N || sentido == Sentido.S)){
+			// CombinacoesEspeciais
+			// Combinacoes de 4 Animais
+
+			if ((combinam(posicao, sentido, 2) && combinam(posicao, sentido.getInverso(), 1))
+					|| (combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 2))) {
+				if (listaSuportadosArebentar.size() >= 3) {
+					if ((sentido == Sentido.N || sentido == Sentido.S)) {
 						listaSuportadosArebentar.add(posicao);
-						//colocar o poder horizontal correcto(getTipoAnimal) na posximaInicial
-					}
-						else if(sentido==Sentido.E || sentido == Sentido.O){
-							listaSuportadosArebentar.add(posicao);
+						// colocar o poder horizontal correcto(getTipoAnimal) na
+						// posximaInicial
+					} else if (sentido == Sentido.E || sentido == Sentido.O) {
+						listaSuportadosArebentar.add(posicao);
 						// colocar poder vertical getTipoAnimal ..
 					}
 				}
-			}
-			else if((combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 1)
-					&& combinam(posicao, sentido, 2)
-					|| combinam(posicao, sentido.getInverso(), 2))){
-				if(listaSuportadosArebentar.size() >= 4){
+			} else if ((combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 1)
+					&& combinam(posicao, sentido, 2) || combinam(posicao, sentido.getInverso(), 2))) {
+				if (listaSuportadosArebentar.size() >= 4) {
 					listaSuportadosArebentar.add(posicao);
-					//PoderEstrela	
+					// PoderEstrela
 				}
-			}
-			else if((combinam(posicao, sentido, 2) && combinam(posicao, sentido.getInverso(), 2))){
-				if(listaSuportadosArebentar.size() >= 4){
-					if((sentido==Sentido.N && sentido == Sentido.S) || (sentido==Sentido.E && sentido == Sentido.O) ){
+			} else if ((combinam(posicao, sentido, 2) && combinam(posicao, sentido.getInverso(), 2))) {
+				if (listaSuportadosArebentar.size() >= 4) {
+					if ((sentido == Sentido.N && sentido == Sentido.S)
+							|| (sentido == Sentido.E && sentido == Sentido.O)) {
 						Poder p = new Poder(TipoPoder.ARCOIRIS, (SuporteSuportador) getSuporte(posicao));
 						((SuporteSuportador) getSuporte(posicao)).colocar(p);
-					}
-					else if((sentido==Sentido.N && sentido == Sentido.E) || (sentido==Sentido.N && sentido == Sentido.O) ||
-							(sentido==Sentido.S && sentido == Sentido.E) || (sentido==Sentido.S && sentido == Sentido.O)){
+					} else if ((sentido == Sentido.N && sentido == Sentido.E)
+							|| (sentido == Sentido.N && sentido == Sentido.O)
+							|| (sentido == Sentido.S && sentido == Sentido.E)
+							|| (sentido == Sentido.S && sentido == Sentido.O)) {
 						listaSuportadosArebentar.add(posicao);
-						//tipo Poder CRUZ , COLOCAR O PODER NO CENTRO DA EXPLOSAO DAR COR CERTA
+						// tipo Poder CRUZ , COLOCAR O PODER NO CENTRO DA
+						// EXPLOSAO DAR COR CERTA
 					}
-				}				
+				}
 			}
-			//else if()
-			//Combinacoes Normais
+			// else if()
+			// Combinacoes Normais
 			else if (combinam(posicao, sentido, 2) || combinam(posicao, sentido.getInverso(), 2)
-				|| (combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 1))){
-				if(listaSuportadosArebentar.size() >= 2) {
+					|| (combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 1))) {
+				if (listaSuportadosArebentar.size() >= 2) {
 					listaSuportadosArebentar.add(posicao);
 					for (Posicao pos : listaSuportadosArebentar) {
-						if(getSuporte(pos) instanceof SuporteGelo) {
+						if (getSuporte(pos) instanceof SuporteGelo) {
 							explodirSuporte(pos);
 						}
 						((SuporteSuportador) getSuporte(pos)).colocar(null);
 					}
 					break;
 				}
-				
+
 			}
 		}
 	}
-						
 
 	private void explodirSuporte(Posicao posicao) {
 		suportes[posicao.getLinha()][posicao.getColuna()] = new SuporteAgua(this, posicao);
-		
+
 	}
 
-	private boolean isMovivel(Suporte suporte)
-    {
-        if (((SuporteSuportador) suporte).getSuportado() instanceof Combinavel) {
-            return true;
-        }
-        return false;
-    }
+	private boolean isMovivel(Suporte suporte) {
+		if (((SuporteSuportador) suporte).getSuportado() instanceof Combinavel) {
+			return true;
+		}
+		return false;
+	}
 
-    private void trocar(Suporte suporteFinal)
-    {
-        Suportado suportadoAux = ((SuporteSuportador) suporteInicial).getSuportado();
+	private void trocar(Suporte suporteFinal) {
+		Suportado suportadoAux = ((SuporteSuportador) suporteInicial).getSuportado();
 
-//DEBUG
-        System.out.println("Trocar " + ((SuporteSuportador) suporteFinal).getSuportado() + " com " + suportadoAux);
+		// DEBUG
+		System.out.println("Trocar " + ((SuporteSuportador) suporteFinal).getSuportado() + " com " + suportadoAux);
 
-        ((SuporteSuportador) suporteInicial).colocar(((SuporteSuportador) suporteFinal).getSuportado());
-        System.out.println(((SuporteSuportador) suporteInicial) + " --> " + ((SuporteSuportador) suporteFinal).getSuportado());
+		((SuporteSuportador) suporteInicial).colocar(((SuporteSuportador) suporteFinal).getSuportado());
+		System.out.println(
+				((SuporteSuportador) suporteInicial) + " --> " + ((SuporteSuportador) suporteFinal).getSuportado());
 
-        ((SuporteSuportador) suporteFinal).colocar(suportadoAux);
-        System.out.println(((SuporteSuportador) suporteFinal) + " --> " + suportadoAux);
+		((SuporteSuportador) suporteFinal).colocar(suportadoAux);
+		System.out.println(((SuporteSuportador) suporteFinal) + " --> " + suportadoAux);
 
-        atualizarGridPanel(suporteInicial);
-        atualizarGridPanel(suporteFinal);
+		atualizarGridPanel(suporteInicial);
+		atualizarGridPanel(suporteFinal);
 
-    }
+	}
 
-    private boolean geraCombinacao(Posicao posicao)
-    {
-        //TODO make getSuportado
-        if (getSuporte(posicao) instanceof SuporteSuportador) {
-            Suportado suportado = getSuportado(posicao);
-            if (suportado instanceof Combinavel) {
-                Sentido[] sentidos = {Sentido.E, Sentido.S};
-                for (Sentido sentido : sentidos) {
-                    if (combinam(posicao, sentido, 2) || combinam(posicao, sentido.getInverso(), 2) || ((combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 1)))) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
+	private boolean geraCombinacao(Posicao posicao) {
+		// TODO make getSuportado
+		if (getSuporte(posicao) instanceof SuporteSuportador) {
+			Suportado suportado = getSuportado(posicao);
+			if (suportado instanceof Combinavel) {
+				Sentido[] sentidos = { Sentido.E, Sentido.S };
+				for (Sentido sentido : sentidos) {
+					if (combinam(posicao, sentido, 2) || combinam(posicao, sentido.getInverso(), 2)
+							|| ((combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 1)))) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
 
-    /**
-     * Verifica para um numero de posicoes sucessivas num sentido se existe
-     * suportados do mesmo tipo
-     *
-     * @param posicao
-     * @param sentido
-     * @param valor
-     * @return true if true.
-     */
-    public boolean combinam(Posicao posicao, Sentido sentido, int valor)
-    {
-        Suportado suportado = getSuportado(posicao);
-        Suportado suportadoSentido;
-        Posicao proximaPosicao = sentido.seguirSentido(posicao);
-        if (isPosicaoValida(proximaPosicao)) {
-            suportadoSentido = getSuportado(sentido.seguirSentido(posicao));
-        } else {
-            //pesuisa em posicao invalida
-            return false;
-        }
-        listaSuportadosArebentar.clear();
-        while (valor-- > 0) {
-            if (!(suportadoSentido instanceof Combinavel
-                && ((Combinavel) suportadoSentido).combinaCom(suportado))) {
-                return false;
-            }
-            listaSuportadosArebentar.add(proximaPosicao);
-            proximaPosicao = sentido.seguirSentido(suportadoSentido.getSuporte().getPosicao());
-            if (isPosicaoValida(proximaPosicao)) {
-                suportadoSentido = getSuportado(proximaPosicao);
+	/**
+	 * Verifica para um numero de posicoes sucessivas num sentido se existe
+	 * suportados do mesmo tipo
+	 *
+	 * @param posicao
+	 * @param sentido
+	 * @param valor
+	 * @return true if true.
+	 */
+	public boolean combinam(Posicao posicao, Sentido sentido, int valor) {
+		Suportado suportado = getSuportado(posicao);
+		Suportado suportadoSentido;
+		Posicao proximaPosicao = sentido.seguirSentido(posicao);
+		if (isPosicaoValida(proximaPosicao)) {
+			suportadoSentido = getSuportado(sentido.seguirSentido(posicao));
+		} else {
+			// pesuisa em posicao invalida
+			return false;
+		}
+		listaSuportadosArebentar.clear();
+		while (valor-- > 0) {
+			if (!(suportadoSentido instanceof Combinavel && ((Combinavel) suportadoSentido).combinaCom(suportado))) {
+				return false;
+			}
+			listaSuportadosArebentar.add(proximaPosicao);
+			proximaPosicao = sentido.seguirSentido(suportadoSentido.getSuporte().getPosicao());
+			if (isPosicaoValida(proximaPosicao)) {
+				suportadoSentido = getSuportado(proximaPosicao);
 
-            } else {
-                //pesquisa em posicao invalida
-                return false;
-            }
-        }
-        return true;
-    }
+			} else {
+				// pesquisa em posicao invalida
+				return false;
+			}
+		}
+		return true;
+	}
 
-    public void adicionarAnimalAleatorio()
-    {
-        for (int coluna = 0; coluna < getNumeroDeColunas(); coluna++) {
-            if (suportes[0][coluna] instanceof SuporteSuportador) {
-                if (((SuporteSuportador) suportes[0][coluna]).getSuportado() == null) {
-                    if (numeroDeMacasEmJogo < 2) {
-                        Maca maca = new Maca((SuporteSuportador) suportes[0][coluna]);
-                        ((SuporteSuportador) suportes[0][coluna]).colocar(maca);
-                        incrementarNumeroDeMacasEmJogo();
-                    } else {
+	public void adicionarAnimalAleatorio() {
+		for (int coluna = 0; coluna < getNumeroDeColunas(); coluna++) {
+			Posicao posicao = new Posicao(0, coluna);
+			if (getSuporteSuportador(posicao) != null && getSuportado(posicao) == null) {
+				if (numeroDeMacasEmJogo < 2) {
+					Maca maca = new Maca((SuporteSuportador) suportes[0][coluna]);
+					((SuporteSuportador) suportes[0][coluna]).colocar(maca);
+					incrementarNumeroDeMacasEmJogo();
+				} else {
 
-                        Random random = new Random();
-                        switch (random.nextInt(5)) {
-                            case 0:
-                                ((SuporteSuportador) suportes[0][coluna]).colocar(new Animal(TipoAnimal.SAPO, ((SuporteSuportador) suportes[0][coluna])));
-                                break;
-                            case 1:
-                                ((SuporteSuportador) suportes[0][coluna]).colocar(new Animal(TipoAnimal.PANDA, ((SuporteSuportador) suportes[0][coluna])));
-                                break;
-                            case 2:
-                                ((SuporteSuportador) suportes[0][coluna]).colocar(new Animal(TipoAnimal.PEIXE, ((SuporteSuportador) suportes[0][coluna])));
-                                break;
-                            case 3:
-                                ((SuporteSuportador) suportes[0][coluna]).colocar(new Animal(TipoAnimal.POLVO, ((SuporteSuportador) suportes[0][coluna])));
-                                break;
-                            case 4:
-                                ((SuporteSuportador) suportes[0][coluna]).colocar(new Animal(TipoAnimal.RAPOSA, ((SuporteSuportador) suportes[0][coluna])));
-                                break;
-                        }
-                    }
-                }
-            }
-        }
-    }
+					Random random = new Random();
+					switch (random.nextInt(5)) {
+					case 0:
+						((SuporteSuportador) suportes[0][coluna])
+								.colocar(new Animal(TipoAnimal.SAPO, ((SuporteSuportador) suportes[0][coluna])));
+						break;
+					case 1:
+						((SuporteSuportador) suportes[0][coluna])
+								.colocar(new Animal(TipoAnimal.PANDA, ((SuporteSuportador) suportes[0][coluna])));
+						break;
+					case 2:
+						((SuporteSuportador) suportes[0][coluna])
+								.colocar(new Animal(TipoAnimal.PEIXE, ((SuporteSuportador) suportes[0][coluna])));
+						break;
+					case 3:
+						((SuporteSuportador) suportes[0][coluna])
+								.colocar(new Animal(TipoAnimal.POLVO, ((SuporteSuportador) suportes[0][coluna])));
+						break;
+					case 4:
+						((SuporteSuportador) suportes[0][coluna])
+								.colocar(new Animal(TipoAnimal.RAPOSA, ((SuporteSuportador) suportes[0][coluna])));
+						break;
+					}
+				}
+			}
+		}
+	}
 
-    public void decrementarNumeroDeMacasNoPainelDeMacas()
-    {
-        jogo.decrementarMacasPorApanhar();
-    }
+	public void decrementarNumeroDeMacasNoPainelDeMacas() {
+		jogo.decrementarMacasPorApanhar();
+	}
 
-    public Suportado getSuportado(Posicao posicao)
-    {
-        Suporte suporte = suportes[posicao.getLinha()][posicao.getColuna()];
-        if (suporte instanceof SuporteSuportador) {
-            return ((SuporteSuportador) suporte).getSuportado();
-        }
-        return null;
-    }
+	public Suportado getSuportado(Posicao posicao) {
+		SuporteSuportador suporteSuportador = getSuporteSuportador(posicao);
+		return suporteSuportador != null ? suporteSuportador.getSuportado() : null;
+	}
 
-    public Posicao gerarEspinho(Posicao posicao, LinkedList<Espinho> espinhos)
-    {
-        //Posicoes em volta da roseira
-        for (Sentido sentido : Sentido.values()) {
-            Posicao novaPosicao = posicaoValidaParaGerarEspinho(posicao, sentido);
-            if (novaPosicao != null) {
-                return novaPosicao;
-            }
-        }
-        //posicoes em volta dos espinhos
-        for (Espinho espinho : espinhos) {
-            for (Sentido sentido : Sentido.values()) {
-                Posicao novaPosicao = posicaoValidaParaGerarEspinho(espinho.getSuporte().getPosicao(), sentido);
-                if (novaPosicao != null) {
-                    return novaPosicao;
-                }
-            }
-        }
-        return null;
-    }
+	public Posicao gerarEspinho(Posicao posicao, LinkedList<Espinho> espinhos) {
+		// Posicoes em volta da roseira
+		for (Sentido sentido : Sentido.values()) {
+			Posicao novaPosicao = posicaoValidaParaGerarEspinho(posicao, sentido);
+			if (novaPosicao != null) {
+				return novaPosicao;
+			}
+		}
+		// posicoes em volta dos espinhos
+		for (Espinho espinho : espinhos) {
+			for (Sentido sentido : Sentido.values()) {
+				Posicao novaPosicao = posicaoValidaParaGerarEspinho(espinho.getSuporte().getPosicao(), sentido);
+				if (novaPosicao != null) {
+					return novaPosicao;
+				}
+			}
+		}
+		return null;
+	}
 
-    /**
-     * Cria e adicina um novo Espinho numa posicao previamente encontrada
-     *
-     * @param posicao Posicao da roseira Mae
-     * @param posicaoEspinho Posicao do novo espinho
-     */
-    public void colocarNovoEspinho(Posicao posicao, Posicao posicaoEspinho)
-    {
-        SuporteSuportador s = (SuporteSuportador) getSuporte(posicaoEspinho);
-        Espinho e = new Espinho(s);
-        ((SuporteSuportador) s).colocar(e);
-        ((Roseira) getSuportado(posicao)).adicionarEspinho(e);
-    }
+	/**
+	 * Cria e adicina um novo Espinho numa posicao previamente encontrada
+	 *
+	 * @param posicao
+	 *            Posicao da roseira Mae
+	 * @param posicaoEspinho
+	 *            Posicao do novo espinho
+	 */
+	public void colocarNovoEspinho(Posicao posicao, Posicao posicaoEspinho) {
+		SuporteSuportador s = (SuporteSuportador) getSuporte(posicaoEspinho);
+		Espinho e = new Espinho(s);
+		((SuporteSuportador) s).colocar(e);
+		((Roseira) getSuportado(posicao)).adicionarEspinho(e);
+	}
 
-    private boolean isPosicaoValida(Posicao posicao)
-    {
-        if (posicao.isDentro(getNumeroDeLinhas(), getNumeroDeColunas())) {
-            return true;
-        }
-        return false;
-    }
+	private boolean isPosicaoValida(Posicao posicao) {
+		if (posicao.isDentro(getNumeroDeLinhas(), getNumeroDeColunas())) {
+			return true;
+		}
+		return false;
+	}
 
-    private Posicao posicaoValidaParaGerarEspinho(Posicao posicao, Sentido sentido)
-    {
-        Posicao proximaPosicao = sentido.seguirSentido(posicao);
-        if (isPosicaoValida(proximaPosicao)) {
-            if (getSuportado(proximaPosicao) instanceof Animal) {
-                return proximaPosicao;
-            }
-        }
-        return null;
-    }
+	private Posicao posicaoValidaParaGerarEspinho(Posicao posicao, Sentido sentido) {
+		Posicao proximaPosicao = sentido.seguirSentido(posicao);
+		if (isPosicaoValida(proximaPosicao)) {
+			if (getSuportado(proximaPosicao) instanceof Animal) {
+				return proximaPosicao;
+			}
+		}
+		return null;
+	}
 
-    public Suporte getSuporte(Posicao posicao)
-    {
-        return suportes[posicao.getLinha()][posicao.getColuna()];
-    }
+	private Suporte getSuporte(Posicao posicao) {
+		return isPosicaoValida(posicao) ? suportes[posicao.getLinha()][posicao.getColuna()] : null;
+	}
 
-    @Override
-    public void mouseDragged(MouseEvent me, int i, int i1)
-    {
-    }
+	private SuporteSuportador getSuporteSuportador(Posicao posicao) {
+		Suporte suporte = getSuporte(posicao);
+		return suporte instanceof SuporteSuportador ? (SuporteSuportador) suporte : null;
+	}
 
-    @Override
-    public void mouseMoved(MouseEvent me, int i, int i1)
-    {
-    }
+	@Override
+	public void mouseDragged(MouseEvent me, int i, int i1) {
+	}
 
-    @Override
-    public void mouseExited(MouseEvent me)
-    {
-    }
+	@Override
+	public void mouseMoved(MouseEvent me, int i, int i1) {
+	}
+
+	@Override
+	public void mouseExited(MouseEvent me) {
+	}
 
 }
