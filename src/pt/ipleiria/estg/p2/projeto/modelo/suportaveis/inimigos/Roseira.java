@@ -17,7 +17,7 @@ public class Roseira extends SuportadoPorGelo implements Iteravel
     {
         super("/pt/ipleiria/estg/p2/projeto/imagens/inimigos/roseira.png",
             suporte);
-        this.temporizador = new Temporizador(10000);
+        this.temporizador = new Temporizador(8000);
         this.espinhos = new LinkedList<Espinho>();
     }
 

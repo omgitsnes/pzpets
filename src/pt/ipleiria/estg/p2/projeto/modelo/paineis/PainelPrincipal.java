@@ -48,6 +48,9 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
         listaSuportadosArebentar = new LinkedList<Posicao>();
         gridPanel.setEventHandler(this);
         gerarNivel();
+        
+        Roseira roseira = new Roseira((SuporteAgua) suportes[5][4]);
+        ((SuporteAgua) suportes[5][4]).colocar(roseira);
     }
 
     public int getNumeroDeSuportesCongelados()

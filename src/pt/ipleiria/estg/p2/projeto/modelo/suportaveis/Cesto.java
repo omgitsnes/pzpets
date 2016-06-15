@@ -16,7 +16,7 @@ public class Cesto extends Suportado<SuporteAgua> implements Iteravel
     public Cesto(SuporteAgua suporte)
     {
         super("/pt/ipleiria/estg/p2/projeto/imagens/objetivos/cesto.png", suporte);
-        temporizador = new Temporizador(10000);
+        temporizador = new Temporizador(2000);
     }
 
     /**
