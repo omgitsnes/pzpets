@@ -24,6 +24,7 @@ public class Combinavel extends Movivel
 
     public boolean combinaCom(Suportado suportado)
     {
+        //Tirar o cast animal
         if (((Animal)suportado).getTipo() == ((Animal) this).getTipo()) {
             return true;
         }

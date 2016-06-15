@@ -230,6 +230,8 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
 		Sentido[] sentidos = { Sentido.E, Sentido.N };
 		for (Sentido sentido : sentidos) {
 			listaSuportadosArebentar.clear();
+			
+			/*
 			// CombinacoesEspeciais
 			// Combinacoes de 4 Animais
 			if ((combinam(posicao, sentido, 2) && combinam(posicao, sentido.getInverso(), 1))
@@ -405,7 +407,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
 					}
 				}
 				// Combinacoes Normais
-				else if (combinam(posicao, sentido, 2) || combinam(posicao, sentido.getInverso(), 2)
+				else */ if (combinam(posicao, sentido, 2) || combinam(posicao, sentido.getInverso(), 2)
 						|| (combinam(posicao, sentido, 1) && combinam(posicao, sentido.getInverso(), 1))) {
 					if (listaSuportadosArebentar.size() > 2) {
 						for (Posicao pos : listaSuportadosArebentar) {
@@ -422,7 +424,7 @@ public class PainelPrincipal extends Painel implements GridPanelEventHandler
 					}
 				}
 			}
-		}
+		//}
 
 	}
 
