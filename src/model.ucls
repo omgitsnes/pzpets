@@ -1,0 +1,725 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.9" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.Posicao" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/Posicao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="319" width="282" x="2630" y="1545"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.paineis.Painel" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/paineis/Painel.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="175" width="346" x="2318" y="126"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteGelo" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/suportes/SuporteGelo.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="103" width="354" x="5161" y="1904"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.suportaveis.inimigos.Pedra" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/suportaveis/inimigos/Pedra.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="85" width="450" x="3074" y="1096"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.Objetivo" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/Objetivo.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="247" width="282" x="2308" y="1545"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="6" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.suportaveis.poderes.TipoPoder" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/suportaveis/poderes/TipoPoder.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="517" width="442" x="3578" y="2155"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="7" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.paineis.PainelRepresentavel" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/paineis/PainelRepresentavel.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="175" width="346" x="1922" y="341"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.suportaveis.inimigos.Aco" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/suportaveis/inimigos/Aco.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="85" width="450" x="3564" y="1096"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.suportaveis.Maca" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/suportaveis/Maca.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="103" width="378" x="4126" y="1545"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="10" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.suportaveis.inimigos" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/suportaveis/inimigos" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="330" x="48" y="126"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="11" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.Combinavel" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/Combinavel.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="103" width="282" x="3804" y="1545"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="12" language="java" name="pt.ipleiria.estg.p2.projeto.modelo" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="50" width="209" x="418" y="126"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="13" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.paineis.PainelPrincipal" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/paineis/PainelPrincipal.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="715" width="346" x="2318" y="341"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.paineis.PainelDeMacas" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/paineis/PainelDeMacas.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="85" width="346" x="1150" y="1545"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.suportaveis.poderes.Poder" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/suportaveis/poderes/Poder.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="103" width="442" x="3578" y="1904"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.suportaveis.inimigos.Roseira" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/suportaveis/inimigos/Roseira.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="175" width="450" x="4962" y="1096"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.suportaveis.inimigos.Espinho" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/suportaveis/inimigos/Espinho.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="85" width="450" x="5044" y="1545"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAr" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/suportes/SuporteAr.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="139" width="354" x="2952" y="1545"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="19" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.suportaveis" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/suportaveis" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="50" width="279" x="667" y="126"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <enumeration id="20" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.TipoAnimal" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/TipoAnimal.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="211" width="282" x="4060" y="2155"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="21" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.paineis.PainelDePontuacoes" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/paineis/PainelDePontuacoes.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="103" width="346" x="1922" y="1545"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="22" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.Iteravel" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/Iteravel.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="85" width="282" x="4544" y="2155"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <package id="23" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.paineis" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/paineis" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="50" width="253" x="986" y="126"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="24" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteSuportador" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/suportes/SuporteSuportador.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5713" y="1668"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.suportaveis.animais.Animal" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/suportaveis/animais/Animal.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="211" width="442" x="4060" y="1904"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="26" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.Sentido" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/Sentido.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="409" width="282" x="2358" y="1096"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="27" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.Temporizador" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/Temporizador.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="175" width="282" x="4866" y="2155"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.suportaveis.ArcoIris" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/suportaveis/ArcoIris.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="103" width="378" x="4544" y="1545"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="29" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.paineis.PainelDecrementador" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/paineis/PainelDecrementador.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="103" width="346" x="1536" y="1096"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="30" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.suportaveis.SuportadoPorGelo" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/suportaveis/SuportadoPorGelo.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="85" width="378" x="4575" y="341"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="31" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.suportes.Suporte" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/suportes/Suporte.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="337" width="354" x="2680" y="1096"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="32" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.suportaveis.animais" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/suportaveis/animais" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="327" x="1279" y="126"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="33" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.paineis.PainelDeMovimentosEstrelas" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/paineis/PainelDeMovimentosEstrelas.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="121" width="346" x="1536" y="1545"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="34" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.suportes" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/suportes" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="50" width="263" x="1646" y="126"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="35" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.suportaveis.Movivel" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/suportaveis/Movivel.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="85" width="378" x="4544" y="1096"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="36" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.suportaveis.Suportado" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/suportaveis/Suportado.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="175" width="378" x="5531" y="126"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="37" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.suportaveis.Cesto" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/suportaveis/Cesto.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="193" width="378" x="4605" y="1904"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="38" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.suportes.SuporteAgua" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/suportes/SuporteAgua.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="121" width="354" x="5555" y="1904"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="39" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.Jogo" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/Jogo.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="157" width="282" x="1962" y="1096"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="40" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.suportaveis.poderes" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/suportaveis/poderes" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="329" x="1949" y="126"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="41" language="java" name="pt.ipleiria.estg.p2.projeto.modelo.suportaveis.inimigos.Terra" 
+    project="2140650_FernandoSilva_2140663_BrunoJordao" 
+    file="/2140650_FernandoSilva_2140663_BrunoJordao/src/pt/ipleiria/estg/p2/projeto/modelo/suportaveis/inimigos/Terra.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="85" width="450" x="4054" y="1096"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="42">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <association id="43">    
+    <end type="SOURCE" refId="31" navigable="false">      
+      <attribute id="44" name="painelPrincipal"/>      
+      <multiplicity id="45" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="46">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="31"/>  
+  </generalization>  
+  <generalization id="47">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <generalization id="48">    
+    <end type="SOURCE" refId="30"/>    
+    <end type="TARGET" refId="36"/>  
+  </generalization>  
+  <generalization id="49">    
+    <bendpoint x="5442" y="1096"/>    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="30"/>  
+  </generalization>  
+  <association id="50">    
+    <end type="SOURCE" refId="39" navigable="false">      
+      <attribute id="51" name="painelPrincipal"/>      
+      <multiplicity id="52" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="53">    
+    <end type="SOURCE" refId="31" navigable="false">      
+      <attribute id="54" name="posicao"/>      
+      <multiplicity id="55" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="56">    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="57" name="delta"/>      
+      <multiplicity id="58" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="59">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="30"/>  
+  </generalization>  
+  <association id="60">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="61" name="espinhos"/>      
+      <multiplicity id="62" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="63">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="29"/>  
+  </generalization>  
+  <association id="64">    
+    <end type="SOURCE" refId="39" navigable="false">      
+      <attribute id="65" name="painelDePontuacoes"/>      
+      <multiplicity id="66" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="67">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <generalization id="68">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="24"/>  
+  </generalization>  
+  <association id="69">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="70" name="suporteInicial"/>      
+      <multiplicity id="71" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="31" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="72">    
+    <bendpoint x="5013" y="1545"/>    
+    <bendpoint x="5013" y="1904"/>    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="73" name="temporizador"/>      
+      <multiplicity id="74" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="75">    
+    <bendpoint x="1931" y="1096"/>    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <generalization id="76">    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="35"/>  
+  </generalization>  
+  <association id="77">    
+    <end type="SOURCE" refId="39" navigable="false">      
+      <attribute id="78" name="objetivo"/>      
+      <multiplicity id="79" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="80">    
+    <bendpoint x="4952" y="1545"/>    
+    <bendpoint x="4574" y="1904"/>    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="22"/>  
+  </realization>  
+  <realization id="81">    
+    <bendpoint x="4532" y="1904"/>    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="22"/>  
+  </realization>  
+  <generalization id="82">    
+    <end type="SOURCE" refId="29"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <association id="83">    
+    <bendpoint x="5545" y="341"/>    
+    <bendpoint x="5545" y="1096"/>    
+    <end type="SOURCE" refId="36" navigable="false">      
+      <attribute id="84" name="suporte"/>      
+      <multiplicity id="85" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="86">    
+    <end type="SOURCE" refId="39" navigable="false">      
+      <attribute id="87" name="painelDeMovimentosEstrelas"/>      
+      <multiplicity id="88" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="33" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="89">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="22"/>  
+  </realization>  
+  <association id="90">    
+    <bendpoint x="2327" y="1096"/>    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="91" name="listaSuportadosArebentar"/>      
+      <multiplicity id="92" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="93">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <generalization id="94">    
+    <end type="SOURCE" refId="35"/>    
+    <end type="TARGET" refId="30"/>  
+  </generalization>  
+  <association id="95">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="96" name="temporizador"/>      
+      <multiplicity id="97" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="98">    
+    <end type="SOURCE" refId="37" navigable="false">      
+      <attribute id="99" name="temporizador"/>      
+      <multiplicity id="100" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="101">    
+    <bendpoint x="5566" y="1096"/>    
+    <bendpoint x="5566" y="341"/>    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="102" name="suportado"/>      
+      <multiplicity id="103" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="36" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="104">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="29"/>  
+  </generalization>  
+  <realization id="105">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="22"/>  
+  </realization>  
+  <realization id="106">    
+    <bendpoint x="4553" y="1904"/>    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="22"/>  
+  </realization>  
+  <realization id="107">    
+    <end type="SOURCE" refId="37"/>    
+    <end type="TARGET" refId="22"/>  
+  </realization>  
+  <generalization id="108">    
+    <end type="SOURCE" refId="41"/>    
+    <end type="TARGET" refId="30"/>  
+  </generalization>  
+  <generalization id="109">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="35"/>  
+  </generalization>  
+  <association id="110">    
+    <end type="SOURCE" refId="39" navigable="false">      
+      <attribute id="111" name="painelDeMacas"/>      
+      <multiplicity id="112" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="113">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="31"/>  
+  </generalization>  
+  <association id="114">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="115" name="suportes"/>      
+      <multiplicity id="116" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="31" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="117">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="35"/>  
+  </generalization>  
+  <association id="118">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="119" name="jogo"/>      
+      <multiplicity id="120" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="39" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="121">    
+    <end type="SOURCE" refId="38"/>    
+    <end type="TARGET" refId="24"/>  
+  </generalization>  
+  <generalization id="122">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="30"/>  
+  </generalization>  
+  <association id="123">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="124" name="tipo"/>      
+      <multiplicity id="125" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="126">    
+    <bendpoint x="5524" y="1545"/>    
+    <bendpoint x="5524" y="1096"/>    
+    <bendpoint x="5524" y="341"/>    
+    <end type="SOURCE" refId="37"/>    
+    <end type="TARGET" refId="36"/>  
+  </generalization>  
+  <association id="127">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="128" name="tipo"/>      
+      <multiplicity id="129" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="130">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="30"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
